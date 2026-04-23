@@ -1,32 +1,38 @@
-/* PAGE LOADER */
-document.onreadystatechange = function () {
-  var state = document.readyState;
-  if (state == "complete") {
-    setTimeout(function () {
-      document.getElementById("interactive");
-      document.getElementById("load").classList.add("loaded");
-    }, 500);
-  }
-};
+/* PAGE LOADER — splash screen handled by animations.js */
+// document.onreadystatechange = function () {
+//   var state = document.readyState;
+//   if (state == "complete") {
+//     setTimeout(function () {
+//       // Legacy load element kept for compatibility; splash is now #splash (see animations.js)
+//       var loadEl = document.getElementById("load");
+//       if (loadEl) loadEl.classList.add("loaded");
+//     }, 500);
+//   }
+// };
 
 /* MOVIE HOVER VIDEO */
 $(".vid").attr("disablePictureInPicture", "true");
 let videoPlaying = $(".video").hover(hoverVideo, hideVideo);
 
 function hoverVideo(e) {
-  $(".vid", this).get(0).muted = true;
-  $(".vid", this).get(0).play();
-  $(".vid", this).get(0).volume = 1;
-  $(".vid", this).get(0).currentTime = 0;
+  var vid = $(".vid", this).get(0);
+  if (!vid) return;
+  vid.muted = true;
+  var p = vid.play();
+  if (p !== undefined) p.catch(function () {});
+  vid.volume = 1;
+  vid.currentTime = 0;
   $(".vid").prop("muted", true);
   $(".audio-control", this).removeClass("unmute");
 }
 
 function hideVideo(e) {
-  $(".vid", this).get(0).muted = true;
-  $(".vid", this).get(0).pause();
-  $(".vid", this).get(0).volume = 0;
-  $(".vid", this).get(0).currentTime = 0;
+  var vid = $(".vid", this).get(0);
+  if (!vid) return;
+  vid.muted = true;
+  vid.pause();
+  vid.volume = 0;
+  vid.currentTime = 0;
   $(".audio-control", this).removeClass("unmute").addClass("muted");
   $(".vid").prop("muted", false);
 }
