@@ -1,0 +1,340 @@
+/* Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* CSS Color Variables */
+:root {
+  --primary: #e50914;
+  --primary-dark: #b00610;
+  --primary-glow: rgba(229, 9, 20, 0.35);
+  --accent: #ff6b35;
+  --gold: #f5c518;
+  --bg-base: #0a0a0f;
+  --bg-card: #111118;
+  --bg-elevated: #1a1a24;
+  --bg-glass: rgba(20, 20, 30, 0.75);
+  --border: rgba(255, 255, 255, 0.07);
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #606078;
+}
+
+/* Base Colors */
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: var(--bg-base) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Brand Logo: hide old img, show Lucide icon */
+.alogo > img {
+  display: none !important;
+}
+.brand-icon {
+  color: var(--primary) !important;
+}
+.brand-accent {
+  color: var(--primary) !important;
+}
+.brand-name {
+  color: #fff !important;
+}
+
+.footer-brand-icon {
+  color: var(--primary) !important;
+}
+.footer-brand-name {
+  color: #fff !important;
+}
+
+#load .loadeffect > img {
+  display: none !important;
+}
+.load-icon {
+  color: var(--primary) !important;
+}
+
+.classicFooter .logo a > img {
+  display: none !important;
+}
+
+/* Header Background */
+header {
+  background-color: rgba(10, 10, 15, 0.95) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+header nav a {
+  color: var(--text-secondary) !important;
+}
+header nav a:hover {
+  color: #fff !important;
+}
+
+/* Loading Screen */
+#load {
+  background-color: var(--bg-base) !important;
+}
+
+/* Hero / Backdrop brightness */
+.indexHeroBackground img,
+.backgroundCover img {
+  filter: brightness(0.4) !important;
+}
+.movieListHeroBackground img {
+  filter: brightness(0.3) !important;
+}
+.movieDetailHero video {
+  filter: brightness(0.35) !important;
+}
+
+/* Movie Cards */
+.movieItem {
+  background-color: var(--bg-card) !important;
+}
+.moviename {
+  color: #fff !important;
+}
+.movieInfo {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(10, 10, 15, 0.95) 100%
+  ) !important;
+}
+
+/* Buttons */
+.bttn.watchnow,
+a.bttn.watchnow {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  ) !important;
+  color: #fff !important;
+}
+.bttn.primary {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  ) !important;
+  color: #fff !important;
+}
+.bttn.colorbttn {
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--accent) 100%
+  ) !important;
+  color: #fff !important;
+}
+.bttn.secondary,
+a.bttn.secondary {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #fff !important;
+}
+.bttn.icon {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--border) !important;
+}
+.bttn.icon:hover {
+  background-color: var(--primary-glow) !important;
+  border-color: var(--primary) !important;
+}
+.bttn.socialbttn {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--border) !important;
+  color: #fff !important;
+}
+
+/* Progress Bar */
+progress::-webkit-progress-bar {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--primary), var(--accent)) !important;
+}
+
+/* Section Headings */
+.containerLink h3,
+section.movies h3 {
+  color: #fff !important;
+}
+.exploreall {
+  color: var(--text-secondary) !important;
+  border-color: var(--border) !important;
+}
+.exploreall:hover {
+  color: #fff !important;
+  /* border-color: var(--primary) !important; */
+  /* background-color: var(--primary-glow) !important; */
+}
+
+/* Badges */
+/* .imdb { */
+/* background-color: var(--gold) !important; */
+/* color: #000 !important; */
+/* } */
+.trend {
+  background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+  color: #fff !important;
+}
+
+/* Category Tags */
+.categories li {
+  /* background-color: rgba(229, 9, 20, 0.15) !important; */
+  /* border-color: rgba(229, 9, 20, 0.35) !important; */
+  color: var(--text-primary) !important;
+}
+
+/* IMDB stars / detail badges */
+.detailList li {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: var(--border) !important;
+}
+
+/* Side Menu */
+.sideMenu a:hover {
+  color: var(--primary) !important;
+}
+
+/* Profile Modal */
+.changeProfileWindow {
+  background-color: rgba(5, 5, 10, 0.9) !important;
+}
+.changeProfileContainer {
+  background-color: var(--bg-elevated) !important;
+  border-color: var(--border) !important;
+}
+.profileItem.active .img {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 20px var(--primary-glow) !important;
+}
+
+/* Login / Register Form Colors */
+.pageLoginSignin {
+  background-color: var(--bg-glass) !important;
+  border-color: var(--border) !important;
+}
+input.text,
+input.date,
+select.select {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: var(--border) !important;
+  color: #fff !important;
+}
+input.text:focus,
+input.date:focus,
+select.select:focus {
+  border-color: var(--primary) !important;
+  background-color: rgba(229, 9, 20, 0.05) !important;
+}
+input.text::placeholder {
+  color: var(--text-muted) !important;
+}
+select.select option {
+  background-color: var(--bg-elevated) !important;
+  color: #fff !important;
+}
+.pageLoginSignin label {
+  color: var(--text-secondary) !important;
+}
+.hr-75 span {
+  color: var(--text-muted) !important;
+  background-color: var(--bg-elevated) !important;
+}
+.hr-75 {
+  border-color: var(--border) !important;
+}
+
+/* Footer Colors */
+footer {
+  background-color: var(--bg-base) !important;
+  border-top: 1px solid var(--border) !important;
+}
+.footerContainerTitle .h2 {
+  color: var(--text-secondary) !important;
+}
+.classicFooter .logo p {
+  color: var(--text-secondary) !important;
+}
+.footerLinksRow .title {
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.footerLinksRow ul li a {
+  color: var(--text-secondary) !important;
+}
+.footerLinksRow ul li a:hover {
+  color: #fff !important;
+}
+.socialLinks .icons i {
+  color: var(--text-secondary) !important;
+}
+.socialLinks .icons i:hover {
+  color: var(--primary) !important;
+}
+.moreFooterLink a {
+  color: var(--text-muted) !important;
+}
+.moreFooterLink a:hover {
+  color: var(--primary) !important;
+}
+
+/* Subscribe Banner Colors */
+.ads {
+  background: linear-gradient(
+    135deg,
+    rgba(229, 9, 20, 0.15) 0%,
+    rgba(255, 107, 53, 0.1) 100%
+  ) !important;
+  border-color: rgba(229, 9, 20, 0.25) !important;
+}
+
+/* Movie Detail Tab */
+.tabContentFrame .title {
+  color: var(--primary) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Owl Carousel Dots */
+.owl-dot span {
+  background-color: var(--text-muted) !important;
+}
+.owl-dot.active span {
+  background-color: var(--primary) !important;
+}
+
+/* Main Color Accent */
+.maincolor {
+  color: var(--primary) !important;
+}
+
+/* Search Field Colors */
+.search-field {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--border) !important;
+  color: #fff !important;
+}
+.search-field:focus {
+  border-color: var(--primary) !important;
+  background-color: rgba(229, 9, 20, 0.06) !important;
+}
+.search-submit {
+  background-color: var(--primary) !important;
+  color: #fff !important;
+}
+.search-submit:hover {
+  background-color: var(--primary-dark) !important;
+}
+
+/* Custom Scrollbar Colors */
+::-webkit-scrollbar-track {
+  background-color: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-dark);
+}
