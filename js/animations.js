@@ -277,9 +277,9 @@
         // afterSplash() and the slide-up run simultaneously, so content
         // is already animating in while the splash is still leaving.
 
-        setTimeout(() => {
+        // setTimeout(() => {
           afterSplash();
-        }, 290);
+        // }, 290);
 
         gsap.to(splash, {
           yPercent: -100,
