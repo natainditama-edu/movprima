@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MovPrima - Platform Streaming Film & Serial</title>
+
+    <meta name="description" content="" />
+    <meta property="og:title" content="" />
+    <meta property="og:type" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:image:alt" content="" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+    <meta name="theme-color" content="#fafafa" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <!-- JQuery -->
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    ></script>
+
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <script defer src="js/vendor/owl.carousel.min.js"></script>
+
+    <!-- Lucide -->
+    <script
+      defer
+      src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"
+    ></script>
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/custom.css" />
+
+    <!-- Site JS -->
+    <script defer src="js/theme.js"></script>
+    <script defer src="js/app.js"></script>
+    <script defer src="js/assets.js"></script>
+  </head>
+
+  <body>
+    <div id="load">
+      <div class="loadeffect">
+        <i data-lucide="clapperboard" class="load-icon"></i>
+        <img src="img/logo-icon.png" alt="" style="display: none" />
+      </div>
+    </div>
+
+    <header>
+      <div class="headerContainer">
+        <a class="alogo" href="index.html">
+          <i data-lucide="clapperboard" class="brand-icon"></i
+          ><span class="brand-name"
+            >Mov<span class="brand-accent">Prima</span></span
+          >
+          <img src="img/logo.png" alt="MovPrima" style="display: none" />
+        </a>
+        <div class="main">
+          <nav>
+            <a href="./movies-all.html">FILM</a>
+            <a href="">SERIAL</a>
+            <a href="">ACARA</a>
+            <a href="">SIARAN LANGSUNG</a>
+          </nav>
+          <div class="mobileNavCon">
+            <i class="mobileNavIcon fa-solid fa-bars"></i>
+            <div class="mobileNavWindow">
+              <div class="mobileNav">
+                <form role="search" method="get" class="search-form" action="">
+                  <label>
+                    <input
+                      autocomplete="off"
+                      type="search"
+                      class="search-field"
+                      placeholder="Cari…"
+                      value=""
+                      name="search"
+                      title="Cari:"
+                    />
+                  </label>
+                  <input type="submit" class="search-submit" value="Cari" />
+                </form>
+                <a href="movies-all.html">FILM</a>
+                <a href="">SERIAL</a>
+                <a href="">ACARA</a>
+                <a href="">SIARAN LANGSUNG</a>
+              </div>
+            </div>
+          </div>
+          <div class="yenisearch">
+            <form role="search" method="get" class="search-form" action="">
+              <label>
+                <input
+                  autocomplete="off"
+                  type="search"
+                  class="search-field"
+                  placeholder="Cari…"
+                  value=""
+                  name="search"
+                  title="Cari:"
+                />
+              </label>
+              <input type="submit" class="search-submit" value="Cari" />
+            </form>
+          </div>
+        </div>
+        <div class="side">
+          <a href="#"><i class="fa-solid fa-bell sideIcon"></i></a>
+          <div class="sideMenuCon">
+            <div class="closeSideMenu"><i class="fa-solid fa-xmark"></i></div>
+            <img
+              class="sideMenuBttn accountIcon"
+              src="img/account.jpg"
+              alt=""
+            />
+            <div class="sideMenuWindow">
+              <div class="sideMenu">
+                <a href="#">DAFTAR SAYA</a>
+                <a href="#changeprofile" id="changeprofilebttn">GANTI PROFIL</a>
+                <a href="#">AKUN</a>
+                <a href="#">PENGATURAN</a>
+                <a href="#help">BANTUAN</a>
+                <a href="login.html">KELUAR</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="headerFixer"></div>
+
+    <div class="changeProfileWindow">
+      <span class="close changeprofileclosebttn">
+        <i class="fa-solid fa-xmark"></i>
+      </span>
+      <div class="changeProfileContainer">
+        <h1 class="center">Pilih Profil</h1>
+        <div id="profileList" class="profileList">
+          <div class="profileItem active">
+            <div class="img">
+              <img src="img/account.jpg" alt="" />
+            </div>
+            <p class="bold">BUDI</p>
+          </div>
+          <div class="profileItem">
+            <div class="img">
+              <img src="img/account.jpg" alt="" />
+            </div>
+            <p class="bold">DIAN</p>
+          </div>
+          <div class="profileItem">
+            <div class="img">
+              <img src="img/account.jpg" alt="" />
+            </div>
+            <p class="bold">DIAN</p>
+          </div>
+          <div class="profileItem">
+            <div class="img">
+              <img src="img/account.jpg" alt="" />
+            </div>
+            <p class="bold">DIAN</p>
+          </div>
+          <div class="profileItem">
+            <div class="img">
+              <img src="img/account.jpg" alt="" />
+            </div>
+            <p class="bold">DIAN</p>
+          </div>
+        </div>
+        <button class="bttn primary">EDIT PROFIL</button>
+      </div>
+    </div>
+
+    <section class="moviesPageHero">
+      <div class="flex-container">
+        <div class="movieListHeroContainer">
+          <h1 class="h1">Film Aksi</h1>
+        </div>
+      </div>
+      <div class="movieListHeroBackground">
+        <!-- <img src="https://wallpaperaccess.com/full/3658607.jpg" alt=""> -->
+        <img
+          src="http://cinemadeviant.com/wp-content/uploads/2013/10/Massive-B-Horror-Collage-Wallpaper-horror-movies-29491579-2560-1600.jpg"
+          alt=""
+        />
+      </div>
+    </section>
+
+    <section class="movies wraplist">
+      <div class="flex-container">
+        <div class="wrapMovieList">
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="wrapMovieItem hideMovie">
+            <a href="movie-detail.html">
+              <div class="movieItem">
+                <div class="movieInfo">
+                  <p class="h3 moviename">Bullet Train</p>
+                </div>
+                <div class="moviePoster">
+                  <img src="img/poster-169.jpg" alt="watch now" />
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="loadMoreMovies">
+          <a href="javascript:void(0);" class="bttn primary"
+            >MUAT LEBIH BANYAK</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="flex-container">
+        <div class="footerContainer">
+          <div class="footerContainerTitle">
+            <p class="h1">
+              <span class="maincolor">MovPrima</span> HADIR DI MANA-MANA
+              SEKARANG!
+            </p>
+            <p class="h2">Unduh Versi Terbaru Aplikasi Kami</p>
+          </div>
+          <div class="boxes">
+            <div class="boxesItem">
+              <img
+                src="img/download-app-store.png"
+                alt="Download on the App Store"
+                title="Download on the App Store"
+              />
+            </div>
+            <div class="boxesItem">
+              <img
+                src="img/download-google-play.png"
+                alt="Get it on Google Play"
+                title="Get it on Google Play"
+              />
+            </div>
+          </div>
+          <div class="ads">
+            <div class="content">
+              <div>
+                <p class="title">Nikmati uji coba gratis sebulan</p>
+                <p class="light">
+                  Jangan lewatkan serial dan film terkini, semua konten hanya
+                  dalam satu klik.
+                </p>
+              </div>
+              <a href="#" class="bttn colorbttn">BERLANGGANAN SEKARANG</a>
+            </div>
+            <img src="img/subscribe.gif" alt="" />
+          </div>
+          <div class="classicFooter">
+            <div class="logo">
+              <a href="index.html"
+                ><i data-lucide="clapperboard" class="footer-brand-icon"></i
+                ><span class="footer-brand-name"
+                  >Mov<span style="color: #e50914">Prima</span></span
+                ><img src="img/logo.png" alt=""
+              /></a>
+              <p>Tonton Ribuan Film, Serial, dan Acara TV di MovPrima</p>
+            </div>
+            <div class="footerLinks">
+              <div class="footerLinksRow nav">
+                <p class="title">JELAJAHI</p>
+                <ul>
+                  <li><a href="#1">Film</a></li>
+                  <li><a href="#1">Serial</a></li>
+                  <li><a href="#1">Orisinal</a></li>
+                  <li><a href="#1">Acara</a></li>
+                  <li><a href="#1">Siaran Langsung</a></li>
+                </ul>
+              </div>
+              <div class="footerLinksRow nav">
+                <p class="title">BANTUAN</p>
+                <ul>
+                  <li><a href="#1">Aksesibilitas</a></li>
+                  <li><a href="#1">Akun &amp; Tagihan</a></li>
+                  <li><a href="#1">Perangkat yang Didukung</a></li>
+                  <li><a href="#1">Paket &amp; Harga</a></li>
+                </ul>
+              </div>
+              <div class="footerLinksRow nav">
+                <p class="title">TENTANG</p>
+                <ul>
+                  <li><a href="#1">Iklan</a></li>
+                  <li><a href="#">Kontak</a></li>
+                  <li><a href="#1">Karir</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="socialLinks">
+              <p class="title">IKUTI KAMI</p>
+              <div class="icons">
+                <i class="fa-brands fa-youtube"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-tiktok"></i>
+                <i class="fa-brands fa-facebook"></i>
+              </div>
+              <div class="moreFooterLink">
+                <a href="#">SYARAT LAYANAN</a><a href="#">KEBIJAKAN PRIVASI</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footerBackground">
+        <img src="img/footer-bg.png" alt="" />
+      </div>
+    </footer>
+  </body>
+</html>
