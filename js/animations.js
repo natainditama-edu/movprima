@@ -279,7 +279,7 @@
 
         setTimeout(() => {
           afterSplash();
-        }, 100);
+        }, 290);
 
         gsap.to(splash, {
           yPercent: -100,

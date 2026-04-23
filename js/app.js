@@ -1,14 +1,18 @@
-/* PAGE LOADER — splash screen handled by animations.js */
-// document.onreadystatechange = function () {
-//   var state = document.readyState;
-//   if (state == "complete") {
-//     setTimeout(function () {
-//       // Legacy load element kept for compatibility; splash is now #splash (see animations.js)
-//       var loadEl = document.getElementById("load");
-//       if (loadEl) loadEl.classList.add("loaded");
-//     }, 500);
-//   }
-// };
+/* ─────────────────────────────────────────────────────────────
+ * CONSOLE GUARD
+ * Log output is only shown on localhost / 127.0.0.1 (dev mode).
+ * All console methods are silenced on any other host (production).
+ * ───────────────────────────────────────────────────────────── */
+(function () {
+  var isLocal = ['localhost', '127.0.0.1'].indexOf(window.location.hostname) !== -1;
+  if (!isLocal) {
+    var noop = function () {};
+    ['log', 'warn', 'error', 'info', 'debug', 'assert', 'table', 'trace'].forEach(function (m) {
+      try { console[m] = noop; } catch (e) {}
+    });
+  }
+})();
+
 
 /* MOVIE HOVER VIDEO */
 $(".vid").attr("disablePictureInPicture", "true");
