@@ -87,9 +87,9 @@ $(document).on("click", function (event) {
 });
 
 /* LOAD MORE MOVIE FOR WRAPLIST & RELOAD TO FIX LOAD MORE MOVIE */
-$(window).resize(function () {
-  location.reload();
-});
+// $(window).resize(function () {
+//   location.reload();
+// });
 
 $(document).ready(function () {
   if ($(window).width() <= 576) {
