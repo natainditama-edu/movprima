@@ -594,21 +594,22 @@ main          ← stable, demo-ready
 
 #### Phase 1 — Database Migrations
 
-- [ ] `2026-05-01-000001_CreateUsersTable.php` — users table (id, name, email, password, role, avatar, bio, timestamps)
-- [ ] `2026-05-01-000002_CreateGenresTable.php` — genres table (id, name, slug, timestamps)
-- [ ] `2026-05-01-000003_CreateMoviesTable.php` — movies table (id, title, slug, synopsis, director, release_year, duration, poster, backdrop, trailer_url, language, country, status, avg_rating, review_count, timestamps)
-- [ ] `2026-05-01-000004_CreateMovieGenresTable.php` — pivot table + FK constraints
-- [ ] `2026-05-01-000005_CreateReviewsTable.php` — reviews table + unique(user_id, movie_id)
-- [ ] `2026-05-01-000006_CreateReviewLikesTable.php` — review_likes table + unique(user_id, review_id)
-- [ ] `2026-05-01-000007_CreateWatchlistTable.php` — watchlist table + unique(user_id, movie_id)
-- [ ] Run `php spark migrate` — must complete with zero errors
+- [x] `2026-05-12-170001_CreateUsersTable.php` — users table (id, name, email, password, role, avatar, bio, timestamps)
+- [x] `2026-05-12-170002_CreateGenresTable.php` — genres table (id, name, slug, timestamps)
+- [x] `2026-05-12-170003_CreateMoviesTable.php` — movies table (id, title, slug, synopsis, director, release_year, duration, poster, backdrop, trailer_url, language, country, status, avg_rating, review_count, timestamps)
+- [x] `2026-05-12-170004_CreateMovieGenresTable.php` — pivot table + FK constraints
+- [x] `2026-05-12-170005_CreateReviewsTable.php` — reviews table + unique(user_id, movie_id)
+- [x] `2026-05-12-170006_CreateReviewLikesTable.php` — review_likes table + unique(user_id, review_id)
+- [x] `2026-05-12-170007_CreateWatchlistTable.php` — watchlist table + unique(user_id, movie_id)
+- [x] Run `php spark migrate` — completed with zero errors ✅ (Batch 1, 2026-05-12)
 
 #### Phase 2 — Seeders
 
-- [ ] `GenreSeeder.php` — insert 10 genres with correct slugs
-- [ ] `AdminUserSeeder.php` — insert 1 admin user (bcrypt password)
-- [ ] `MovieSeeder.php` — insert 15–20 movies + `movie_genres` pivot rows
-- [ ] Run `php spark db:seed DatabaseSeeder` — must complete with zero errors
+- [x] `GenreSeeder.php` — 10 genres inserted with correct slugs
+- [x] `AdminUserSeeder.php` — admin@movprima.com / Admin@123 (bcrypt)
+- [x] `MovieSeeder.php` — 15 movies + movie_genres pivot rows inserted
+- [x] `DatabaseSeeder.php` — master seeder (calls all 3 in order)
+- [x] Run `php spark db:seed DatabaseSeeder` — completed with zero errors ✅
 
 #### Phase 3 — Layout & Design System
 
