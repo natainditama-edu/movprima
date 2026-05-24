@@ -21,7 +21,7 @@ class GenreSeeder extends Seeder
       ["name" => "Fantasy", "slug" => "fantasy"],
     ];
 
-    $now = date("Y-m-d H:i:s");
+    $now = Time::now("Asia/Jakarta", "en_US")->format("Y-m-d H:i:s");
 
     foreach ($genres as &$genre) {
       $genre["created_at"] = $now;

@@ -11,7 +11,9 @@ use CodeIgniter\Database\Seeder;
  * Order matters:
  *   1. GenreSeeder      (no deps)
  *   2. AdminUserSeeder  (no deps)
- *   3. MovieSeeder      (depends on genres)
+ *   3. UserSeeder       (no deps)
+ *   4. MovieSeeder      (depends on genres)
+ *   5. ReviewSeeder     (depends on users and movies)
  */
 class DatabaseSeeder extends Seeder
 {
@@ -19,7 +21,9 @@ class DatabaseSeeder extends Seeder
   {
     $this->call("GenreSeeder");
     $this->call("AdminUserSeeder");
+    $this->call("UserSeeder");
     $this->call("MovieSeeder");
+    $this->call("ReviewSeeder");
 
     echo "\n[DONE] Database seeded successfully.\n";
   }
