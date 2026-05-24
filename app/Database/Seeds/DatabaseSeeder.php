@@ -15,12 +15,12 @@ use CodeIgniter\Database\Seeder;
  */
 class DatabaseSeeder extends Seeder
 {
-    public function run(): void
-    {
-        $this->call('GenreSeeder');
-        $this->call('AdminUserSeeder');
-        $this->call('MovieSeeder');
+  public function run(): void
+  {
+    $this->call("GenreSeeder");
+    $this->call("AdminUserSeeder");
+    $this->call("MovieSeeder");
 
-        echo "\n[DONE] Database seeded successfully.\n";
-    }
+    echo "\n[DONE] Database seeded successfully.\n";
+  }
 }
