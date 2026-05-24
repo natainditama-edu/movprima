@@ -1,0 +1,749 @@
+/* CSS Color Variables */
+:root {
+  --bkg-color: var(--bg-base);
+  --bkg-color2: var(--bg-card);
+  --light: var(--text-primary);
+  --dark: var(--bg-base);
+  --dark2: var(--bg-elevated);
+  --main-color: var(--primary);
+  --detailherocolor: rgba(229, 9, 20, 0.25);
+  --textcolor1: var(--text-primary);
+  --textcolor2: var(--text-secondary);
+  --inputcolor1: rgb(26, 26, 36);
+  --inputcolor2: rgb(26, 26, 36);
+  --inputcolor3: var(--primary);
+  --inputcolor4: rgb(96, 96, 120);
+  --buttonPrimary1: var(--bg-elevated);
+  --buttonPrimary2: var(--bg-card);
+  --buttonPrimary3: var(--bg-base);
+  --buttonSecondary: var(--bg-elevated);
+  --buttonColor1: var(--primary);
+  --buttonColor2: var(--primary-dark);
+  --buttonColor3: #8a040c;
+  color-scheme: dark;
+  --logo: url(../img/logo.png);
+  --logoicon: url(../img/logo-icon.png);
+  --searchicon: url(../img/search-icon-dark.png);
+  --planbkg: var(--bkg-color2);
+  --darklightinvert: invert(1);
+  --white: #ffffff;
+  --black: #000000;
+  --color-rgba-1: rgba(10, 10, 15, 0.95);
+  --color-rgba-2: rgba(255, 255, 255, 0.1);
+  --color-rgba-3: rgba(255, 255, 255, 0.2);
+  --color-rgba-4: rgba(255, 255, 255, 0.08);
+  --color-rgba-5: rgba(255, 255, 255, 0.06);
+  --color-rgba-6: rgba(229, 9, 20, 0.15);
+  --color-rgba-7: rgba(5, 5, 10, 0.9);
+  --color-rgba-8: rgba(255, 255, 255, 0.05);
+  --color-rgba-9: rgba(229, 9, 20, 0.05);
+  --color-rgba-10: rgba(255, 107, 53, 0.1);
+  --color-rgba-11: rgba(229, 9, 20, 0.25);
+  --color-rgba-12: rgba(229, 9, 20, 0.06);
+  --color-rgba-13: rgba(255, 255, 255, 0.12);
+  --color-rgba-14: rgba(10, 10, 15, 0.85);
+  --color-rgba-15: rgba(0, 0, 0, 0.5);
+  --color-rgba-16: rgba(20, 20, 25, 0.8);
+  --color-rgba-17: rgba(229, 9, 20, 0.8);
+  --color-rgba-18: rgba(0, 0, 0, 0);
+  --color-rgba-19: rgba(0, 0, 0, 0.25);
+  --color-hex-00000010: #00000010;
+  --color-hex-00000020: #00000020;
+  --color-hex-00000060: #00000060;
+  --color-rgba-20: rgba(0, 0, 0, 0.33);
+  --color-hex-db4437: #db4437;
+  --color-hex-555555: #555555;
+  --color-hex-0668e1: #0668e1;
+  --color-rgba-21: rgba(255, 255, 255, 0);
+  --color-rgba-22: rgba(0, 0, 0, 1);
+  --color-rgba-23: rgba(0, 0, 0, 0.66);
+  --color-hex-ffffff80: #ffffff80;
+  --color-rgba-24: rgb(0, 0, 0);
+  --color-rgba-25: rgb(2, 0, 36);
+  --color-rgba-26: rgba(42, 34, 190, 0);
+  --primary: #e50914;
+  --primary-dark: #b00610;
+  --primary-glow: rgba(229, 9, 20, 0.35);
+  --accent: #ff6b35;
+  --gold: #f5c518;
+  --bg-base: #0a0a0f;
+  --bg-card: #111118;
+  --bg-elevated: #1a1a24;
+  --bg-glass: rgba(20, 20, 30, 0.75);
+  --border: rgba(255, 255, 255, 0.07);
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #606078;
+}
+
+/* Base Colors */
+body {
+  background-color: var(--bg-base) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Brand Logo: hide old img, show Lucide icon */
+.alogo > img {
+  display: none !important;
+}
+.brand-icon {
+  color: var(--primary) !important;
+}
+.brand-accent {
+  color: var(--primary) !important;
+}
+.brand-name {
+  color: var(--white) !important;
+}
+
+.footer-brand-icon {
+  color: var(--primary) !important;
+}
+.footer-brand-name {
+  color: var(--white) !important;
+}
+
+#load .loadeffect > img {
+  display: none !important;
+}
+.load-icon {
+  color: var(--primary) !important;
+}
+
+.classicFooter .logo a > img {
+  display: none !important;
+}
+
+/* Header Background */
+header {
+  background-color: var(--color-rgba-1) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+header nav a {
+  color: var(--text-secondary) !important;
+}
+header nav a:hover {
+  color: var(--white) !important;
+}
+
+/* Loading Screen */
+#load {
+  background-color: var(--bg-base) !important;
+}
+
+/* Hero / Backdrop brightness */
+.indexHeroBackground img,
+.backgroundCover img {
+  filter: brightness(0.4) !important;
+}
+.movieListHeroBackground img {
+  filter: brightness(0.3) !important;
+}
+.movieDetailHero video {
+  filter: brightness(0.35) !important;
+}
+
+/* Movie Cards */
+.movieItem {
+  background-color: var(--bg-card) !important;
+}
+.moviename {
+  color: var(--white) !important;
+}
+.movieInfo {
+  background: linear-gradient(180deg, transparent 0%, var(--color-rgba-1) 100%) !important;
+}
+
+/* Buttons */
+.bttn.watchnow,
+a.bttn.watchnow {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+  color: var(--white) !important;
+}
+.bttn.primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%) !important;
+  color: var(--white) !important;
+}
+.bttn.colorbttn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%) !important;
+  color: var(--white) !important;
+}
+.bttn.secondary,
+a.bttn.secondary {
+  background-color: var(--color-rgba-2) !important;
+  border-color: var(--color-rgba-3) !important;
+  color: var(--white) !important;
+}
+.bttn.icon {
+  background-color: var(--color-rgba-4) !important;
+  border-color: var(--border) !important;
+}
+.bttn.icon:hover {
+  background-color: var(--primary-glow) !important;
+  border-color: var(--primary) !important;
+}
+.bttn.socialbttn {
+  background-color: var(--color-rgba-5) !important;
+  border-color: var(--border) !important;
+  color: var(--white) !important;
+}
+
+/* Progress Bar */
+progress::-webkit-progress-bar {
+  background-color: var(--color-rgba-2);
+}
+progress::-webkit-progress-value {
+  background: linear-gradient(90deg, var(--primary), var(--accent)) !important;
+}
+
+/* Section Headings */
+.containerLink h3,
+section.movies h3 {
+  color: var(--white) !important;
+}
+.exploreall {
+  color: var(--text-secondary) !important;
+  border-color: var(--border) !important;
+}
+.exploreall:hover {
+  color: var(--white) !important;
+  /* border-color: var(--primary) !important; */
+  /* background-color: var(--primary-glow) !important; */
+}
+
+/* Badges */
+/* .imdb { */
+/* background-color: var(--gold) !important; */
+/* color: var(--black) !important; */
+/* } */
+.trend {
+  background: linear-gradient(135deg, var(--primary), var(--accent)) !important;
+  color: var(--white) !important;
+}
+
+/* Category Tags */
+.categories li {
+  /* background-color: var(--color-rgba-6) !important; */
+  /* border-color: var(--primary-glow) !important; */
+  color: var(--text-primary) !important;
+}
+
+/* IMDB stars / detail badges */
+.detailList li {
+  background-color: var(--color-rgba-4) !important;
+  border-color: var(--border) !important;
+}
+
+/* Side Menu */
+.sideMenu a:hover {
+  color: var(--primary) !important;
+}
+
+/* Profile Modal */
+.changeProfileWindow {
+  background-color: var(--color-rgba-7) !important;
+}
+.changeProfileContainer {
+  background-color: var(--bg-elevated) !important;
+  border-color: var(--border) !important;
+}
+.profileItem.active .img {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 20px var(--primary-glow) !important;
+}
+
+/* Login / Register Form Colors */
+.pageLoginSignin {
+  background-color: var(--bg-glass) !important;
+  border-color: var(--border) !important;
+}
+input.text,
+input.date,
+select.select {
+  background-color: var(--color-rgba-8) !important;
+  border-color: var(--border) !important;
+  color: var(--white) !important;
+}
+input.text:focus,
+input.date:focus,
+select.select:focus {
+  border-color: var(--primary) !important;
+  background-color: var(--color-rgba-9) !important;
+}
+input.text::placeholder {
+  color: var(--text-muted) !important;
+}
+select.select option {
+  background-color: var(--bg-elevated) !important;
+  color: var(--white) !important;
+}
+.pageLoginSignin label {
+  color: var(--text-secondary) !important;
+}
+.hr-75 span {
+  color: var(--text-muted) !important;
+  background-color: var(--bg-elevated) !important;
+}
+.hr-75 {
+  border-color: var(--border) !important;
+}
+
+/* Footer Colors */
+footer {
+  background-color: var(--bg-base) !important;
+  border-top: 1px solid var(--border) !important;
+}
+.footerContainerTitle .h2 {
+  color: var(--text-secondary) !important;
+}
+.classicFooter .logo p {
+  color: var(--text-secondary) !important;
+}
+.footerLinksRow .title {
+  color: var(--text-primary) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.footerLinksRow ul li a {
+  color: var(--text-secondary) !important;
+}
+.footerLinksRow ul li a:hover {
+  color: var(--white) !important;
+}
+.socialLinks .icons i {
+  color: var(--text-secondary) !important;
+}
+.socialLinks .icons i:hover {
+  color: var(--primary) !important;
+}
+.moreFooterLink a {
+  color: var(--text-muted) !important;
+}
+.moreFooterLink a:hover {
+  color: var(--primary) !important;
+}
+
+/* Subscribe Banner Colors */
+.ads {
+  background: linear-gradient(135deg, var(--color-rgba-6) 0%, var(--color-rgba-10) 100%) !important;
+  border-color: var(--color-rgba-11) !important;
+}
+
+/* Movie Detail Tab */
+.tabContentFrame .title {
+  color: var(--primary) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+/* Owl Carousel Dots */
+.owl-dot span {
+  background-color: var(--text-muted) !important;
+}
+.owl-dot.active span {
+  background-color: var(--primary) !important;
+}
+
+/* Main Color Accent */
+.maincolor {
+  color: var(--primary) !important;
+}
+
+/* Search Field Colors */
+.search-field {
+  background-color: var(--color-rgba-5) !important;
+  border-color: var(--border) !important;
+  color: var(--white) !important;
+}
+.search-field:focus {
+  border-color: var(--primary) !important;
+  background-color: var(--color-rgba-12) !important;
+}
+.search-submit {
+  background-color: var(--primary) !important;
+  color: var(--white) !important;
+}
+.search-submit:hover {
+  background-color: var(--primary-dark) !important;
+}
+
+/* Custom Scrollbar Colors */
+::-webkit-scrollbar-track {
+  background-color: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-dark);
+}
+
+/* ═══════════════════════════════════════════
+   SPLASH / PRELOADER
+═══════════════════════════════════════════ */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-base);
+  overflow: hidden;
+}
+
+/* Decorative corner mark */
+.splash-corner-tr {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-top: 2px solid var(--primary);
+  border-right: 2px solid var(--primary);
+  opacity: 0.6;
+}
+
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.splash-logo {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+}
+
+.splash-logo span {
+  color: var(--primary);
+}
+
+.splash-tagline {
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* Progress track */
+.splash-track {
+  width: clamp(160px, 28vw, 280px);
+  height: 3px;
+  background-color: var(--color-rgba-2);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.splash-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 99px;
+  box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* ═══════════════════════════════════════════
+   SKELETON / LAZY IMAGE LOADING
+═══════════════════════════════════════════ */
+@keyframes shimmer {
+  0% {
+    background-position: -600px 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+.img-skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bg-elevated);
+}
+
+/* Shimmer is a transparent overlay — images stay fully visible */
+.img-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent 0%, var(--color-rgba-5) 40%, var(--color-rgba-13) 50%, var(--color-rgba-5) 60%, transparent 100%);
+  background-size: 600px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* img opacity is controlled by JS inline style (opacity:0 when loading, cleared on reveal) */
+.img-skeleton img {
+  position: relative;
+  z-index: 0;
+  transition: opacity 0.4s ease; /* fallback smooth reveal if GSAP unavailable */
+}
+
+/* Responsive Item Widths for Owl Carousel via CSS */
+:root {
+  /* Calculate max container width minus side padding */
+  --carousel-container-w: min(100vw - 40px, 1400px);
+}
+
+.owlPopular .item,
+.owlContinue .item,
+.owlMovies .item,
+.owlSeries .item,
+.owlCollection .item,
+.owlSeasonTabCon .item {
+  width: calc(var(--carousel-container-w) / 2 - 10px); /* mobile: 2 */
+}
+@media (min-width: 768px) {
+  .owlPopular .item,
+  .owlContinue .item,
+  .owlMovies .item,
+  .owlSeries .item,
+  .owlCollection .item,
+  .owlSeasonTabCon .item {
+    width: calc(var(--carousel-container-w) / 4 - 10px); /* tablet: 4 */
+  }
+}
+@media (min-width: 1024px) {
+  .owlPopular .item,
+  .owlContinue .item,
+  .owlMovies .item,
+  .owlSeries .item,
+  .owlCollection .item,
+  .owlSeasonTabCon .item {
+    width: calc(var(--carousel-container-w) / 5 - 10px); /* laptop: 5 */
+  }
+}
+@media (min-width: 1440px) {
+  .owlPopular .item,
+  .owlContinue .item,
+  .owlMovies .item,
+  .owlSeries .item,
+  .owlCollection .item,
+  .owlSeasonTabCon .item {
+    width: calc(var(--carousel-container-w) / 6 - 10px); /* laptop L: 6 */
+  }
+}
+@media (min-width: 2560px) {
+  .owlPopular .item,
+  .owlContinue .item,
+  .owlMovies .item,
+  .owlSeries .item,
+  .owlCollection .item,
+  .owlSeasonTabCon .item {
+    width: calc(var(--carousel-container-w) / 7 - 10px); /* 4k: 7 */
+  }
+}
+
+/* Fix detailList dot background issue */
+.detailList {
+  gap: 20px !important;
+}
+.detailList li {
+  position: relative;
+  padding: 4px 10px !important;
+  border-radius: 6px;
+}
+.indexHero .owlHero .item .heroContent ul.detailList li:not(:last-child):after,
+.movieDetailHero .movieDetailHeroContainer .heroInfos ul.detailList li:not(:last-child):after {
+  position: absolute;
+  right: -13px; /* Position it exactly in the gap */
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 0;
+}
+
+/* Style Owl Carousel Navigation Buttons */
+.owl-carousel {
+  position: relative;
+}
+.owl-carousel .owl-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 10;
+}
+.owl-carousel .owl-nav button {
+  pointer-events: auto;
+  background: var(--color-rgba-14) !important;
+  color: var(--text-primary) !important;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem !important;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-rgba-2) !important;
+  box-shadow: 0 4px 15px var(--color-rgba-15);
+}
+.owl-carousel .owl-nav button:hover {
+  background: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+.owl-carousel .owl-nav button.owl-prev {
+  margin-left: -10px !important;
+}
+.owl-carousel .owl-nav button.owl-next {
+  margin-right: -10px !important;
+}
+.owl-carousel .owl-nav button.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Show owl-nav only on carousel hover */
+.owl-carousel .owl-nav button {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.owl-carousel:hover .owl-nav button {
+  opacity: 1;
+}
+
+/* Reset movieItem layout to allow title below poster */
+.movies .owl-carousel .item .movieItem {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+  transition: none !important;
+  background: transparent !important;
+}
+.movies .owl-carousel .item .movieItem:hover {
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  transform: none !important;
+}
+.movies .owl-carousel .item .movieItem::before,
+.movies .owl-carousel .item .movieItem::after,
+.movies .owl-carousel .item .movieItem:hover::before,
+.movies .owl-carousel .item .movieItem:hover::after {
+  display: none !important;
+}
+
+/* Poster Hover Scale Effect */
+.movies .owl-carousel .item .moviePoster {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+}
+.movies .owl-carousel .item .moviePoster img {
+  transition: transform 0.3s ease !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+.movies .owl-carousel .item:hover .moviePoster img {
+  transform: scale(1.05) !important;
+}
+
+/* Movie Title Style */
+.movies .owl-carousel .item .movieTitle p {
+  font-weight: 600 !important;
+  font-size: 1.05rem !important;
+  color: var(--text-primary) !important;
+  margin: 0 !important;
+  background: transparent !important;
+  text-shadow: none !important;
+}
+
+/* Badges Style */
+.badge-genre,
+.badge-rating,
+.badge-review {
+  position: absolute !important;
+  background: var(--color-rgba-16) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  border: 1px solid var(--color-rgba-2) !important;
+  color: var(--text-primary) !important;
+  font-weight: 600 !important;
+  z-index: 10 !important;
+  border-radius: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+.badge-genre {
+  top: 8px !important;
+  left: 8px !important;
+  padding: 3px 8px !important;
+  font-size: 0.75rem !important;
+}
+.badge-rating {
+  bottom: 8px !important;
+  left: 8px !important;
+  padding: 3px 8px !important;
+  font-size: 0.85rem !important;
+}
+.badge-review {
+  bottom: 8px !important;
+  right: 8px !important;
+  padding: 3px 8px !important;
+  font-size: 0.85rem !important;
+}
+
+/* Responsive fixed widths for items to fix autoWidth irregularity */
+.movies .owl-carousel .item {
+  width: calc(50vw - 30px);
+}
+@media (min-width: 768px) {
+  .movies .owl-carousel .item {
+    width: calc(25vw - 30px);
+  }
+}
+@media (min-width: 1024px) {
+  .movies .owl-carousel .item {
+    width: calc(20vw - 30px);
+  }
+}
+@media (min-width: 1440px) {
+  .movies .owl-carousel .item {
+    width: calc(16.6vw - 30px);
+  }
+}
+@media (min-width: 2560px) {
+  .movies .owl-carousel .item {
+    width: calc(14.2vw - 30px);
+  }
+}
+
+/* Ensure poster is 2:3 and handles the glow effect */
+.movies .owl-carousel .item .moviePoster {
+  aspect-ratio: 2/3 !important;
+}
+.movies .owl-carousel .item .moviePoster::after {
+  position: absolute !important;
+  content: "" !important;
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+  background: linear-gradient(-135deg, var(--color-rgba-17) 0%, var(--color-rgba-18) 40%) !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+  z-index: 5 !important;
+}
+.movies .owl-carousel .item:hover .moviePoster::after {
+  opacity: 1 !important;
+}
