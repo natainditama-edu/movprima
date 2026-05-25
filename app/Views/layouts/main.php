@@ -6,10 +6,7 @@
     <meta name="csrf-token" content="<?= csrf_hash() ?>">
     <title><?= $this->renderSection("title", "MovPrima") ?> | MovPrima</title>
 
-    <meta name="description" content="<?= $this->renderSection(
-      "meta_description",
-      "Temukan ulasan dan rekomendasi film terbaik di MovPrima. Bagikan pendapatmu dan jadilah bagian dari komunitas pecinta film.",
-    ) ?>" />
+    <meta name="description" content="<?= $this->renderSection("meta_description", "Temukan ulasan dan rekomendasi film terbaik di MovPrima. Bagikan pendapatmu dan jadilah bagian dari komunitas pecinta film.") ?>" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#0a0a0f" />
 
@@ -48,7 +45,7 @@
 
 <body>
     <!-- Branded Splash / Preloader -->
-    <div id="splash" class="splash" aria-hidden="true">
+    <!-- <div id="splash" class="splash" aria-hidden="true">
         <div class="splash-corner-tr"></div>
         <div class="splash-content">
             <div class="splash-logo" id="splash-brand">Mov<span>Prima</span></div>
@@ -57,7 +54,7 @@
                 <div class="splash-bar" id="splash-bar"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Header / Navbar -->
     <header>
@@ -87,7 +84,7 @@
                             <a href="/genres">GENRE</a>
                             <a href="/movies?sort=latest">TERBARU</a>
                             <a href="/movies?sort=rating">TERPOPULER</a>
-                            <?php if (!session()->get("user_id")): ?>
+                            <?php if (!(session()->get("user_id") ?? 0)): ?>
                             <a href="/auth/login" style="color:var(--primary)">MASUK</a>
                             <a href="/auth/register" style="color:var(--primary)">DAFTAR</a>
                             <?php endif; ?>
@@ -104,15 +101,12 @@
                 </div>
             </div>
             <div class="side">
-                <?php if (session()->get("user_id")): ?>
+                <?php if ((session()->get("user_id") ?? 0)): ?>
                 <a href="#"><i class="fa-solid fa-bell sideIcon"></i></a>
                 <div class="sideMenuCon">
                     <div class="closeSideMenu"><i class="fa-solid fa-xmark"></i></div>
-                    <?php
-                    $avatar = session()->get("user_avatar");
-                    $src = $avatar ? "/" . esc($avatar) : "https://i.pravatar.cc/150?u=" . session()->get("user_id");
-                    ?>
-                    <img class="sideMenuBttn accountIcon" src="<?= $src ?>" alt="<?= esc(session()->get("user_name")) ?>" />
+                    <?php $src = "https://i.pravatar.cc/150?u=" . (string) (session()->get("user_id") ?? 0); ?>
+                    <img class="sideMenuBttn accountIcon" src="<?= $src ?>" alt="<?= esc((string) (session()->get("user_name") ?? "Pengguna")) ?>" />
                     <div class="sideMenuWindow">
                         <div class="sideMenu">
                             <a href="/profile">PROFIL SAYA</a>
@@ -136,22 +130,41 @@
 
     <div class="headerFixer"></div>
 
-    <!-- Flash messages (using Tailwind utility classes for basic layout since custom CSS might not have it) -->
+    <!-- Flash messages -->
     <?php if (session()->getFlashdata("success") || session()->getFlashdata("error")): ?>
-    <div class="flex-container" style="margin-top: 20px;">
+    <div id="flash-message-container" class="fixed top-20 left-1/2 -translate-x-1/2 z-100 w-[90%] max-w-xl transition-opacity duration-300">
         <?php if (session()->getFlashdata("success")): ?>
-        <div class="p-4 mb-4 rounded bg-green-900/50 border border-green-500 text-green-100 flex items-center gap-3">
-            <i data-lucide="check-circle"></i>
-            <span><?= esc(session()->getFlashdata("success")) ?></span>
+        <div class="p-4 mb-4 rounded bg-green-900/90 border border-green-500 text-green-100 flex items-start justify-between gap-3 shadow-lg backdrop-blur-sm">
+            <div class="flex gap-3">
+                <i data-lucide="check-circle" class="mt-0.5 shrink-0"></i>
+                <span><?= esc((string) session()->getFlashdata("success")) ?></span>
+            </div>
+            <button onclick="document.getElementById('flash-message-container').remove()" class="text-green-300 hover:text-white transition-colors flex items-center justify-center" aria-label="Tutup">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
         </div>
         <?php endif; ?>
         <?php if (session()->getFlashdata("error")): ?>
-        <div class="p-4 mb-4 rounded bg-red-900/50 border border-red-500 text-red-100 flex items-center gap-3">
-            <i data-lucide="alert-circle"></i>
-            <span><?= esc(session()->getFlashdata("error")) ?></span>
+        <div class="p-4 mb-4 rounded bg-red-900/90 border border-red-500 text-red-100 flex items-start justify-between gap-3 shadow-lg backdrop-blur-sm">
+            <div class="flex gap-3">
+                <i data-lucide="alert-circle" class="mt-0.5 shrink-0"></i>
+                <span><?= esc((string) session()->getFlashdata("error")) ?></span>
+            </div>
+            <button onclick="document.getElementById('flash-message-container').remove()" class="text-red-300 hover:text-white transition-colors flex items-center justify-center" aria-label="Tutup">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
         </div>
         <?php endif; ?>
     </div>
+    <script>
+        setTimeout(() => {
+            const el = document.getElementById('flash-message-container');
+            if (el) {
+                el.style.opacity = '0';
+                setTimeout(() => el.remove(), 300);
+            }
+        }, 5000);
+    </script>
     <?php endif; ?>
 
     <!-- Main Content -->
