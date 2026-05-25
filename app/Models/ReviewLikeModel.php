@@ -3,62 +3,75 @@
 namespace App\Models;
 
 use CodeIgniter\Model;
+use Config\Database;
 
 /**
  * ReviewLike Model
  *
- * Manages likes on reviews with toggle logic and
- * keeps the denormalized likes_count column in sync.
+ * Manages user like interactions on movie review items.
+ * Responsible for syncing total likes on reviews table.
  */
 class ReviewLikeModel extends Model
 {
-    protected $table          = 'review_likes';
+  protected $table = "review_likes";
+  protected $primaryKey = "id";
+  protected $returnType = "array";
+  protected $useSoftDeletes = false;
+  protected $useTimestamps = false;
+  protected $allowedFields = ["user_id", "review_id", "created_at"];
 
-    protected $primaryKey     = 'id';
+  /**
+   * Process adding or removing a like on review.
+   * Returns true if liked and false if removed.
+   *
+   * @param int $userId
+   * @param int $reviewId
+   *
+   * @return bool
+   */
+  public function toggle(int $userId, int $reviewId): bool
+  {
+    $existing = $this->where("user_id", $userId)->where("review_id", $reviewId)->first();
 
-    protected $returnType     = 'array';
-
-    protected $useSoftDeletes = false;
-
-    protected $useTimestamps  = false;
-
-    protected $allowedFields  = ['user_id', 'review_id', 'created_at'];
-
-    /**
-     * Toggle a like for a user on a given review.
-     * Returns true when the user now likes the review, false when unliked.
-     *
-     * @param int $userId
-     * @param int $reviewId
-     *
-     * @return bool
-     */
-    public function toggle(int $userId, int $reviewId): bool
-    {
-        return false;
+    if ($existing) {
+      $this->delete($existing["id"]);
+      return false;
+    } else {
+      $this->insert(["user_id" => $userId, "review_id" => $reviewId]);
+      return true;
     }
+  }
 
-    /**
-     * Check whether a user has already liked a specific review.
-     * Returns true if a like record exists, false otherwise.
-     *
-     * @param int $userId
-     * @param int $reviewId
-     *
-     * @return bool
-     */
-    public function hasLiked(int $userId, int $reviewId): bool
-    {
-        return false;
-    }
+  /**
+   * Check if specific user liked a specific review.
+   * Returns boolean true if found or false otherwise.
+   *
+   * @param int $userId
+   * @param int $reviewId
+   *
+   * @return bool
+   */
+  public function hasLiked(int $userId, int $reviewId): bool
+  {
+    return (bool) $this->where("user_id", $userId)->where("review_id", $reviewId)->first();
+  }
 
-    /**
-     * Sync the denormalized likes_count column on the reviews table.
-     * Counts all rows in review_likes for the given review id.
-     *
-     * @param int $reviewId
-     *
-     * @return void
-     */
-    public function syncCounter(int $reviewId): void {}
+  /**
+   * Sync total likes directly into the reviews table.
+   * Executes an update query using valid aggregated rows.
+   *
+   * @param int $reviewId
+   *
+   * @return void
+   */
+  public function syncCounter(int $reviewId): void
+  {
+    $count = $this->where("review_id", $reviewId)->countAllResults();
+    $db = Database::connect();
+
+    $db
+      ->table("reviews")
+      ->where("id", $reviewId)
+      ->update(["likes_count" => $count]);
+  }
 }

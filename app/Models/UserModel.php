@@ -7,95 +7,110 @@ use CodeIgniter\Model;
 /**
  * User Model
  *
- * Manages user accounts including authentication, profile updates,
- * and password hashing via model callbacks.
+ * Manages user account structures including system authentication processes.
+ * Handles profile updates and secure password cryptographic hashing.
  */
 class UserModel extends Model
 {
-    protected $table          = 'users';
+  protected $table = "users";
+  protected $primaryKey = "id";
+  protected $returnType = "array";
+  protected $useSoftDeletes = false;
+  protected $useTimestamps = true;
+  protected $createdField = "created_at";
+  protected $updatedField = "updated_at";
 
-    protected $primaryKey     = 'id';
+  protected $allowedFields = ["name", "email", "password", "role", "avatar", "bio", "email_verified_at"];
 
-    protected $returnType     = 'array';
+  protected $beforeInsert = ["hashPassword"];
+  protected $beforeUpdate = ["hashPassword"];
 
-    protected $useSoftDeletes = false;
+  protected $validationRules = [
+    "name" => "required|min_length[2]|max_length[100]",
+    "email" => "required|valid_email|max_length[150]",
+  ];
 
-    protected $useTimestamps  = true;
-
-    protected $createdField   = 'created_at';
-
-    protected $updatedField   = 'updated_at';
-
-    protected $allowedFields  = [
-        'name',
-        'email',
-        'password',
-        'role',
-        'avatar',
-        'bio',
-        'email_verified_at',
-    ];
-
-    protected $beforeInsert = ['hashPassword'];
-
-    protected $beforeUpdate = ['hashPassword'];
-
-    protected $validationRules = [
-        'name'  => 'required|min_length[2]|max_length[100]',
-        'email' => 'required|valid_email|max_length[150]',
-    ];
-
-    /**
-     * Hash the password field before insert or update.
-     * Skips hashing when the password key is absent or empty.
-     *
-     * @param array $data CI4 callback data bag
-     *
-     * @return array
-     */
-    protected function hashPassword(array $data): array
-    {
-        return $data;
+  /**
+   * Encrypt password securely before insertion or update.
+   * Ignores encryption operation if password is not sent.
+   *
+   * @param array $data
+   *
+   * @return array
+   */
+  protected function hashPassword(array $data): array
+  {
+    if (isset($data["data"]["password"])) {
+      $data["data"]["password"] = password_hash($data["data"]["password"], PASSWORD_DEFAULT);
     }
 
-    /**
-     * Find a single user by their email address.
-     * Returns null when no matching record exists.
-     *
-     * @param string $email
-     *
-     * @return array|null
-     */
-    public function findByEmail(string $email): ?array
-    {
-        return null;
-    }
+    return $data;
+  }
 
-    /**
-     * Update only the allowed profile fields (name, bio) for a user.
-     * Ignores any other keys present in $data.
-     *
-     * @param int   $id
-     * @param array $data Associative array with keys 'name' and/or 'bio'
-     *
-     * @return bool
-     */
-    public function updateProfile(int $id, array $data): bool
-    {
-        return false;
-    }
+  /**
+   * Fetch specific user data row by email address.
+   * Returns profile array collection if matched or null.
+   *
+   * @param string $email
+   *
+   * @return array|null
+   */
+  public function findByEmail(string $email): ?array
+  {
+    return $this->where("email", $email)->first();
+  }
 
-    /**
-     * Update the avatar file path for a specific user.
-     * Replaces any previously stored path.
-     *
-     * @param int    $id         User primary key
-     * @param string $avatarPath Relative path under FCPATH
-     *
-     * @return bool
-     */
-    public function updateAvatar(int $id, string $avatarPath): bool
-    {
-        return false;
-    }
+  /**
+   * Update allowed information columns on user profile data.
+   * Executes internal database procedure and returns success flag.
+   *
+   * @param int   $id
+   * @param array $data
+   *
+   * @return bool
+   */
+  public function updateProfile(int $id, array $data): bool
+  {
+    return $this->update($id, $data);
+  }
+
+  /**
+   * Update avatar file path in user account record.
+   * Executes database overwrite by replacing previous image path.
+   *
+   * @param int    $id
+   * @param string $avatarPath
+   *
+   * @return bool
+   */
+  public function updateAvatar(int $id, string $avatarPath): bool
+  {
+    return $this->update($id, ["avatar" => $avatarPath]);
+  }
+
+  /**
+   * Find full single profile structure using primary key.
+   * Returns associative array if the record is found.
+   *
+   * @param int $id
+   *
+   * @return array|null
+   */
+  public function findById(int $id): ?array
+  {
+    return $this->find($id);
+  }
+
+  /**
+   * Insert new profile form data to relational database.
+   * Returns new primary integer ID allocated by database.
+   *
+   * @param array $data
+   *
+   * @return int
+   */
+  public function registerUser(array $data): int
+  {
+    return $this->insert($data);
+  }
 }
