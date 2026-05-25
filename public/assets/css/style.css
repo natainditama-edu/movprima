@@ -1267,7 +1267,8 @@ header .headerContainer .side .sideMenuCon .sideMenuWindow .sideMenu {
   background: linear-gradient(-135deg, var(--main-color) 0%, var(--color-rgba-19) 33%, var(--color-rgba-18) 50%);
   pointer-events: none;
   overflow: hidden;
-  z-index: 4;
+  z-index: 30;
+  text-transform: uppercase;
 }
 
 .movies .movieItem .movieInfo {
@@ -3165,19 +3166,6 @@ footer .footerContainer .classicFooter .socialLinks .moreFooterLink {
   }
 }
 
-.movies .movieItem .moviePoster::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 5;
-  pointer-events: none;
-}
 .badge-genre,
 .badge-rating,
 .badge-review {

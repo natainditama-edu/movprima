@@ -156,7 +156,7 @@
       <h2 class="h1 uppercase text-white mb-2">HALAMAN TIDAK DITEMUKAN</h2>
       <p class="text-(--text-secondary) mb-8">
         <?php if (ENVIRONMENT !== "production"): ?>
-          <?= nl2br(esc($message)) ?>
+          <?= nl2br(esc($message ?? "Terjadi kesalahan")) ?>
         <?php else: ?>
           Maaf! Halaman yang kamu cari tidak ada atau sudah dipindahkan.
         <?php endif; ?>

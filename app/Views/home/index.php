@@ -1,6 +1,8 @@
 <?= $this->extend("layouts/main") ?>
 
-<?= $this->section("title") ?>Beranda<?= $this->endSection() ?>
+<?= $this->section("title") ?>
+Beranda
+<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
 
@@ -13,26 +15,26 @@
                     <div class="heroContent flex-container">
                         <ul class="detailList">
                             <li>FILM</li>
-                            <?php if (!empty(($hero["release_year"] ?? "2000"))): ?>
-                            <li><?= esc(substr(($hero["release_year"] ?? "2000"), 0, 4)) ?></li>
+                            <?php if (!empty($hero["release_year"] ?? "2000")): ?>
+                            <li><?= esc(substr($hero["release_year"] ?? "2000", 0, 4)) ?></li>
                             <?php endif; ?>
-                            <?php if (!empty(($hero["avg_rating"] ?? 0))): ?>
-                            <li><i class="fa-solid fa-star text-yellow-400"></i> <?= number_format(($hero["avg_rating"] ?? 0), 1) ?></li>
+                            <?php if (!empty($hero["avg_rating"] ?? 0)): ?>
+                            <li><i class="fa-solid fa-star text-yellow-400"></i> <?= number_format($hero["avg_rating"] ?? 0, 1) ?></li>
                             <?php endif; ?>
                         </ul>
-                        <h2 class="maincolor"><?= esc(($hero["title"] ?? "Tanpa Judul")) ?></h2>
-                        <?php if (!empty(($hero["synopsis"] ?? "Sinopsis belum tersedia."))): ?>
-                        <p class="line-clamp-3"><?= esc(($hero["synopsis"] ?? "Sinopsis belum tersedia.")) ?></p>
+                        <h2 class="maincolor"><?= esc($hero["title"] ?? "Tanpa Judul") ?></h2>
+                        <?php if (!empty($hero["synopsis"] ?? "Sinopsis belum tersedia.")): ?>
+                        <p class="line-clamp-3"><?= esc($hero["synopsis"] ?? "Sinopsis belum tersedia.") ?></p>
                         <?php endif; ?>
                         <div class="buttons">
-                            <a href="/movies/<?= esc(($hero["slug"] ?? "")) ?>" class="bttn watchnow big">
+                            <a href="/movies/<?= esc($hero["slug"] ?? "") ?>" class="bttn watchnow big">
                                 <i class="fa-solid fa-play"></i> LIHAT DETAIL
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="indexHeroBackground">
-                    <img src="<?= ($hero["backdrop"] ?? null) ? esc($hero["backdrop"]) : "https://placehold.co/600x900/1a1a24/606078?font=oswald&text=Not+Found" ?>" alt="<?= esc(($hero["title"] ?? "Tanpa Judul")) ?>" />
+                    <img src="<?= $hero["backdrop"] ?? null ? esc($hero["backdrop"]) : "https://placehold.co/600x900/1a1a24/606078?font=oswald&text=Not+Found" ?>" alt="<?= esc($hero["title"] ?? "Tanpa Judul") ?>" />
                 </div>
             </div>
             <?php endforeach; ?>
@@ -67,7 +69,7 @@
         </div>
         <div class="owl-carousel owlPopular owlfix">
             <?php foreach ($latest as $movie): ?>
-                <?= view("components/movie_item", ["movie" => $movie]) ?>
+                <?= view("partials/movie_item", ["movie" => $movie]) ?>
             <?php endforeach; ?>
         </div>
     </div>
@@ -84,7 +86,7 @@
         </div>
         <div class="owl-carousel owlPopular owlfix">
             <?php foreach ($topRated as $movie): ?>
-                <?= view("components/movie_item", ["movie" => $movie]) ?>
+                <?= view("partials/movie_item", ["movie" => $movie]) ?>
             <?php endforeach; ?>
         </div>
     </div>
@@ -101,7 +103,7 @@
         </div>
         <div class="owl-carousel owlPopular owlfix">
             <?php foreach ($recommended as $movie): ?>
-                <?= view("components/movie_item", ["movie" => $movie]) ?>
+                <?= view("partials/movie_item", ["movie" => $movie]) ?>
             <?php endforeach; ?>
         </div>
     </div>
@@ -118,7 +120,7 @@
         </div>
         <div class="owl-carousel owlPopular owlfix">
             <?php foreach ($classic as $movie): ?>
-                <?= view("components/movie_item", ["movie" => $movie]) ?>
+                <?= view("partials/movie_item", ["movie" => $movie]) ?>
             <?php endforeach; ?>
         </div>
     </div>

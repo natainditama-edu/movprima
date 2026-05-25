@@ -1247,6 +1247,13 @@
     }
   }
 }
+.group-hover\:text-\(--primary\) {
+  &:is(:where(.group):hover *) {
+    @media (hover: hover) {
+      color: var(--primary);
+    }
+  }
+}
 .group-hover\:text-\[var\(--primary\)\] {
   &:is(:where(.group):hover *) {
     @media (hover: hover) {
@@ -1355,6 +1362,13 @@
     @media (hover: hover) {
       --tw-translate-y: calc(var(--spacing) * -1);
       translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+  }
+}
+.hover\:border-\(--primary\) {
+  &:hover {
+    @media (hover: hover) {
+      border-color: var(--primary);
     }
   }
 }

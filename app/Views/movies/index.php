@@ -13,7 +13,9 @@
 ?>
 <?= $this->extend("layouts/main") ?>
 
-<?= $this->section("title") ?>Daftar Film<?= $this->endSection() ?>
+<?= $this->section("title") ?>
+Daftar Film
+<?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
 <section class="moviesPageHero">
@@ -55,10 +57,10 @@
         </div>
 
         <?php if (!empty($movies) && is_array($movies)): ?>
-        <div class="wrapMovieList">
+        <div class="wrapMovieList movies">
             <?php foreach ($movies as $movie): ?>
               <div class="wrapMovieItem">
-                <?= view("components/movie_item", ["movie" => $movie]) ?>
+                <?= view("partials/movie_item", ["movie" => $movie]) ?>
               </div>
             <?php endforeach; ?>
         </div>

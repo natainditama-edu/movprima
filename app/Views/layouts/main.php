@@ -101,7 +101,7 @@
                 </div>
             </div>
             <div class="side">
-                <?php if ((session()->get("user_id") ?? 0)): ?>
+                <?php if (session()->get("user_id") ?? 0): ?>
                 <a href="#"><i class="fa-solid fa-bell sideIcon"></i></a>
                 <div class="sideMenuCon">
                     <div class="closeSideMenu"><i class="fa-solid fa-xmark"></i></div>

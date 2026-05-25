@@ -742,7 +742,8 @@ footer {
 .movies.wraplist .wrapMovieItem .item .moviePoster {
   aspect-ratio: 2/3 !important;
 }
-.movies .owl-carousel .item .moviePoster::after {
+.movies .owl-carousel .item .moviePoster::after,
+.movies.wrapMovieList .wrapMovieItem .item .moviePoster::after {
   position: absolute !important;
   content: "" !important;
   width: 100% !important;
@@ -755,7 +756,8 @@ footer {
   transition: opacity 0.3s ease !important;
   z-index: 5 !important;
 }
-.movies .owl-carousel .item:hover .moviePoster::after {
+.movies .owl-carousel .item:hover .moviePoster::after,
+.movies.wrapMovieList .wrapMovieItem .item:hover .moviePoster::after {
   opacity: 1 !important;
 }
 

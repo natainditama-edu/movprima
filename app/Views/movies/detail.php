@@ -196,7 +196,7 @@
         </div>
         <div class="owl-carousel owlPopular owlfix">
             <?php foreach ($relatedMovies ?? [] as $rel): ?>
-                <?= view("components/movie_item", ["movie" => $rel]) ?>
+                <?= view("partials/movie_item", ["movie" => $rel]) ?>
             <?php endforeach; ?>
         </div>
     </div>
