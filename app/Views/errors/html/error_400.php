@@ -43,7 +43,7 @@
 
 <body>
     <!-- Branded Splash / Preloader -->
-    <div id="splash" class="splash" aria-hidden="true">
+    <!-- <div id="splash" class="splash" aria-hidden="true">
         <div class="splash-corner-tr"></div>
         <div class="splash-content">
             <div class="splash-logo" id="splash-brand">Mov<span>Prima</span></div>
@@ -52,7 +52,7 @@
                 <div class="splash-bar" id="splash-bar"></div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Header / Navbar -->
     <header>
@@ -154,7 +154,7 @@
     <div class="flex-container py-24 text-center min-h-[60vh] flex flex-col justify-center items-center">
       <h1 class="text-9xl font-display tracking-widest text-red-500/20 mb-4" style="font-size: 8rem; line-height: 1;">400</h1>
       <h2 class="h1 uppercase text-white mb-2">BAD REQUEST</h2>
-      <p class="text-[var(--text-secondary)] mb-8">
+      <p class="text-(--text-secondary) mb-8">
         <?php if (ENVIRONMENT !== "production"): ?>
           <?= nl2br(esc($message ?? "Permintaan tidak valid.")) ?>
         <?php else: ?>

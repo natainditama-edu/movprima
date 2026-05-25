@@ -614,7 +614,8 @@ footer {
 }
 
 /* Reset movieItem layout to allow title below poster */
-.movies .owl-carousel .item .movieItem {
+.movies .owl-carousel .item .movieItem,
+.movies.wraplist .wrapMovieItem .item .movieItem {
   position: relative !important;
   width: 100% !important;
   height: auto !important;
@@ -625,7 +626,8 @@ footer {
   transition: none !important;
   background: transparent !important;
 }
-.movies .owl-carousel .item .movieItem:hover {
+.movies .owl-carousel .item .movieItem:hover,
+.movies.wraplist .wrapMovieItem .item .movieItem:hover {
   top: 0 !important;
   left: 0 !important;
   width: 100% !important;
@@ -633,31 +635,39 @@ footer {
   transform: none !important;
 }
 .movies .owl-carousel .item .movieItem::before,
+.movies.wraplist .wrapMovieItem .item .movieItem::before,
 .movies .owl-carousel .item .movieItem::after,
+.movies.wraplist .wrapMovieItem .item .movieItem::after,
 .movies .owl-carousel .item .movieItem:hover::before,
-.movies .owl-carousel .item .movieItem:hover::after {
+.movies.wraplist .wrapMovieItem .item .movieItem:hover::before,
+.movies .owl-carousel .item .movieItem:hover::after,
+.movies.wraplist .wrapMovieItem .item .movieItem:hover::after {
   display: none !important;
 }
 
 /* Poster Hover Scale Effect */
-.movies .owl-carousel .item .moviePoster {
+.movies .owl-carousel .item .moviePoster,
+.movies.wraplist .wrapMovieItem .item .moviePoster {
   position: relative !important;
   overflow: hidden !important;
   border-radius: 8px !important;
   background: transparent !important;
 }
-.movies .owl-carousel .item .moviePoster img {
+.movies .owl-carousel .item .moviePoster img,
+.movies.wraplist .wrapMovieItem .item .moviePoster img {
   transition: transform 0.3s ease !important;
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
 }
-.movies .owl-carousel .item:hover .moviePoster img {
+.movies .owl-carousel .item:hover .moviePoster img,
+.movies.wraplist .wrapMovieItem .item:hover .moviePoster img {
   transform: scale(1.05) !important;
 }
 
 /* Movie Title Style */
-.movies .owl-carousel .item .movieTitle p {
+.movies .owl-carousel .item .movieTitle p,
+.movies.wraplist .wrapMovieItem .item .movieTitle p {
   font-weight: 600 !important;
   font-size: 1.05rem !important;
   color: var(--text-primary) !important;
@@ -728,7 +738,8 @@ footer {
 }
 
 /* Ensure poster is 2:3 and handles the glow effect */
-.movies .owl-carousel .item .moviePoster {
+.movies .owl-carousel .item .moviePoster,
+.movies.wraplist .wrapMovieItem .item .moviePoster {
   aspect-ratio: 2/3 !important;
 }
 .movies .owl-carousel .item .moviePoster::after {
@@ -746,4 +757,19 @@ footer {
 }
 .movies .owl-carousel .item:hover .moviePoster::after {
   opacity: 1 !important;
+}
+
+/* Reset min-width for responsive forms */
+.movies.wraplist form .text,
+.movies.wraplist form .select {
+  min-width: 0 !important;
+}
+
+/* Fix Login/Register layout */
+.page {
+  min-height: calc(100vh - 64px);
+  justify-content: center;
+}
+.page .pageLoginSignin {
+  min-height: auto !important;
 }

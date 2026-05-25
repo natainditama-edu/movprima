@@ -3,6 +3,10 @@
 
   /* Wait For Condition Helper */
   function waitFor(getter, cb) {
+    if (getter()) {
+      cb();
+      return;
+    }
     var id = setInterval(function () {
       if (getter()) {
         clearInterval(id);
@@ -14,17 +18,17 @@
   /* Init Scroll Reset */
   function initScrollReset() {
     /* Prevent Browser From Restoring Scroll Position */
-    if ("scrollRestoration" in history) {
-      history.scrollRestoration = "manual";
-    }
+    // if ("scrollRestoration" in history) {
+    // history.scrollRestoration = "manual";
+    // }
     /* Scroll To Top On Unload */
-    $(window).on("beforeunload", function () {
-      $("html, body").scrollTop(0);
-    });
+    // $(window).on("beforeunload", function () {
+    // $("html, body").scrollTop(0);
+    // });
     /* Force Scroll Top On Load */
-    $(window).on("load", function () {
-      $("html, body").animate({ scrollTop: 0 }, 1);
-    });
+    // $(window).on("load", function () {
+    // $("html, body").animate({ scrollTop: 0 }, 1);
+    // });
   }
 
   /* Init Lenis Smooth Scroll */
@@ -271,7 +275,8 @@
     initScrollReset();
     initLenis();
 
-    var hasSplash = $("#splash").length > 0;
+    // var hasSplash = $("#splash").length > 0;
+    var hasSplash = false; // Disabled by user request
 
     if (hasSplash) {
       /* Wait For GSAP Before Splash */
