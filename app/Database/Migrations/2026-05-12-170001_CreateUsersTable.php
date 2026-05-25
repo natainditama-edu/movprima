@@ -37,13 +37,6 @@ class CreateUsersTable extends Migration
         "null" => false,
         "default" => "user",
       ],
-      "avatar" => [
-        "type" => "VARCHAR",
-        "constraint" => 255,
-        "null" => true,
-        "default" => null,
-        "comment" => "path to uploaded image",
-      ],
       "bio" => [
         "type" => "TEXT",
         "null" => true,

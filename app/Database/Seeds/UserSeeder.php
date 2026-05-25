@@ -40,7 +40,6 @@ class UserSeeder extends Seeder
         "email" => $email,
         "password" => $password,
         "role" => "user",
-        "avatar" => null,
         "bio" => "Halo, saya " . $name . " seorang pecinta film.",
         "created_at" => $now,
         "updated_at" => $now,
