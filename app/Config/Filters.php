@@ -27,18 +27,18 @@ class Filters extends BaseFilters
    * or [filter_name => [classname1, classname2, ...]]
    */
   public array $aliases = [
-    'csrf'          => CSRF::class,
-    'toolbar'       => DebugToolbar::class,
-    'honeypot'      => Honeypot::class,
-    'invalidchars'  => InvalidChars::class,
-    'secureheaders' => SecureHeaders::class,
-    'cors'          => Cors::class,
-    'forcehttps'    => ForceHTTPS::class,
-    'pagecache'     => PageCache::class,
-    'performance'   => PerformanceMetrics::class,
+    "csrf" => CSRF::class,
+    "toolbar" => DebugToolbar::class,
+    "honeypot" => Honeypot::class,
+    "invalidchars" => InvalidChars::class,
+    "secureheaders" => SecureHeaders::class,
+    "cors" => Cors::class,
+    "forcehttps" => ForceHTTPS::class,
+    "pagecache" => PageCache::class,
+    "performance" => PerformanceMetrics::class,
 
-    'auth'          => AuthFilter::class,
-    'admin'         => AdminFilter::class,
+    "auth" => AuthFilter::class,
+    "admin" => AdminFilter::class,
   ];
 
   /**
@@ -55,14 +55,14 @@ class Filters extends BaseFilters
    * @var array{before: list<string>, after: list<string>}
    */
   public array $required = [
-    'before' => [
-      'forcehttps', // Force Global Secure Requests
-      'pagecache',  // Web Page Caching
+    "before" => [
+      "forcehttps", // Force Global Secure Requests
+      "pagecache", // Web Page Caching
     ],
-    'after' => [
-      'pagecache',   // Web Page Caching
-      'performance', // Performance Metrics
-      'toolbar',     // Debug Toolbar
+    "after" => [
+      "pagecache", // Web Page Caching
+      "performance", // Performance Metrics
+      "toolbar", // Debug Toolbar
     ],
   ];
 
@@ -76,12 +76,12 @@ class Filters extends BaseFilters
    * }
    */
   public array $globals = [
-    'before' => [
+    "before" => [
       // 'honeypot',
       // 'csrf',
       // 'invalidchars',
     ],
-    'after' => [
+    "after" => [
       // 'honeypot',
       // 'secureheaders',
     ],

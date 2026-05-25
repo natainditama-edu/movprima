@@ -15,7 +15,7 @@
  | painful debugging.
  */
 error_reporting(E_ALL);
-ini_set('display_errors', '1');
+ini_set("display_errors", "1");
 
 /*
  |--------------------------------------------------------------------------
@@ -25,7 +25,7 @@ ini_set('display_errors', '1');
  | backtraces along with the other error information. If you would
  | prefer to not see this, set this value to false.
  */
-defined('SHOW_DEBUG_BACKTRACE') || define('SHOW_DEBUG_BACKTRACE', true);
+defined("SHOW_DEBUG_BACKTRACE") || define("SHOW_DEBUG_BACKTRACE", true);
 
 /*
  |--------------------------------------------------------------------------
@@ -35,4 +35,4 @@ defined('SHOW_DEBUG_BACKTRACE') || define('SHOW_DEBUG_BACKTRACE', true);
  | the system. It's not widely used currently, and may not survive
  | release of the framework.
  */
-defined('CI_DEBUG') || define('CI_DEBUG', true);
+defined("CI_DEBUG") || define("CI_DEBUG", true);
