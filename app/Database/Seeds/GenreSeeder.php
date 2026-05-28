@@ -3,23 +3,13 @@
 namespace App\Database\Seeds;
 
 use CodeIgniter\Database\Seeder;
+use CodeIgniter\I18n\Time;
 
 class GenreSeeder extends Seeder
 {
   public function run(): void
   {
-    $genres = [
-      ["name" => "Action", "slug" => "action"],
-      ["name" => "Comedy", "slug" => "comedy"],
-      ["name" => "Drama", "slug" => "drama"],
-      ["name" => "Horror", "slug" => "horror"],
-      ["name" => "Sci-Fi", "slug" => "sci-fi"],
-      ["name" => "Romance", "slug" => "romance"],
-      ["name" => "Animation", "slug" => "animation"],
-      ["name" => "Thriller", "slug" => "thriller"],
-      ["name" => "Documentary", "slug" => "documentary"],
-      ["name" => "Fantasy", "slug" => "fantasy"],
-    ];
+    $genres = [["name" => "Action", "slug" => "action"], ["name" => "Comedy", "slug" => "comedy"], ["name" => "Drama", "slug" => "drama"], ["name" => "Horror", "slug" => "horror"], ["name" => "Sci-Fi", "slug" => "sci-fi"], ["name" => "Romance", "slug" => "romance"], ["name" => "Animation", "slug" => "animation"], ["name" => "Thriller", "slug" => "thriller"], ["name" => "Documentary", "slug" => "documentary"], ["name" => "Fantasy", "slug" => "fantasy"]];
 
     $now = Time::now("Asia/Jakarta", "en_US")->format("Y-m-d H:i:s");
 

@@ -1,194 +1,297 @@
 :root {
-    --main-bg-color: #fff;
-    --main-text-color: #555;
-    --dark-text-color: #222;
-    --light-text-color: #c7c7c7;
-    --brand-primary-color: #DC4814;
-    --light-bg-color: #ededee;
-    --dark-bg-color: #404040;
+  --bkg-color: var(--bg-base);
+  --bkg-color2: var(--bg-card);
+  --light: var(--text-primary);
+  --dark: var(--bg-base);
+  --dark2: var(--bg-elevated);
+  --main-color: var(--primary);
+  --detailherocolor: rgba(229, 9, 20, 0.25);
+  --textcolor1: var(--text-primary);
+  --textcolor2: var(--text-secondary);
+  --inputcolor1: rgb(26, 26, 36);
+  --inputcolor2: rgb(26, 26, 36);
+  --inputcolor3: var(--primary);
+  --inputcolor4: rgb(96, 96, 120);
+  --buttonPrimary1: var(--bg-elevated);
+  --buttonPrimary2: var(--bg-card);
+  --buttonPrimary3: var(--bg-base);
+  --buttonSecondary: var(--bg-elevated);
+  --buttonColor1: var(--primary);
+  --buttonColor2: var(--primary-dark);
+  --buttonColor3: #8a040c;
+  color-scheme: dark;
+  --logo: url(../img/logo.png);
+  --logoicon: url(../img/logo-icon.png);
+  --searchicon: url(../img/search-icon-dark.png);
+  --planbkg: var(--bkg-color2);
+  --darklightinvert: invert(1);
+  --white: #ffffff;
+  --black: #000000;
+  --color-rgba-1: rgba(10, 10, 15, 0.95);
+  --color-rgba-2: rgba(255, 255, 255, 0.1);
+  --color-rgba-3: rgba(255, 255, 255, 0.2);
+  --color-rgba-4: rgba(255, 255, 255, 0.08);
+  --color-rgba-5: rgba(255, 255, 255, 0.06);
+  --color-rgba-6: rgba(229, 9, 20, 0.15);
+  --color-rgba-7: rgba(5, 5, 10, 0.9);
+  --color-rgba-8: rgba(255, 255, 255, 0.05);
+  --color-rgba-9: rgba(229, 9, 20, 0.05);
+  --color-rgba-10: rgba(255, 107, 53, 0.1);
+  --color-rgba-11: rgba(229, 9, 20, 0.25);
+  --color-rgba-12: rgba(229, 9, 20, 0.06);
+  --color-rgba-13: rgba(255, 255, 255, 0.12);
+  --color-rgba-14: rgba(10, 10, 15, 0.85);
+  --color-rgba-15: rgba(0, 0, 0, 0.5);
+  --color-rgba-16: rgba(20, 20, 25, 0.8);
+  --color-rgba-17: rgba(229, 9, 20, 0.8);
+  --color-rgba-18: rgba(0, 0, 0, 0);
+  --color-rgba-19: rgba(0, 0, 0, 0.25);
+  --color-hex-00000010: #00000010;
+  --color-hex-00000020: #00000020;
+  --color-hex-00000060: #00000060;
+  --color-rgba-20: rgba(0, 0, 0, 0.33);
+  --color-hex-db4437: #db4437;
+  --color-hex-555555: #555555;
+  --color-hex-0668e1: #0668e1;
+  --color-rgba-21: rgba(255, 255, 255, 0);
+  --color-rgba-22: rgba(0, 0, 0, 1);
+  --color-rgba-23: rgba(0, 0, 0, 0.66);
+  --color-hex-ffffff80: #ffffff80;
+  --color-rgba-24: rgb(0, 0, 0);
+  --color-rgba-25: rgb(2, 0, 36);
+  --color-rgba-26: rgba(42, 34, 190, 0);
+  --primary: #e50914;
+  --primary-dark: #b00610;
+  --primary-glow: rgba(229, 9, 20, 0.35);
+  --accent: #ff6b35;
+  --gold: #f5c518;
+  --bg-base: #0a0a0f;
+  --bg-card: #111118;
+  --bg-elevated: #1a1a24;
+  --bg-glass: rgba(20, 20, 30, 0.75);
+  --border: rgba(255, 255, 255, 0.07);
+  --text-primary: #f0f0f5;
+  --text-secondary: #a0a0b8;
+  --text-muted: #606078;
 }
 
 body {
-    height: 100%;
-    background: var(--main-bg-color);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    color: var(--main-text-color);
-    font-weight: 300;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  background: var(--bg-base);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
 }
 h1 {
-    font-weight: lighter;
-    font-size: 3rem;
-    color: var(--dark-text-color);
-    margin: 0;
+  font-weight: lighter;
+  font-size: 3rem;
+  color: var(--white);
+  margin: 0;
 }
 h1.headline {
-    margin-top: 20%;
-    font-size: 5rem;
+  margin-top: 20%;
+  font-size: 5rem;
 }
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 p.lead {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 .container {
-    max-width: 75rem;
-    margin: 0 auto;
-    padding: 1rem;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 1rem;
 }
 .header {
-    background: var(--light-bg-color);
-    color: var(--dark-text-color);
-    margin-top: 2.17rem;
+  background: var(--bg-elevated);
+  color: var(--white);
+  margin-top: 2.17rem;
 }
 .header .container {
-    padding: 1rem;
+  padding: 1rem;
 }
 .header h1 {
-    font-size: 2.5rem;
-    font-weight: 500;
+  font-size: 2.5rem;
+  font-weight: 500;
 }
 .header p {
-    font-size: 1.2rem;
-    margin: 0;
-    line-height: 2.5;
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 2.5;
 }
 .header a {
-    color: var(--brand-primary-color);
-    margin-left: 2rem;
-    display: none;
-    text-decoration: none;
+  color: var(--primary);
+  margin-left: 2rem;
+  display: none;
+  text-decoration: none;
 }
 .header:hover a {
-    display: inline;
+  display: inline;
 }
 
 .environment {
-    background: var(--brand-primary-color);
-    color: var(--main-bg-color);
-    text-align: center;
-    padding: calc(4px + 0.2083vw);
-    width: 100%;
-    top: 0;
-    position: fixed;
+  background: var(--primary);
+  color: var(--bg-base);
+  text-align: center;
+  padding: calc(4px + 0.2083vw);
+  width: 100%;
+  top: 0;
+  position: fixed;
 }
 
 .source {
-    background: #343434;
-    color: var(--light-text-color);
-    padding: 0.5em 1em;
-    border-radius: 5px;
-    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
-    font-size: 0.85rem;
-    margin: 0;
-    overflow-x: scroll;
+  background: #343434;
+  color: var(--text-muted);
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 0.85rem;
+  margin: 0;
+  overflow-x: scroll;
 }
 .source span.line {
-    line-height: 1.4;
+  line-height: 1.4;
 }
 .source span.line .number {
-    color: #666;
+  color: #666;
 }
 .source .line .highlight {
-    display: block;
-    background: var(--dark-text-color);
-    color: var(--light-text-color);
+  display: block;
+  background: var(--white);
+  color: var(--text-muted);
 }
 .source span.highlight .number {
-    color: #fff;
+  color: var(--white);
 }
 
 .tabs {
-    list-style: none;
-    list-style-position: inside;
-    margin: 0;
-    padding: 0;
-    margin-bottom: -1px;
+  list-style: none;
+  list-style-position: inside;
+  margin: 0;
+  padding: 0;
+  margin-bottom: -1px;
 }
 .tabs li {
-    display: inline;
+  display: inline;
 }
 .tabs a:link,
 .tabs a:visited {
-    padding: 0 1rem;
-    line-height: 2.7;
-    text-decoration: none;
-    color: var(--dark-text-color);
-    background: var(--light-bg-color);
-    border: 1px solid rgba(0,0,0,0.15);
-    border-bottom: 0;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    display: inline-block;
+  padding: 0 1rem;
+  line-height: 2.7;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--bg-elevated);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-bottom: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display: inline-block;
 }
 .tabs a:hover {
-    background: var(--light-bg-color);
-    border-color: rgba(0,0,0,0.15);
+  background: var(--bg-elevated);
+  border-color: rgba(0, 0, 0, 0.15);
 }
 .tabs a.active {
-    background: var(--main-bg-color);
-    color: var(--main-text-color);
+  background: var(--bg-base);
+  color: var(--text-secondary);
 }
 .tab-content {
-    background: var(--main-bg-color);
-    border: 1px solid rgba(0,0,0,0.15);
+  background: var(--bg-base);
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 .content {
-    padding: 1rem;
+  padding: 1rem;
 }
 .hide {
-    display: none;
+  display: none;
 }
 
 .alert {
-    margin-top: 2rem;
-    display: block;
-    text-align: center;
-    line-height: 3.0;
-    background: #d9edf7;
-    border: 1px solid #bcdff1;
-    border-radius: 5px;
-    color: #31708f;
+  margin-top: 2rem;
+  display: block;
+  text-align: center;
+  line-height: 3;
+  background: #d9edf7;
+  border: 1px solid #bcdff1;
+  border-radius: 5px;
+  color: #31708f;
 }
 
 table {
-    width: 100%;
-    overflow: hidden;
+  width: 100%;
+  overflow: hidden;
 }
 th {
-    text-align: left;
-    border-bottom: 1px solid #e7e7e7;
-    padding-bottom: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e7e7e7;
+  padding-bottom: 0.5rem;
 }
 td {
-    padding: 0.2rem 0.5rem 0.2rem 0;
+  padding: 0.2rem 0.5rem 0.2rem 0;
 }
 tr:hover td {
-    background: #f1f1f1;
+  background: var(--bg-glass);
 }
 td pre {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
 .trace a {
-    color: inherit;
+  color: inherit;
 }
 .trace table {
-    width: auto;
+  width: auto;
 }
 .trace tr td:first-child {
-    min-width: 5em;
-    font-weight: bold;
+  min-width: 5em;
+  font-weight: bold;
 }
 .trace td {
-    background: var(--light-bg-color);
-    padding: 0 1rem;
+  background: var(--bg-elevated);
+  padding: 0 1rem;
 }
 .trace td pre {
-    margin: 0;
+  margin: 0;
 }
 .args {
-    display: none;
+  display: none;
+}
+
+/* MovPrima Dark Theme Overrides */
+.source {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border) !important;
+}
+.source .highlight {
+  background: var(--border) !important;
+}
+.tabs {
+  border-bottom: 1px solid var(--border) !important;
+}
+.tabs li a {
+  background: var(--bg-elevated) !important;
+  color: var(--text-secondary) !important;
+  border: 1px solid var(--border) !important;
+}
+.tabs li a.active {
+  background: var(--primary) !important;
+  color: var(--white) !important;
+}
+.content {
+  background: var(--bg-elevated) !important;
+  border: 1px solid var(--border) !important;
+  border-top: none !important;
+}
+table {
+  border: 1px solid var(--border) !important;
+}
+th,
+td {
+  border: 1px solid var(--border) !important;
+}
+th {
+  background: var(--bg-card) !important;
 }

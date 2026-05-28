@@ -14,41 +14,39 @@ use CodeIgniter\HTTP\ResponseInterface;
  */
 class AdminFilter implements FilterInterface
 {
-    /**
-     * Redirect to homepage when the user is not logged in or does not have the admin role.
-     * Returns null to allow the request to continue when the check passes.
-     *
-     * @param RequestInterface $request
-     * @param array|null       $arguments
-     *
-     * @return \CodeIgniter\HTTP\RedirectResponse|null
-     */
-    public function before(RequestInterface $request, $arguments = null): mixed
-    {
-        $userId   = session()->get('user_id');
-        $userRole = session()->get('user_role');
+  /**
+   * Redirect to homepage when the user is not logged in or does not have the admin role.
+   * Returns null to allow the request to continue when the check passes.
+   *
+   * @param RequestInterface $request
+   * @param array|null       $arguments
+   *
+   * @return \CodeIgniter\HTTP\RedirectResponse|null
+   */
+  public function before(RequestInterface $request, $arguments = null): mixed
+  {
+    $userId = session()->get("user_id");
+    $userRole = session()->get("user_role");
 
-        if (! $userId || $userRole !== 'admin') {
-            return redirect()
-                ->to('/')
-                ->with('error', 'Access denied. Admin privileges required.');
-        }
-
-        return null;
+    if (!$userId || $userRole !== "admin") {
+      return redirect()->to("/")->with("error", "Akses ditolak karena Anda tidak memiliki izin. Anda harus masuk dengan akun administrator untuk mengakses fitur ini.");
     }
 
-    /**
-     * No-op after handler required by FilterInterface.
-     * Returns null so the response pipeline continues unmodified.
-     *
-     * @param RequestInterface  $request
-     * @param ResponseInterface $response
-     * @param array|null        $arguments
-     *
-     * @return null
-     */
-    public function after(RequestInterface $request, ResponseInterface $response, $arguments = null): mixed
-    {
-        return null;
-    }
+    return null;
+  }
+
+  /**
+   * No-op after handler required by FilterInterface.
+   * Returns null so the response pipeline continues unmodified.
+   *
+   * @param RequestInterface  $request
+   * @param ResponseInterface $response
+   * @param array|null        $arguments
+   *
+   * @return null
+   */
+  public function after(RequestInterface $request, ResponseInterface $response, $arguments = null): mixed
+  {
+    return null;
+  }
 }

@@ -2,152 +2,158 @@
 use CodeIgniter\HTTP\Header;
 use CodeIgniter\CodeIgniter;
 
-$errorId = uniqid('error', true);
+$errorId = uniqid("error", true);
+$exception = $exception ?? new \Exception("Error pada sistem");
+$file = $file ?? "";
+$line = $line ?? "0";
+$trace = $trace ?? [];
 ?>
 <!doctype html>
-<html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="robots" content="noindex">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="csrf-token" content="<?= csrf_hash() ?>">
+    <title><?= esc($title ?? "Error") ?> | MovPrima</title>
 
-    <title><?= esc($title) ?></title>
+    <meta name="description" content="Temukan ulasan dan rekomendasi film terbaik di MovPrima. Bagikan pendapatmu dan jadilah bagian dari komunitas pecinta film." />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <meta name="theme-color" content="#0a0a0f" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
+
     <style>
-        <?= preg_replace('#[\r\n\t ]+#', ' ', file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'debug.css')) ?>
+        <?= preg_replace('#[\r\n\t ]+#', " ", file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . "debug.css")) ?>
     </style>
-
-    <script>
-        <?= file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . 'debug.js') ?>
-    </script>
 </head>
-<body onload="init()">
 
-    <!-- Header -->
-    <div class="header">
-        <div class="environment">
-            Displayed at <?= esc(date('H:i:s')) ?> &mdash;
-            PHP: <?= esc(PHP_VERSION) ?>  &mdash;
-            CodeIgniter: <?= esc(CodeIgniter::CI_VERSION) ?> --
-            Environment: <?= ENVIRONMENT ?>
-        </div>
-        <div class="container">
-            <h1><?= esc($title), esc($exception->getCode() ? ' #' . $exception->getCode() : '') ?></h1>
-            <p>
-                <?= nl2br(esc($exception->getMessage())) ?>
-                <a href="https://www.duckduckgo.com/?q=<?= urlencode($title . ' ' . preg_replace('#\'.*\'|".*"#Us', '', $exception->getMessage())) ?>"
-                   rel="noreferrer" target="_blank">search &rarr;</a>
-            </p>
-        </div>
-    </div>
+<body>
+    <!-- Main Content -->
+    <main>
+      <div style="text-align: left;">
 
-    <!-- Source -->
-    <div class="container">
-        <p><b><?= esc(clean_path($file)) ?></b> at line <b><?= esc($line) ?></b></p>
-
-        <?php if (is_file($file)) : ?>
-            <div class="source">
-                <?= static::highlightFile($file, $line, 15); ?>
+        <!-- Header -->
+        <div class="header">
+            <div class="environment">
+                Displayed at <?= esc(date("H:i:s")) ?> &mdash;
+                PHP: <?= esc(PHP_VERSION) ?>  &mdash;
+                CodeIgniter: <?= esc(CodeIgniter::CI_VERSION) ?> --
+                Environment: <?= ENVIRONMENT ?>
             </div>
-        <?php endif; ?>
-    </div>
+            <div class="container">
+                <h1><?= esc($title ?? "Error"), esc($exception->getCode() ? " #" . $exception->getCode() : "") ?></h1>
+                <p>
+                    <?= nl2br(esc($exception->getMessage())) ?>
+                    <a href="https://www.duckduckgo.com/?q=<?= urlencode(($title ?? "Error") . " " . preg_replace('#\'.*\'|".*"#Us', "", $exception->getMessage() ?? "Error pada sistem")) ?>"
+                      rel="noreferrer" target="_blank">search &rarr;</a>
+                </p>
+            </div>
+        </div>
 
-    <div class="container">
-        <?php
-        $last = $exception;
+        <!-- Source -->
+        <div class="container">
+            <p><b><?= esc(clean_path($file)) ?></b> at line <b><?= esc($line) ?></b></p>
+            <?php if (is_file($file)): ?>
+                <div class="source">
+                  <?= static::highlightFile($file, $line, 15) ?>
+                </div>
+            <?php endif; ?>
+        </div>
 
-        while ($prevException = $last->getPrevious()) {
-            $last = $prevException;
-            ?>
+        <div class="container">
+          <?php
+          $last = $exception;
+          while ($prevException = $last->getPrevious()) {
+            $last = $prevException; ?>
 
-    <pre>
-    Caused by:
-    <?= esc($prevException::class), esc($prevException->getCode() ? ' #' . $prevException->getCode() : '') ?>
+          <pre>
+          Caused by:
+          <?= esc($prevException::class), esc($prevException->getCode() ? " #" . $prevException->getCode() : "") ?>
 
-    <?= nl2br(esc($prevException->getMessage())) ?>
-    <a href="https://www.duckduckgo.com/?q=<?= urlencode($prevException::class . ' ' . preg_replace('#\'.*\'|".*"#Us', '', $prevException->getMessage())) ?>"
-       rel="noreferrer" target="_blank">search &rarr;</a>
-    <?= esc(clean_path($prevException->getFile()) . ':' . $prevException->getLine()) ?>
-    </pre>
+          <?= nl2br(esc($prevException->getMessage())) ?>
+          <a href="https://www.duckduckgo.com/?q=<?= urlencode($prevException::class . " " . preg_replace('#\'.*\'|".*"#Us', "", $prevException->getMessage())) ?>"
+            rel="noreferrer" target="_blank">search &rarr;</a>
+          <?= esc(clean_path($prevException->getFile()) . ":" . $prevException->getLine()) ?>
+          </pre>
 
-        <?php
-        }
-        ?>
-    </div>
+          <?php
+          }
+          ?>
+        </div>
 
-    <?php if (defined('SHOW_DEBUG_BACKTRACE') && SHOW_DEBUG_BACKTRACE) : ?>
-    <div class="container">
+        <?php if (defined("SHOW_DEBUG_BACKTRACE") && SHOW_DEBUG_BACKTRACE): ?>
+        <div class="container">
+          <ul class="tabs" id="tabs">
+              <li><a href="#backtrace">Backtrace</a></li>
+              <li><a href="#server">Server</a></li>
+              <li><a href="#request">Request</a></li>
+              <li><a href="#response">Response</a></li>
+              <li><a href="#files">Files</a></li>
+              <li><a href="#memory">Memory</a></li>
+          </ul>
 
-        <ul class="tabs" id="tabs">
-            <li><a href="#backtrace">Backtrace</a></li>
-            <li><a href="#server">Server</a></li>
-            <li><a href="#request">Request</a></li>
-            <li><a href="#response">Response</a></li>
-            <li><a href="#files">Files</a></li>
-            <li><a href="#memory">Memory</a></li>
-        </ul>
-
-        <div class="tab-content">
-
+          <div class="tab-content">
             <!-- Backtrace -->
             <div class="content" id="backtrace">
-
                 <ol class="trace">
-                <?php foreach ($trace as $index => $row) : ?>
-
+                <?php foreach ($trace as $index => $row): ?>
                     <li>
                         <p>
                             <!-- Trace info -->
-                            <?php if (isset($row['file']) && is_file($row['file'])) : ?>
-                                <?php
-                                if (isset($row['function']) && in_array($row['function'], ['include', 'include_once', 'require', 'require_once'], true)) {
-                                    echo esc($row['function'] . ' ' . clean_path($row['file']));
+                            <?php if (isset($row["file"]) && is_file($row["file"])): ?>
+                                <?php if (isset($row["function"]) && in_array($row["function"], ["include", "include_once", "require", "require_once"], true)) {
+                                  echo esc($row["function"] . " " . clean_path($row["file"]));
                                 } else {
-                                    echo esc(clean_path($row['file']) . ' : ' . $row['line']);
-                                }
-                                ?>
+                                  echo esc(clean_path($row["file"]) . " : " . $row["line"]);
+                                } ?>
                             <?php else: ?>
                                 {PHP internal code}
                             <?php endif; ?>
 
                             <!-- Class/Method -->
-                            <?php if (isset($row['class'])) : ?>
-                                &nbsp;&nbsp;&mdash;&nbsp;&nbsp;<?= esc($row['class'] . $row['type'] . $row['function']) ?>
-                                <?php if (! empty($row['args'])) : ?>
-                                    <?php $argsId = $errorId . 'args' . $index ?>
-                                    ( <a href="#" onclick="return toggle('<?= esc($argsId, 'attr') ?>');">arguments</a> )
-                                    <div class="args" id="<?= esc($argsId, 'attr') ?>">
+                            <?php if (isset($row["class"])): ?>
+                                &nbsp;&nbsp;&mdash;&nbsp;&nbsp;<?= esc($row["class"] . $row["type"] . $row["function"]) ?>
+                                <?php if (!empty($row["args"])): ?>
+                                    <?php $argsId = $errorId . "args" . $index; ?>
+                                    ( <a href="#" onclick="return toggle('<?= esc($argsId, "attr") ?>');">arguments</a> )
+                                    <div class="args" id="<?= esc($argsId, "attr") ?>">
                                         <table cellspacing="0">
 
                                         <?php
                                         $params = null;
                                         // Reflection by name is not available for closure function
-                                        if (! str_ends_with($row['function'], '}')) {
-                                            $mirror = isset($row['class']) ? new ReflectionMethod($row['class'], $row['function']) : new ReflectionFunction($row['function']);
-                                            $params = $mirror->getParameters();
+                                        if (!str_ends_with($row["function"], "}")) {
+                                          $mirror = isset($row["class"]) ? new ReflectionMethod($row["class"], $row["function"]) : new ReflectionFunction($row["function"]);
+                                          $params = $mirror->getParameters();
                                         }
 
-                                        foreach ($row['args'] as $key => $value) : ?>
+                                        foreach ($row["args"] as $key => $value): ?>
                                             <tr>
                                                 <td><code><?= esc(isset($params[$key]) ? '$' . $params[$key]->name : "#{$key}") ?></code></td>
                                                 <td><pre><?= esc(print_r($value, true)) ?></pre></td>
                                             </tr>
-                                        <?php endforeach ?>
+                                        <?php endforeach;
+                                        ?>
 
                                         </table>
                                     </div>
-                                <?php else : ?>
+                                <?php else: ?>
                                     ()
                                 <?php endif; ?>
                             <?php endif; ?>
 
-                            <?php if (! isset($row['class']) && isset($row['function'])) : ?>
-                                &nbsp;&nbsp;&mdash;&nbsp;&nbsp;    <?= esc($row['function']) ?>()
+                            <?php if (!isset($row["class"]) && isset($row["function"])): ?>
+                                &nbsp;&nbsp;&mdash;&nbsp;&nbsp;    <?= esc($row["function"]) ?>()
                             <?php endif; ?>
                         </p>
 
                         <!-- Source? -->
-                        <?php if (isset($row['file']) && is_file($row['file']) && isset($row['class'])) : ?>
+                        <?php if (isset($row["file"]) && is_file($row["file"]) && isset($row["class"])): ?>
                             <div class="source">
-                                <?= static::highlightFile($row['file'], $row['line']) ?>
+                                <?= static::highlightFile($row["file"], $row["line"]) ?>
                             </div>
                         <?php endif; ?>
                     </li>
@@ -159,10 +165,9 @@ $errorId = uniqid('error', true);
 
             <!-- Server -->
             <div class="content" id="server">
-                <?php foreach (['_SERVER', '_SESSION'] as $var) : ?>
-                    <?php
-                    if (empty($GLOBALS[$var]) || ! is_array($GLOBALS[$var])) {
-                        continue;
+                <?php foreach (["_SERVER", "_SESSION"] as $var): ?>
+                    <?php if (empty($GLOBALS[$var]) || !is_array($GLOBALS[$var])) {
+                      continue;
                     } ?>
 
                     <h3>$<?= esc($var) ?></h3>
@@ -175,11 +180,11 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($GLOBALS[$var] as $key => $value) : ?>
+                        <?php foreach ($GLOBALS[$var] as $key => $value): ?>
                             <tr>
                                 <td><?= esc($key) ?></td>
                                 <td>
-                                    <?php if (is_string($value)) : ?>
+                                    <?php if (is_string($value)): ?>
                                         <?= esc($value) ?>
                                     <?php else: ?>
                                         <pre><?= esc(print_r($value, true)) ?></pre>
@@ -190,11 +195,11 @@ $errorId = uniqid('error', true);
                         </tbody>
                     </table>
 
-                <?php endforeach ?>
+                <?php endforeach; ?>
 
                 <!-- Constants -->
                 <?php $constants = get_defined_constants(true); ?>
-                <?php if (! empty($constants['user'])) : ?>
+                <?php if (!empty($constants["user"])): ?>
                     <h3>Constants</h3>
 
                     <table>
@@ -205,11 +210,11 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($constants['user'] as $key => $value) : ?>
+                        <?php foreach ($constants["user"] as $key => $value): ?>
                             <tr>
                                 <td><?= esc($key) ?></td>
                                 <td>
-                                    <?php if (is_string($value)) : ?>
+                                    <?php if (is_string($value)): ?>
                                         <?= esc($value) ?>
                                     <?php else: ?>
                                         <pre><?= esc(print_r($value, true)) ?></pre>
@@ -224,7 +229,7 @@ $errorId = uniqid('error', true);
 
             <!-- Request -->
             <div class="content" id="request">
-                <?php $request = service('request'); ?>
+                <?php $request = service("request"); ?>
 
                 <table>
                     <tbody>
@@ -242,15 +247,15 @@ $errorId = uniqid('error', true);
                         </tr>
                         <tr>
                             <td style="width: 10em">Is AJAX Request?</td>
-                            <td><?= $request->isAJAX() ? 'yes' : 'no' ?></td>
+                            <td><?= $request->isAJAX() ? "yes" : "no" ?></td>
                         </tr>
                         <tr>
                             <td>Is CLI Request?</td>
-                            <td><?= $request->isCLI() ? 'yes' : 'no' ?></td>
+                            <td><?= $request->isCLI() ? "yes" : "no" ?></td>
                         </tr>
                         <tr>
                             <td>Is Secure Request?</td>
-                            <td><?= $request->isSecure() ? 'yes' : 'no' ?></td>
+                            <td><?= $request->isSecure() ? "yes" : "no" ?></td>
                         </tr>
                         <tr>
                             <td>User Agent</td>
@@ -262,10 +267,9 @@ $errorId = uniqid('error', true);
 
 
                 <?php $empty = true; ?>
-                <?php foreach (['_GET', '_POST', '_COOKIE'] as $var) : ?>
-                    <?php
-                    if (empty($GLOBALS[$var]) || ! is_array($GLOBALS[$var])) {
-                        continue;
+                <?php foreach (["_GET", "_POST", "_COOKIE"] as $var): ?>
+                    <?php if (empty($GLOBALS[$var]) || !is_array($GLOBALS[$var])) {
+                      continue;
                     } ?>
 
                     <?php $empty = false; ?>
@@ -280,11 +284,11 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($GLOBALS[$var] as $key => $value) : ?>
+                        <?php foreach ($GLOBALS[$var] as $key => $value): ?>
                             <tr>
                                 <td><?= esc($key) ?></td>
                                 <td>
-                                    <?php if (is_string($value)) : ?>
+                                    <?php if (is_string($value)): ?>
                                         <?= esc($value) ?>
                                     <?php else: ?>
                                         <pre><?= esc(print_r($value, true)) ?></pre>
@@ -295,9 +299,9 @@ $errorId = uniqid('error', true);
                         </tbody>
                     </table>
 
-                <?php endforeach ?>
+                <?php endforeach; ?>
 
-                <?php if ($empty) : ?>
+                <?php if ($empty): ?>
 
                     <div class="alert">
                         No $_GET, $_POST, or $_COOKIE Information to show.
@@ -306,7 +310,7 @@ $errorId = uniqid('error', true);
                 <?php endif; ?>
 
                 <?php $headers = $request->headers(); ?>
-                <?php if (! empty($headers)) : ?>
+                <?php if (!empty($headers)): ?>
 
                     <h3>Headers</h3>
 
@@ -318,19 +322,17 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($headers as $name => $value) : ?>
+                        <?php foreach ($headers as $name => $value): ?>
                             <tr>
-                                <td><?= esc($name, 'html') ?></td>
+                                <td><?= esc($name, "html") ?></td>
                                 <td>
-                                <?php
-                                if ($value instanceof Header) {
-                                    echo esc($value->getValueLine(), 'html');
+                                <?php if ($value instanceof Header) {
+                                  echo esc($value->getValueLine(), "html");
                                 } else {
-                                    foreach ($value as $i => $header) {
-                                        echo ' ('. $i+1 . ') ' . esc($header->getValueLine(), 'html');
-                                    }
-                                }
-                                ?>
+                                  foreach ($value as $i => $header) {
+                                    echo " (" . $i + 1 . ") " . esc($header->getValueLine(), "html");
+                                  }
+                                } ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -342,19 +344,19 @@ $errorId = uniqid('error', true);
 
             <!-- Response -->
             <?php
-                $response = service('response');
-                $response->setStatusCode(http_response_code());
+            $response = service("response");
+            $response->setStatusCode(http_response_code());
             ?>
             <div class="content" id="response">
                 <table>
                     <tr>
                         <td style="width: 15em">Response Status</td>
-                        <td><?= esc($response->getStatusCode() . ' - ' . $response->getReasonPhrase()) ?></td>
+                        <td><?= esc($response->getStatusCode() . " - " . $response->getReasonPhrase()) ?></td>
                     </tr>
                 </table>
 
                 <?php $headers = $response->headers(); ?>
-                <?php if (! empty($headers)) : ?>
+                <?php if (!empty($headers)): ?>
                     <h3>Headers</h3>
 
                     <table>
@@ -365,19 +367,17 @@ $errorId = uniqid('error', true);
                             </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($headers as $name => $value) : ?>
+                        <?php foreach ($headers as $name => $value): ?>
                             <tr>
-                                <td><?= esc($name, 'html') ?></td>
+                                <td><?= esc($name, "html") ?></td>
                                 <td>
-                                <?php
-                                if ($value instanceof Header) {
-                                    echo esc($response->getHeaderLine($name), 'html');
+                                <?php if ($value instanceof Header) {
+                                  echo esc($response->getHeaderLine($name), "html");
                                 } else {
-                                    foreach ($value as $i => $header) {
-                                        echo ' ('. $i+1 . ') ' . esc($header->getValueLine(), 'html');
-                                    }
-                                }
-                                ?>
+                                  foreach ($value as $i => $header) {
+                                    echo " (" . $i + 1 . ") " . esc($header->getValueLine(), "html");
+                                  }
+                                } ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -392,9 +392,9 @@ $errorId = uniqid('error', true);
                 <?php $files = get_included_files(); ?>
 
                 <ol>
-                <?php foreach ($files as $file) :?>
+                <?php foreach ($files as $file): ?>
                     <li><?= esc(clean_path($file)) ?></li>
-                <?php endforeach ?>
+                <?php endforeach; ?>
                 </ol>
             </div>
 
@@ -413,7 +413,7 @@ $errorId = uniqid('error', true);
                         </tr>
                         <tr>
                             <td>Memory Limit:</td>
-                            <td><?= esc(ini_get('memory_limit')) ?></td>
+                            <td><?= esc(ini_get("memory_limit")) ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -425,5 +425,14 @@ $errorId = uniqid('error', true);
     </div> <!-- /container -->
     <?php endif; ?>
 
+
+</div>
+
+  </main>
+
+    <script>
+        <?= file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . "debug.js") ?>
+    </script>
 </body>
 </html>
+

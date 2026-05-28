@@ -11,7 +11,7 @@ class ReviewSeeder extends Seeder
   {
     $now = Time::now("Asia/Jakarta", "en_US")->format("Y-m-d H:i:s");
 
-    $users = $this->db->table("users")->select("id")->get()->getResultArray();
+    $users = $this->db->table("users")->select("id")->where("role", "user")->get()->getResultArray();
     $userIds = array_column($users, "id");
 
     $movies = $this->db->table("movies")->select("id")->get()->getResultArray();
@@ -28,20 +28,9 @@ class ReviewSeeder extends Seeder
     $movieStats = []; // movie_id => ['total_rating' => X, 'count' => Y]
 
     // Review templates
-    $goodReviews = [
-      ["Luar biasa!", "Film ini sangat mengesankan dari awal hingga akhir. Aktingnya memukau."],
-      ["Sangat merekomendasikan", "Jalan cerita yang kuat dan visual yang sangat memanjakan mata."],
-      ["Masterpiece", "Sutradara berhasil menyampaikan emosi yang sangat dalam. Saya menangis."],
-      ["Seru banget", "Tidak ada momen membosankan. Adegannya penuh aksi dan ketegangan."],
-      ["Menarik", "Konsep cerita yang segar dan belum pernah ada sebelumnya."],
-    ];
+    $goodReviews = [["Luar biasa!", "Film ini sangat mengesankan dari awal hingga akhir. Aktingnya memukau."], ["Sangat merekomendasikan", "Jalan cerita yang kuat dan visual yang sangat memanjakan mata."], ["Masterpiece", "Sutradara berhasil menyampaikan emosi yang sangat dalam. Saya menangis."], ["Seru banget", "Tidak ada momen membosankan. Adegannya penuh aksi dan ketegangan."], ["Menarik", "Konsep cerita yang segar dan belum pernah ada sebelumnya."]];
 
-    $badReviews = [
-      ["Mengecewakan", "Ekspektasi saya terlalu tinggi, ternyata ceritanya membosankan."],
-      ["Kurang greget", "Banyak lubang plot dan aktingnya terasa kaku."],
-      ["Buang-buang waktu", "Durasi terlalu lama untuk cerita yang sebenarnya bisa dipersingkat."],
-      ["Biasa saja", "Tidak ada yang spesial dari film ini, sangat mudah ditebak."],
-    ];
+    $badReviews = [["Mengecewakan", "Ekspektasi saya terlalu tinggi, ternyata ceritanya membosankan."], ["Kurang greget", "Banyak lubang plot dan aktingnya terasa kaku."], ["Buang-buang waktu", "Durasi terlalu lama untuk cerita yang sebenarnya bisa dipersingkat."], ["Biasa saja", "Tidak ada yang spesial dari film ini, sangat mudah ditebak."]];
 
     foreach ($movieIds as $mId) {
       $movieStats[$mId] = ["total_rating" => 0, "count" => 0];

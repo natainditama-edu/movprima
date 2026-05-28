@@ -19,7 +19,6 @@ class AdminUserSeeder extends Seeder
         "email" => "admin@movprima.com",
         "password" => $adminPassword,
         "role" => "admin",
-        "avatar" => null,
         "bio" => "Platform administrator.",
         "created_at" => $now,
         "updated_at" => $now,
