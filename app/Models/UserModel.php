@@ -20,7 +20,7 @@ class UserModel extends Model
   protected $createdField = "created_at";
   protected $updatedField = "updated_at";
 
-  protected $allowedFields = ["name", "email", "password", "role", "avatar", "bio", "email_verified_at"];
+  protected $allowedFields = ["name", "email", "password", "role", "bio", "email_verified_at"];
 
   protected $beforeInsert = ["hashPassword"];
   protected $beforeUpdate = ["hashPassword"];
@@ -75,20 +75,6 @@ class UserModel extends Model
   }
 
   /**
-   * Update avatar file path in user account record.
-   * Executes database overwrite by replacing previous image path.
-   *
-   * @param int    $id
-   * @param string $avatarPath
-   *
-   * @return bool
-   */
-  public function updateAvatar(int $id, string $avatarPath): bool
-  {
-    return $this->update($id, ["avatar" => $avatarPath]);
-  }
-
-  /**
    * Find full single profile structure using primary key.
    * Returns associative array if the record is found.
    *
@@ -112,5 +98,16 @@ class UserModel extends Model
   public function registerUser(array $data): int
   {
     return $this->insert($data);
+  }
+
+  /**
+   * Fetch all users and include their total published review counts.
+   * Returns complete array data of users with additional review_count field.
+   *
+   * @return array
+   */
+  public function getWithReviewCount(): array
+  {
+    return $this->select("users.*, (SELECT COUNT(*) FROM reviews WHERE reviews.user_id = users.id AND reviews.status = 'published') as review_count")->orderBy("users.id", "DESC")->findAll();
   }
 }

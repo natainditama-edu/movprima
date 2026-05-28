@@ -10,12 +10,7 @@ class MovieSeeder extends Seeder
   public function run(): void
   {
     $now = Time::now("Asia/Jakarta", "en_US")->format("Y-m-d H:i:s");
-    $trailers = [
-      "https://www.youtube.com/embed/9xwazD5SyVg?si=w_BLsUuSg5kHaQYe",
-      "https://www.youtube.com/embed/D0UnqGm_miA?si=SZeqeaCd8pmeAVKw",
-      "https://www.youtube.com/embed/5Peo-ivmupE?si=JORFvtjH4h-GaAdE",
-      "https://www.youtube.com/embed/EngW7tLk6R8?si=v062To09_gnxNnoO",
-    ];
+    $trailers = ["https://www.youtube.com/embed/9xwazD5SyVg?si=w_BLsUuSg5kHaQYe", "https://www.youtube.com/embed/D0UnqGm_miA?si=SZeqeaCd8pmeAVKw", "https://www.youtube.com/embed/5Peo-ivmupE?si=JORFvtjH4h-GaAdE", "https://www.youtube.com/embed/EngW7tLk6R8?si=v062To09_gnxNnoO"];
 
     // ----------------------------------------------------------------
     // Movies data
@@ -24,8 +19,7 @@ class MovieSeeder extends Seeder
       [
         "title" => 'Tom Clancy"s Jack Ryan: Ghost War',
         "slug" => "tom-clancy-s-jack-ryan-ghost-war",
-        "synopsis" =>
-          "Dalam film baru ini, Jack Ryan terpaksa terjun kembali ke dunia spionase ketika misi rahasia internasional mengungkap konspirasi berbahaya. Sambil berlomba melawan waktu, dia bergabung dengan sekutu CIA Mike November dan James Greer, serta petugas MI6 yang jeli, Emma Marlowe, untuk melawan unit operasi rahasia yang nakal dalam pertarungan yang penuh risiko dan sangat pribadi.",
+        "synopsis" => "Dalam film baru ini, Jack Ryan terpaksa terjun kembali ke dunia spionase ketika misi rahasia internasional mengungkap konspirasi berbahaya. Sambil berlomba melawan waktu, dia bergabung dengan sekutu CIA Mike November dan James Greer, serta petugas MI6 yang jeli, Emma Marlowe, untuk melawan unit operasi rahasia yang nakal dalam pertarungan yang penuh risiko dan sangat pribadi.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 147,
@@ -40,8 +34,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Mummy",
         "slug" => "the-mummy",
-        "synopsis" =>
-          'Legiuner gagah Rick O"Connell menemukan reruntuhan Hamunaptra yang tersembunyi saat berada di tengah pertempuran untuk mengklaim wilayah tersebut di Mesir tahun 1920-an. Sudah lebih dari tiga ribu tahun sejak mantan Imam Besar Imhotep mengalami nasib yang lebih buruk daripada kematian sebagai hukuman atas cinta terlarang—bersama dengan kutukan yang menjamin kehancuran abadi atas dunia jika dia terbangun.',
+        "synopsis" => 'Legiuner gagah Rick O"Connell menemukan reruntuhan Hamunaptra yang tersembunyi saat berada di tengah pertempuran untuk mengklaim wilayah tersebut di Mesir tahun 1920-an. Sudah lebih dari tiga ribu tahun sejak mantan Imam Besar Imhotep mengalami nasib yang lebih buruk daripada kematian sebagai hukuman atas cinta terlarang—bersama dengan kutukan yang menjamin kehancuran abadi atas dunia jika dia terbangun.',
         "director" => "Unknown Director",
         "release_year" => 1999,
         "duration" => 147,
@@ -56,8 +49,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Mummy Returns",
         "slug" => "the-mummy-returns",
-        "synopsis" =>
-          'Rick dan Evelyn O"Connell, bersama putra mereka Alex yang berusia 8 tahun, menemukan kunci kekuatan Raja Kalajengking yang legendaris: Gelang Anubis yang legendaris. Sayangnya, Imhotep yang baru dibangkitkan juga memiliki desain pada gelang itu, dan tidak segan-segan menculik pembawa barunya, Alex, untuk mendapatkan kendali atas pasukan dunia lain Anubis.',
+        "synopsis" => 'Rick dan Evelyn O"Connell, bersama putra mereka Alex yang berusia 8 tahun, menemukan kunci kekuatan Raja Kalajengking yang legendaris: Gelang Anubis yang legendaris. Sayangnya, Imhotep yang baru dibangkitkan juga memiliki desain pada gelang itu, dan tidak segan-segan menculik pembawa barunya, Alex, untuk mendapatkan kendali atas pasukan dunia lain Anubis.',
         "director" => "Unknown Director",
         "release_year" => 2001,
         "duration" => 111,
@@ -72,8 +64,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Apocalypto",
         "slug" => "apocalypto",
-        "synopsis" =>
-          "Berlatar belakang peradaban Maya, saat kehidupan seorang pria yang indah diganggu secara brutal oleh kekuatan penyerang yang kejam, ia dibawa dalam perjalanan berbahaya ke dunia yang dikuasai oleh rasa takut dan penindasan, di mana akhir yang mengerikan menantinya. Melalui likuan takdir dan didorong oleh kekuatan cintanya kepada wanita dan keluarganya, ia akan melakukan perjalanan yang putus asa untuk kembali ke rumah dan pada akhirnya menyelamatkan jalan hidupnya.",
+        "synopsis" => "Berlatar belakang peradaban Maya, saat kehidupan seorang pria yang indah diganggu secara brutal oleh kekuatan penyerang yang kejam, ia dibawa dalam perjalanan berbahaya ke dunia yang dikuasai oleh rasa takut dan penindasan, di mana akhir yang mengerikan menantinya. Melalui likuan takdir dan didorong oleh kekuatan cintanya kepada wanita dan keluarganya, ia akan melakukan perjalanan yang putus asa untuk kembali ke rumah dan pada akhirnya menyelamatkan jalan hidupnya.",
         "director" => "Unknown Director",
         "release_year" => 2006,
         "duration" => 159,
@@ -104,8 +95,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Avengers: Infinity War",
         "slug" => "avengers-infinity-war",
-        "synopsis" =>
-          "Karena Avengers dan sekutunya terus melindungi dunia dari ancaman yang terlalu besar untuk ditangani oleh seorang pahlawan, bahaya baru telah muncul dari bayangan kosmik: Thanos. Seorang lalim penghujatan intergalaksi, tujuannya adalah untuk mengumpulkan semua enam Batu Infinity, artefak kekuatan yang tak terbayangkan, dan menggunakannya untuk menimbulkan kehendak memutar pada semua realitas. Segala sesuatu yang telah diperjuangkan oleh Avengers telah berkembang hingga saat ini - nasib Bumi dan keberadaannya sendiri tidak pernah lebih pasti.",
+        "synopsis" => "Karena Avengers dan sekutunya terus melindungi dunia dari ancaman yang terlalu besar untuk ditangani oleh seorang pahlawan, bahaya baru telah muncul dari bayangan kosmik: Thanos. Seorang lalim penghujatan intergalaksi, tujuannya adalah untuk mengumpulkan semua enam Batu Infinity, artefak kekuatan yang tak terbayangkan, dan menggunakannya untuk menimbulkan kehendak memutar pada semua realitas. Segala sesuatu yang telah diperjuangkan oleh Avengers telah berkembang hingga saat ini - nasib Bumi dan keberadaannya sendiri tidak pernah lebih pasti.",
         "director" => "Unknown Director",
         "release_year" => 2018,
         "duration" => 138,
@@ -120,8 +110,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Top Gun: Maverick",
         "slug" => "top-gun-maverick",
-        "synopsis" =>
-          'Setelah lebih dari tiga puluh tahun mengabdi sebagai salah satu penerbang top Angkatan Laut, dan menghindari kenaikan pangkat yang akan menjatuhkannya, Pete "Maverick" Mitchell mendapati dirinya melatih satu detasemen lulusan TOP GUN untuk misi khusus yang tidak ada kehidupan. pilot pernah melihat.',
+        "synopsis" => 'Setelah lebih dari tiga puluh tahun mengabdi sebagai salah satu penerbang top Angkatan Laut, dan menghindari kenaikan pangkat yang akan menjatuhkannya, Pete "Maverick" Mitchell mendapati dirinya melatih satu detasemen lulusan TOP GUN untuk misi khusus yang tidak ada kehidupan. pilot pernah melihat.',
         "director" => "Unknown Director",
         "release_year" => 2022,
         "duration" => 134,
@@ -136,8 +125,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Lord of the Rings: The Return of the King",
         "slug" => "the-lord-of-the-rings-the-return-of-the-king",
-        "synopsis" =>
-          "Aragorn dinyatakan sebagai pewaris raja-raja kuno saat ia, Gandalf dan anggota-anggota lain dari persekutuan yang rusak berjuang untuk menyelamatkan Gondor dari pasukan Sauron. Sementara itu, Frodo dan Sam membawa cincin itu lebih dekat ke jantung Mordor, kerajaan penguasa gelap.",
+        "synopsis" => "Aragorn dinyatakan sebagai pewaris raja-raja kuno saat ia, Gandalf dan anggota-anggota lain dari persekutuan yang rusak berjuang untuk menyelamatkan Gondor dari pasukan Sauron. Sementara itu, Frodo dan Sam membawa cincin itu lebih dekat ke jantung Mordor, kerajaan penguasa gelap.",
         "director" => "Unknown Director",
         "release_year" => 2003,
         "duration" => 144,
@@ -152,8 +140,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Lord of the Rings: The Fellowship of the Ring",
         "slug" => "the-lord-of-the-rings-the-fellowship-of-the-ring",
-        "synopsis" =>
-          "Hobbit muda Frodo Baggins, setelah mewarisi cincin misterius dari pamannya, Bilbo, harus meninggalkan rumahnya agar tidak jatuh ke tangan penciptanya yang jahat. Sepanjang jalan, persekutuan dibentuk untuk melindungi ringbearer dan memastikan bahwa cincin itu tiba di tujuan akhirnya: Mt. Doom, satu-satunya tempat di mana ia bisa dihancurkan.",
+        "synopsis" => "Hobbit muda Frodo Baggins, setelah mewarisi cincin misterius dari pamannya, Bilbo, harus meninggalkan rumahnya agar tidak jatuh ke tangan penciptanya yang jahat. Sepanjang jalan, persekutuan dibentuk untuk melindungi ringbearer dan memastikan bahwa cincin itu tiba di tujuan akhirnya: Mt. Doom, satu-satunya tempat di mana ia bisa dihancurkan.",
         "director" => "Unknown Director",
         "release_year" => 2001,
         "duration" => 137,
@@ -168,8 +155,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Kru Penghancur",
         "slug" => "kru-penghancur",
-        "synopsis" =>
-          "Dalam KRU PENGHANCUR, saudara tiri, Jonny dan James, bertemu kembali setelah kematian misterius ayah mereka. Saat mereka mencari kebenaran, rahasia terpendam mengungkap konspirasi untuk menghancurkan keluarga mereka. Berlatar di Hawaii, film ini disutradarai oleh Ángel Manuel Soto dan dibintangi oleh Claes Bang, Jacob Batalon, Stephen Root, dan Morena Baccarin.",
+        "synopsis" => "Dalam KRU PENGHANCUR, saudara tiri, Jonny dan James, bertemu kembali setelah kematian misterius ayah mereka. Saat mereka mencari kebenaran, rahasia terpendam mengungkap konspirasi untuk menghancurkan keluarga mereka. Berlatar di Hawaii, film ini disutradarai oleh Ángel Manuel Soto dan dibintangi oleh Claes Bang, Jacob Batalon, Stephen Root, dan Morena Baccarin.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 92,
@@ -184,8 +170,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Spider-Man: No Way Home",
         "slug" => "spider-man-no-way-home",
-        "synopsis" =>
-          "Peter Parker menghadapi masalah besar. Hal ini terjadi setelah identitasnya sebagai Spiderman terungkap. Dengan kepergian Tony Stark, Peter Parker pun harus meminta bantuan Doctor Strange agar semua orang bisa melupakan identitasnya sebagai manusia laba-laba.",
+        "synopsis" => "Peter Parker menghadapi masalah besar. Hal ini terjadi setelah identitasnya sebagai Spiderman terungkap. Dengan kepergian Tony Stark, Peter Parker pun harus meminta bantuan Doctor Strange agar semua orang bisa melupakan identitasnya sebagai manusia laba-laba.",
         "director" => "Unknown Director",
         "release_year" => 2021,
         "duration" => 145,
@@ -200,8 +185,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Balls Up",
         "slug" => "balls-up",
-        "synopsis" =>
-          'Dalam komedi konyol dan berlebihan ini, eksekutif pemasaran Brad dan Elijah "berani mati" dan menawarkan kondom untuk menjadi sponsor Piala Dunia. Setelah perayaan mabuk-mabukan mereka di Brasil memicu skandal di dunia, mereka harus menghindari penggemar yang marah, penjahat, dan pejabat yang haus kekuasaan untuk menyelamatkan karier dan pulang dengan selamat.',
+        "synopsis" => 'Dalam komedi konyol dan berlebihan ini, eksekutif pemasaran Brad dan Elijah "berani mati" dan menawarkan kondom untuk menjadi sponsor Piala Dunia. Setelah perayaan mabuk-mabukan mereka di Brasil memicu skandal di dunia, mereka harus menghindari penggemar yang marah, penjahat, dan pejabat yang haus kekuasaan untuk menyelamatkan karier dan pulang dengan selamat.',
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 147,
@@ -216,8 +200,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Avengers: Endgame",
         "slug" => "avengers-endgame",
-        "synopsis" =>
-          "Terdampar di luar angkasa tanpa persediaan makanan dan minuman, Tony Stark berusaha mengirim pesan untuk Pepper Potts dimana persediaan oksigen mulai menipis. Sementara itu para Avengers yang tersisa harus menemukan cara untuk mengembalikan 50% mahluk di seluruh dunia yang telah dilenyapkan oleh Thanos.",
+        "synopsis" => "Terdampar di luar angkasa tanpa persediaan makanan dan minuman, Tony Stark berusaha mengirim pesan untuk Pepper Potts dimana persediaan oksigen mulai menipis. Sementara itu para Avengers yang tersisa harus menemukan cara untuk mengembalikan 50% mahluk di seluruh dunia yang telah dilenyapkan oleh Thanos.",
         "director" => "Unknown Director",
         "release_year" => 2019,
         "duration" => 90,
@@ -232,8 +215,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Pretty Lethal",
         "slug" => "pretty-lethal",
-        "synopsis" =>
-          "Film triler penuh aksi di mana lima balerina terdampar di hutan terpencil saat sedang menuju kompetisi dansa. Mereka berlindung di penginapan mengerikan yang dikelola Devora Kasimer di tepi jalan dan harus mempersenjatai pelatihan elite mereka untuk bertahan hidup.",
+        "synopsis" => "Film triler penuh aksi di mana lima balerina terdampar di hutan terpencil saat sedang menuju kompetisi dansa. Mereka berlindung di penginapan mengerikan yang dikelola Devora Kasimer di tepi jalan dan harus mempersenjatai pelatihan elite mereka untuk bertahan hidup.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 146,
@@ -248,8 +230,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Star Wars: Episode IV - A New Hope",
         "slug" => "star-wars-episode-iv-a-new-hope",
-        "synopsis" =>
-          "Putri Leia ditangkap dan disandera oleh pasukan Kekaisaran jahat dalam upaya mereka untuk mengambil alih Kekaisaran galaksi. Venturesome Luke Skywalker dan kapten gagah tim Han Solo bersama dengan duo robot yang dicintai R2-D2 dan C-3PO untuk menyelamatkan putri cantik dan memulihkan kedamaian dan keadilan di Kekaisaran.",
+        "synopsis" => "Putri Leia ditangkap dan disandera oleh pasukan Kekaisaran jahat dalam upaya mereka untuk mengambil alih Kekaisaran galaksi. Venturesome Luke Skywalker dan kapten gagah tim Han Solo bersama dengan duo robot yang dicintai R2-D2 dan C-3PO untuk menyelamatkan putri cantik dan memulihkan kedamaian dan keadilan di Kekaisaran.",
         "director" => "Unknown Director",
         "release_year" => 1977,
         "duration" => 164,
@@ -264,8 +245,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Deadpool & Wolverine",
         "slug" => "deadpool-wolverine",
-        "synopsis" =>
-          "Wade Wilson yang lesu bekerja keras dalam kehidupan sipil dengan hari-harinya sebagai tentara bayaran yang fleksibel secara moral, Deadpool, di belakangnya. Namun ketika dunia asalnya menghadapi ancaman eksistensial, Wade terpaksa harus kembali bekerja sama dengan Wolverine yang bahkan lebih enggan.",
+        "synopsis" => "Wade Wilson yang lesu bekerja keras dalam kehidupan sipil dengan hari-harinya sebagai tentara bayaran yang fleksibel secara moral, Deadpool, di belakangnya. Namun ketika dunia asalnya menghadapi ancaman eksistensial, Wade terpaksa harus kembali bekerja sama dengan Wolverine yang bahkan lebih enggan.",
         "director" => "Unknown Director",
         "release_year" => 2024,
         "duration" => 128,
@@ -280,8 +260,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Hoppers",
         "slug" => "hoppers",
-        "synopsis" =>
-          "Para ilmuwan telah menemukan cara untuk mentransfer kesadaran manusia ke dalam hewan robot yang menyerupai manusia., Memungkinkan manusia untuk berkomunikasi dengan hewan sebagai hewan. Mabel, seorang pencinta hewan, memanfaatkan kesempatan untuk menggunakan teknologi tersebut. Mengungkap misteri di dunia hewan yang melampaui apa pun yang pernah dia bayangkan.",
+        "synopsis" => "Para ilmuwan telah menemukan cara untuk mentransfer kesadaran manusia ke dalam hewan robot yang menyerupai manusia., Memungkinkan manusia untuk berkomunikasi dengan hewan sebagai hewan. Mabel, seorang pencinta hewan, memanfaatkan kesempatan untuk menggunakan teknologi tersebut. Mengungkap misteri di dunia hewan yang melampaui apa pun yang pernah dia bayangkan.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 174,
@@ -296,8 +275,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Zootopia 2",
         "slug" => "zootopia-2",
-        "synopsis" =>
-          "Setelah berhasil menyelesaikan kasus terbesar dalam sejarah Zootopia, dua polisi pemula Judy Hopps dan Nick Wilde menyadari bahwa kemitraan mereka tidak sekuat yang mereka kira ketika Kepala Bogo memerintahkan mereka untuk mengikuti program konseling “Partners in Crisis”. Namun, tidak lama kemudian, kemitraan mereka diuji hingga batasnya ketika mereka terjebak dalam jejak misterius yang terkait dengan kedatangan ular berbisa di kota metropolis hewan tersebut.",
+        "synopsis" => "Setelah berhasil menyelesaikan kasus terbesar dalam sejarah Zootopia, dua polisi pemula Judy Hopps dan Nick Wilde menyadari bahwa kemitraan mereka tidak sekuat yang mereka kira ketika Kepala Bogo memerintahkan mereka untuk mengikuti program konseling “Partners in Crisis”. Namun, tidak lama kemudian, kemitraan mereka diuji hingga batasnya ketika mereka terjebak dalam jejak misterius yang terkait dengan kedatangan ular berbisa di kota metropolis hewan tersebut.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 127,
@@ -312,8 +290,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Super Mario Bros. Movie",
         "slug" => "the-super-mario-bros-movie",
-        "synopsis" =>
-          "Ketika sedang bekerja di bawah tanah untuk memperbaiki pipa air, Mario dan Luigi, yang merupakan tukang ledeng dari Brooklyn, tiba-tiba terhisap ke dalam pipa misterius dan masuk ke dunia yang sangat berbeda. Mereka berada di tempat yang ajaib dan aneh. Tapi sayangnya, mereka terpisah satu sama lain. Mario memulai petualangan besar untuk mencari dan menemukan Luigi.",
+        "synopsis" => "Ketika sedang bekerja di bawah tanah untuk memperbaiki pipa air, Mario dan Luigi, yang merupakan tukang ledeng dari Brooklyn, tiba-tiba terhisap ke dalam pipa misterius dan masuk ke dunia yang sangat berbeda. Mereka berada di tempat yang ajaib dan aneh. Tapi sayangnya, mereka terpisah satu sama lain. Mario memulai petualangan besar untuk mencari dan menemukan Luigi.",
         "director" => "Unknown Director",
         "release_year" => 2023,
         "duration" => 129,
@@ -328,8 +305,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Forrest Gump",
         "slug" => "forrest-gump",
-        "synopsis" =>
-          "Forrest Gump, seorang pria ber IQ rendah - namun baik hati, bergabung dengan tentara untuk mengabdi. Namun, benaknya seolah tidak bisa berhenti memikirkan sang kekasih masa kecilnya, Jenny Curran.",
+        "synopsis" => "Forrest Gump, seorang pria ber IQ rendah - namun baik hati, bergabung dengan tentara untuk mengabdi. Namun, benaknya seolah tidak bisa berhenti memikirkan sang kekasih masa kecilnya, Jenny Curran.",
         "director" => "Unknown Director",
         "release_year" => 1994,
         "duration" => 128,
@@ -344,8 +320,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Toy Story",
         "slug" => "toy-story",
-        "synopsis" =>
-          "Dipimpin oleh Woody, mainan Andy hidup bahagia di kamarnya hingga ulang tahun Andy membawa Buzz Lightyear ke dunia hiburan. Karena takut kehilangan tempatnya di hati Andy, Woody berkomplot melawan Buzz. Namun, ketika keadaan memisahkan Buzz dan Woody dari pemiliknya, keduanya akhirnya belajar untuk mengesampingkan perbedaan mereka.",
+        "synopsis" => "Dipimpin oleh Woody, mainan Andy hidup bahagia di kamarnya hingga ulang tahun Andy membawa Buzz Lightyear ke dunia hiburan. Karena takut kehilangan tempatnya di hati Andy, Woody berkomplot melawan Buzz. Namun, ketika keadaan memisahkan Buzz dan Woody dari pemiliknya, keduanya akhirnya belajar untuk mengesampingkan perbedaan mereka.",
         "director" => "Unknown Director",
         "release_year" => 1995,
         "duration" => 133,
@@ -360,8 +335,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Masuk Keluar",
         "slug" => "masuk-keluar",
-        "synopsis" =>
-          "Tumbuh dewasa bisa menjadi jalan yang bergelombang, dan tidak terkecuali bagi Riley, yang tercerabut dari kehidupannya di Midwest ketika ayahnya memulai pekerjaan baru di San Francisco. Emosi pemandu Riley— Kegembiraan, Ketakutan, Kemarahan, Jijik, dan Kesedihan — hidup di Markas Besar, pusat kendali di dalam pikiran Riley, tempat mereka membantu menasihatinya melalui kehidupan sehari-hari dan berusaha menjaga hal-hal positif, tetapi emosi bertentangan tentang cara terbaik untuk menavigasi suatu kota baru, rumah dan sekolah.",
+        "synopsis" => "Tumbuh dewasa bisa menjadi jalan yang bergelombang, dan tidak terkecuali bagi Riley, yang tercerabut dari kehidupannya di Midwest ketika ayahnya memulai pekerjaan baru di San Francisco. Emosi pemandu Riley— Kegembiraan, Ketakutan, Kemarahan, Jijik, dan Kesedihan — hidup di Markas Besar, pusat kendali di dalam pikiran Riley, tempat mereka membantu menasihatinya melalui kehidupan sehari-hari dan berusaha menjaga hal-hal positif, tetapi emosi bertentangan tentang cara terbaik untuk menavigasi suatu kota baru, rumah dan sekolah.",
         "director" => "Unknown Director",
         "release_year" => 2015,
         "duration" => 97,
@@ -376,8 +350,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Sonic the Hedgehog 3",
         "slug" => "sonic-the-hedgehog-3",
-        "synopsis" =>
-          "Sonic, Knuckles, dan Tails bersatu kembali melawan musuh baru yang kuat, Shadow, penjahat misterius dengan kekuatan yang belum pernah mereka hadapi sebelumnya. Dengan kemampuan mereka yang tak tertandingi dalam segala hal, Tim Sonic harus mencari aliansi yang tidak terduga dengan harapan dapat menghentikan Shadow dan melindungi planet ini.",
+        "synopsis" => "Sonic, Knuckles, dan Tails bersatu kembali melawan musuh baru yang kuat, Shadow, penjahat misterius dengan kekuatan yang belum pernah mereka hadapi sebelumnya. Dengan kemampuan mereka yang tak tertandingi dalam segala hal, Tim Sonic harus mencari aliansi yang tidak terduga dengan harapan dapat menghentikan Shadow dan melindungi planet ini.",
         "director" => "Unknown Director",
         "release_year" => 2024,
         "duration" => 161,
@@ -392,8 +365,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Ted 2",
         "slug" => "ted-2",
-        "synopsis" =>
-          "Ted 2 adalah sebuah film komedi Amerika yang akan hadir yang disutradarai oleh Seth MacFarlane dan ditulis oleh MacFarlane, Alec Sulkin dan Wellesley Wild. Film tersebut adalah sekuel dari film 2012 karya MacFarlane yang berjudul Ted.",
+        "synopsis" => "Ted 2 adalah sebuah film komedi Amerika yang akan hadir yang disutradarai oleh Seth MacFarlane dan ditulis oleh MacFarlane, Alec Sulkin dan Wellesley Wild. Film tersebut adalah sekuel dari film 2012 karya MacFarlane yang berjudul Ted.",
         "director" => "Unknown Director",
         "release_year" => 2015,
         "duration" => 171,
@@ -408,8 +380,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "After We Fell",
         "slug" => "after-we-fell",
-        "synopsis" =>
-          "Tepat ketika Tessa membuat keputusan terbesar dalam hidupnya, segalanya berubah. Penemuan baru tentang keluarganya, dan keluarga Hardin, semua yang mereka ketahui dalam hidup dan membuat masa depan yang mereka perjuangkan semakin sulit untuk dicapai.",
+        "synopsis" => "Tepat ketika Tessa membuat keputusan terbesar dalam hidupnya, segalanya berubah. Penemuan baru tentang keluarganya, dan keluarga Hardin, semua yang mereka ketahui dalam hidup dan membuat masa depan yang mereka perjuangkan semakin sulit untuk dicapai.",
         "director" => "Unknown Director",
         "release_year" => 2021,
         "duration" => 164,
@@ -454,8 +425,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "木兰：血刃",
         "slug" => "mulan-light-of-the-sword",
-        "synopsis" =>
-          "Mantan prajurit Mulan kembali ke kampung halamannya dan mendapati kedua orang tuanya terbunuh, sementara adiknya menghilang. Saat menyelidiki kasus tersebut, ia mengungkap jaringan pencetak uang palsu dan korupsi para pejabat berkuasa, tetapi justru dijebak dan kehilangan adiknya secara tragis. Setelah menyaksikan penderitaan rakyat, Mulan kembali mengenakan baju zirah untuk memimpin perlawanan melawan para penindas dan memperjuangkan keadilan bagi negerinya.",
+        "synopsis" => "Mantan prajurit Mulan kembali ke kampung halamannya dan mendapati kedua orang tuanya terbunuh, sementara adiknya menghilang. Saat menyelidiki kasus tersebut, ia mengungkap jaringan pencetak uang palsu dan korupsi para pejabat berkuasa, tetapi justru dijebak dan kehilangan adiknya secara tragis. Setelah menyaksikan penderitaan rakyat, Mulan kembali mengenakan baju zirah untuk memimpin perlawanan melawan para penindas dan memperjuangkan keadilan bagi negerinya.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 167,
@@ -470,8 +440,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Return to Silent Hill",
         "slug" => "return-to-silent-hill",
-        "synopsis" =>
-          "Saat James menerima surat misterius dari mendiang istrinya, Mary, ia terpanggil kembali ke Silent Hill—kota penuh kenangan yang kini ditelan kegelapan. Dalam pencarian tersebut, James harus berhadapan dengan makhluk-makhluk mengerikan. Ia perlahan mengungkap kebenaran kelam yang menyeretnya ke ambang kegilaan.",
+        "synopsis" => "Saat James menerima surat misterius dari mendiang istrinya, Mary, ia terpanggil kembali ke Silent Hill—kota penuh kenangan yang kini ditelan kegelapan. Dalam pencarian tersebut, James harus berhadapan dengan makhluk-makhluk mengerikan. Ia perlahan mengungkap kebenaran kelam yang menyeretnya ke ambang kegilaan.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 147,
@@ -486,8 +455,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Fifty Shades of Grey",
         "slug" => "fifty-shades-of-grey",
-        "synopsis" =>
-          "Fifty Shades of Grey adalah sebuah film drama romantis/erotis Amerika Serikat yang disutradarai oleh Sam Taylor-Johnson dan skenarionya ditulis oleh Kelly Marcel. Berdasarkan pada novel laris karya E.L James dengan judul yang sama, film ini dibintangi oleh Jamie Dornan dan Dakota Johnson.",
+        "synopsis" => "Fifty Shades of Grey adalah sebuah film drama romantis/erotis Amerika Serikat yang disutradarai oleh Sam Taylor-Johnson dan skenarionya ditulis oleh Kelly Marcel. Berdasarkan pada novel laris karya E.L James dengan judul yang sama, film ini dibintangi oleh Jamie Dornan dan Dakota Johnson.",
         "director" => "Unknown Director",
         "release_year" => 2015,
         "duration" => 173,
@@ -517,8 +485,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Top Gun",
         "slug" => "top-gun",
-        "synopsis" =>
-          'Bagi Letnan Pete "Maverick" Mitchell dan temannya serta co-pilot Nick "Goose" Bradshaw, diterima di sekolah pelatihan elit untuk pilot pesawat tempur adalah mimpi yang menjadi kenyataan. Tapi sebuah tragedi, serta setan pribadi, akan mengancam impian Pete untuk menjadi pilot ace.',
+        "synopsis" => 'Bagi Letnan Pete "Maverick" Mitchell dan temannya serta co-pilot Nick "Goose" Bradshaw, diterima di sekolah pelatihan elit untuk pilot pesawat tempur adalah mimpi yang menjadi kenyataan. Tapi sebuah tragedi, serta setan pribadi, akan mengancam impian Pete untuk menjadi pilot ace.',
         "director" => "Unknown Director",
         "release_year" => 1986,
         "duration" => 100,
@@ -533,8 +500,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "12 Angry Men",
         "slug" => "12-angry-men",
-        "synopsis" =>
-          "Setelah argumen penutup dalam persidangan pembunuhan, 12 anggota juri harus berunding, dengan vonis bersalah yang berarti kematian bagi terdakwa, seorang remaja dari kota. Ketika belasan orang itu mencoba untuk mencapai keputusan bulat saat diasingkan di sebuah ruangan, seorang juri meragukan beberapa elemen dari kasus tersebut. Masalah pribadi segera muncul ke permukaan, dan konflik mengancam untuk menggagalkan proses rumit yang akan menentukan nasib seorang anak laki-laki.",
+        "synopsis" => "Setelah argumen penutup dalam persidangan pembunuhan, 12 anggota juri harus berunding, dengan vonis bersalah yang berarti kematian bagi terdakwa, seorang remaja dari kota. Ketika belasan orang itu mencoba untuk mencapai keputusan bulat saat diasingkan di sebuah ruangan, seorang juri meragukan beberapa elemen dari kasus tersebut. Masalah pribadi segera muncul ke permukaan, dan konflik mengancam untuk menggagalkan proses rumit yang akan menentukan nasib seorang anak laki-laki.",
         "director" => "Unknown Director",
         "release_year" => 1957,
         "duration" => 91,
@@ -549,8 +515,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Hereditary",
         "slug" => "hereditary",
-        "synopsis" =>
-          "Setelah kematian Ellen Leigh, ibu pemimpin keluarga mereka, putrinya Annie dan anggota keluarga lainnya mulai mengungkap rahasia yang mengganggu tentang warisan mereka. Kehidupan sehari-hari mereka tidak hanya terpengaruh, tetapi mereka juga menjadi terjerat dalam nasib mengerikan yang tidak dapat mereka hindari, mendorong mereka ke ambang kegilaan.",
+        "synopsis" => "Setelah kematian Ellen Leigh, ibu pemimpin keluarga mereka, putrinya Annie dan anggota keluarga lainnya mulai mengungkap rahasia yang mengganggu tentang warisan mereka. Kehidupan sehari-hari mereka tidak hanya terpengaruh, tetapi mereka juga menjadi terjerat dalam nasib mengerikan yang tidak dapat mereka hindari, mendorong mereka ke ambang kegilaan.",
         "director" => "Unknown Director",
         "release_year" => 2018,
         "duration" => 90,
@@ -565,8 +530,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Wailing",
         "slug" => "the-wailing",
-        "synopsis" =>
-          'Film horor "The Wailing" mengisahkan teror mengerikan dari sesosok roh jahat di sebuah desa. Peristiwa aneh menimpa Oh Song-beok (Son Gang-guk) dan Jong-goo (Kwak Do-won) saat mereka tengah membicarakan tragedi di Gokseong.',
+        "synopsis" => 'Film horor "The Wailing" mengisahkan teror mengerikan dari sesosok roh jahat di sebuah desa. Peristiwa aneh menimpa Oh Song-beok (Son Gang-guk) dan Jong-goo (Kwak Do-won) saat mereka tengah membicarakan tragedi di Gokseong.',
         "director" => "Unknown Director",
         "release_year" => 2016,
         "duration" => 171,
@@ -659,8 +623,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Monkey",
         "slug" => "the-monkey",
-        "synopsis" =>
-          "Ketika saudara kembar menemukan seekor monyet misterius yang dapat digerakkan, serangkaian kematian yang memalukan menghancurkan keluarga mereka. Dua puluh lima tahun kemudian, monyet itu memulai aksi pembunuhan baru, memaksa saudara-saudara yang terasing ini untuk menghadapi mainan terkutuk itu.",
+        "synopsis" => "Ketika saudara kembar menemukan seekor monyet misterius yang dapat digerakkan, serangkaian kematian yang memalukan menghancurkan keluarga mereka. Dua puluh lima tahun kemudian, monyet itu memulai aksi pembunuhan baru, memaksa saudara-saudara yang terasing ini untuk menghadapi mainan terkutuk itu.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 129,
@@ -675,8 +638,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Resident Evil: Welcome to Raccoon City",
         "slug" => "resident-evil-welcome-to-raccoon-city",
-        "synopsis" =>
-          "Dulunya merupakan rumah bagi raksasa farmasi Umbrella Corporation, Raccoon City kini menjadi kota di Midwestern yang sedang sekarat. Eksodus perusahaan ini membuat kota ini menjadi gurun…dengan kejahatan besar yang muncul di bawah permukaan. Ketika kejahatan itu dilepaskan, penduduk kota selamanya…berubah…dan sekelompok kecil orang yang selamat harus bekerja sama untuk mengungkap kebenaran di balik Umbrella dan berhasil melewati malam.",
+        "synopsis" => "Dulunya merupakan rumah bagi raksasa farmasi Umbrella Corporation, Raccoon City kini menjadi kota di Midwestern yang sedang sekarat. Eksodus perusahaan ini membuat kota ini menjadi gurun…dengan kejahatan besar yang muncul di bawah permukaan. Ketika kejahatan itu dilepaskan, penduduk kota selamanya…berubah…dan sekelompok kecil orang yang selamat harus bekerja sama untuk mengungkap kebenaran di balik Umbrella dan berhasil melewati malam.",
         "director" => "Unknown Director",
         "release_year" => 2021,
         "duration" => 171,
@@ -691,8 +653,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "War of the Worlds",
         "slug" => "war-of-the-worlds",
-        "synopsis" =>
-          "Will Radford adalah seorang analis keamanan siber terkemuka untuk Departemen Keamanan Dalam Negeri yang melacak potensi ancaman terhadap keamanan nasional melalui program pengawasan massal, hingga suatu hari sebuah serangan oleh entitas tak dikenal membuatnya mempertanyakan apakah pemerintah menyembunyikan sesuatu darinya... dan dari seluruh dunia.",
+        "synopsis" => "Will Radford adalah seorang analis keamanan siber terkemuka untuk Departemen Keamanan Dalam Negeri yang melacak potensi ancaman terhadap keamanan nasional melalui program pengawasan massal, hingga suatu hari sebuah serangan oleh entitas tak dikenal membuatnya mempertanyakan apakah pemerintah menyembunyikan sesuatu darinya... dan dari seluruh dunia.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 175,
@@ -707,8 +668,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Gorge",
         "slug" => "the-gorge",
-        "synopsis" =>
-          "Dua agen yang sangat terlatih makin akrab dari kejauhan setelah ditugaskan untuk menjaga sisi berlawanan di jurang misterius. Saat kejahatan muncul dari bawah, mereka harus bekerja sama agar selamat dari apa yang ada di dalamnya.",
+        "synopsis" => "Dua agen yang sangat terlatih makin akrab dari kejauhan setelah ditugaskan untuk menjaga sisi berlawanan di jurang misterius. Saat kejahatan muncul dari bawah, mereka harus bekerja sama agar selamat dari apa yang ada di dalamnya.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 169,
@@ -723,8 +683,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Culpa nuestra",
         "slug" => "culpa-nuestra",
-        "synopsis" =>
-          "Pernikahan Jenna dan Lion mempertemukan kembali Noah dan Nick setelah mereka putus. Ketidakmampuan Nick memaafkan Noah menjadi penghalang yang tak bisa diatasi. Nick, pewaris bisnis kakeknya, dan Noah, yang baru memulai kehidupan profesionalnya, menolak api asmara yang belum padam. Namun, kini setelah mereka bertemu lagi, apakah cinta akan lebih kuat dari kebencian?",
+        "synopsis" => "Pernikahan Jenna dan Lion mempertemukan kembali Noah dan Nick setelah mereka putus. Ketidakmampuan Nick memaafkan Noah menjadi penghalang yang tak bisa diatasi. Nick, pewaris bisnis kakeknya, dan Noah, yang baru memulai kehidupan profesionalnya, menolak api asmara yang belum padam. Namun, kini setelah mereka bertemu lagi, apakah cinta akan lebih kuat dari kebencian?",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 167,
@@ -739,8 +698,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Culpa tuya",
         "slug" => "culpa-tuya",
-        "synopsis" =>
-          "Sekuel film laris My Fault; cinta Noah dan Nick tampak tak tergoyahkan meski orang tua berusaha memisahkan mereka. Namun, pekerjaan Noah dan masuknya Nick ke universitas membuka kehidupan baru yang akan mengguncang fondasi hubungan mereka dan keluarga Leister sendiri. Ketika begitu banyak orang siap menghancurkan suatu hubungan, dapatkah hubungan itu berakhir dengan baik?",
+        "synopsis" => "Sekuel film laris My Fault; cinta Noah dan Nick tampak tak tergoyahkan meski orang tua berusaha memisahkan mereka. Namun, pekerjaan Noah dan masuknya Nick ke universitas membuka kehidupan baru yang akan mengguncang fondasi hubungan mereka dan keluarga Leister sendiri. Ketika begitu banyak orang siap menghancurkan suatu hubungan, dapatkah hubungan itu berakhir dengan baik?",
         "director" => "Unknown Director",
         "release_year" => 2024,
         "duration" => 96,
@@ -755,8 +713,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "After",
         "slug" => "after",
-        "synopsis" =>
-          "Tessa Young adalah siswa yang berdedikasi, anak perempuan yang berbakti dan pacar yang setia untuk kekasih SMA-nya. Memasuki semester pertama kuliahnya, dunia yang dijaga Tessa terbuka ketika dia bertemu dengan Hardin Scott, seorang pemberontak yang misterius dan merenung yang mempertanyakan semua yang dia tahu tentang dirinya sendiri - dan apa yang dia inginkan dari kehidupan.",
+        "synopsis" => "Tessa Young adalah siswa yang berdedikasi, anak perempuan yang berbakti dan pacar yang setia untuk kekasih SMA-nya. Memasuki semester pertama kuliahnya, dunia yang dijaga Tessa terbuka ketika dia bertemu dengan Hardin Scott, seorang pemberontak yang misterius dan merenung yang mempertanyakan semua yang dia tahu tentang dirinya sendiri - dan apa yang dia inginkan dari kehidupan.",
         "director" => "Unknown Director",
         "release_year" => 2019,
         "duration" => 128,
@@ -771,8 +728,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Love Me Love Me",
         "slug" => "love-me-love-me",
-        "synopsis" =>
-          "Setelah kematian kakaknya, June pindah ke Milan untuk memulai kembali. Ia menaruh hati kepada Will, pelajar teladan di sekolah internasional barunya. Namun, setelah sahabat Will, James-yang terlibat pertarungan MMA rahasia-memicu persaingan yang segera berubah menjadi ketertarikan yang tak terbendung, June harus memilih di antara rasa aman dan cinta yang mengguncang segala yang ia inginkan.",
+        "synopsis" => "Setelah kematian kakaknya, June pindah ke Milan untuk memulai kembali. Ia menaruh hati kepada Will, pelajar teladan di sekolah internasional barunya. Namun, setelah sahabat Will, James-yang terlibat pertarungan MMA rahasia-memicu persaingan yang segera berubah menjadi ketertarikan yang tak terbendung, June harus memilih di antara rasa aman dan cinta yang mengguncang segala yang ia inginkan.",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 180,
@@ -787,8 +743,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Anora",
         "slug" => "anora",
-        "synopsis" =>
-          "Seorang pekerja seks muda dari Brooklyn mendapatkan kesempatan di cerita Cinderella ketika dia bertemu dan secara impulsif menikahi putra seorang oligarki. Setelah berita mencapai Rusia, dongengnya terancam ketika orang tuanya berangkat untuk membuat pernikahan dibatalkan.",
+        "synopsis" => "Seorang pekerja seks muda dari Brooklyn mendapatkan kesempatan di cerita Cinderella ketika dia bertemu dan secara impulsif menikahi putra seorang oligarki. Setelah berita mencapai Rusia, dongengnya terancam ketika orang tuanya berangkat untuk membuat pernikahan dibatalkan.",
         "director" => "Unknown Director",
         "release_year" => 2024,
         "duration" => 128,
@@ -803,8 +758,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Spirited Away",
         "slug" => "spirited-away",
-        "synopsis" =>
-          "Seorang anak perempuan berusia 10 tahun semakin jauh dari orangtuanya, memasuki dunia yang dikuasai oleh para binatang aneh yang mirip monster. Akankah dia bisa melihat kembali dunia seperti semula?",
+        "synopsis" => "Seorang anak perempuan berusia 10 tahun semakin jauh dari orangtuanya, memasuki dunia yang dikuasai oleh para binatang aneh yang mirip monster. Akankah dia bisa melihat kembali dunia seperti semula?",
         "director" => "Unknown Director",
         "release_year" => 2001,
         "duration" => 103,
@@ -819,8 +773,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Wild Robot",
         "slug" => "the-wild-robot",
-        "synopsis" =>
-          "Setelah kapal karam, sebuah robot cerdas bernama Roz terdampar di sebuah pulau tak berpenghuni. Untuk bertahan hidup di lingkungan yang keras, Roz menjalin hubungan dengan hewan-hewan di pulau tersebut dan merawat seekor anak angsa yatim piatu.",
+        "synopsis" => "Setelah kapal karam, sebuah robot cerdas bernama Roz terdampar di sebuah pulau tak berpenghuni. Untuk bertahan hidup di lingkungan yang keras, Roz menjalin hubungan dengan hewan-hewan di pulau tersebut dan merawat seekor anak angsa yatim piatu.",
         "director" => "Unknown Director",
         "release_year" => 2024,
         "duration" => 166,
@@ -851,8 +804,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Mufasa: The Lion King",
         "slug" => "mufasa-the-lion-king",
-        "synopsis" =>
-          "Mufasa, seekor anak singa yang tersesat dan sendirian, bertemu dengan seekor singa yang baik hati bernama Taka, pewaris garis keturunan kerajaan. Pertemuan tak sengaja itu memicu perjalanan panjang sekelompok orang yang tidak beruntung dalam mencari takdir mereka.",
+        "synopsis" => "Mufasa, seekor anak singa yang tersesat dan sendirian, bertemu dengan seekor singa yang baik hati bernama Taka, pewaris garis keturunan kerajaan. Pertemuan tak sengaja itu memicu perjalanan panjang sekelompok orang yang tidak beruntung dalam mencari takdir mereka.",
         "director" => "Unknown Director",
         "release_year" => 2024,
         "duration" => 130,
@@ -867,8 +819,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Madagascar",
         "slug" => "madagascar",
-        "synopsis" =>
-          "Alex si singa adalah raja hutan kota, atraksi utama di Kebun Binatang Central Park, New York. Ia dan sahabat-sahabatnya—Marty si zebra, Melman si jerapah, dan Gloria si kuda nil—telah menghabiskan seluruh hidup mereka dalam kurungan yang menyenangkan di hadapan publik yang mengagumi dan dengan makanan yang disediakan secara teratur bagi mereka. Tidak puas untuk membiarkannya begitu saja, Marty membiarkan rasa ingin tahunya menguasainya dan melarikan diri—dengan bantuan beberapa penguin yang luar biasa—untuk menjelajahi dunia.",
+        "synopsis" => "Alex si singa adalah raja hutan kota, atraksi utama di Kebun Binatang Central Park, New York. Ia dan sahabat-sahabatnya—Marty si zebra, Melman si jerapah, dan Gloria si kuda nil—telah menghabiskan seluruh hidup mereka dalam kurungan yang menyenangkan di hadapan publik yang mengagumi dan dengan makanan yang disediakan secara teratur bagi mereka. Tidak puas untuk membiarkannya begitu saja, Marty membiarkan rasa ingin tahunya menguasainya dan melarikan diri—dengan bantuan beberapa penguin yang luar biasa—untuk menjelajahi dunia.",
         "director" => "Unknown Director",
         "release_year" => 2005,
         "duration" => 96,
@@ -883,8 +834,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Cars",
         "slug" => "cars",
-        "synopsis" =>
-          "Lightning McQueen, mobil balap rookie jagoan yang digerakkan untuk sukses, menemukan bahwa hidup adalah tentang perjalanan, bukan garis finish, ketika dia mendapati dirinya tiba-tiba berbelok di Radiator Springs, kota Route 66 yang mengantuk. Dalam perjalanan melintasi negara ke Kejuaraan Piala Piston besar di California untuk bersaing dengan dua pemain pro berpengalaman, McQueen mengenal karakter offbeat kota.",
+        "synopsis" => "Lightning McQueen, mobil balap rookie jagoan yang digerakkan untuk sukses, menemukan bahwa hidup adalah tentang perjalanan, bukan garis finish, ketika dia mendapati dirinya tiba-tiba berbelok di Radiator Springs, kota Route 66 yang mengantuk. Dalam perjalanan melintasi negara ke Kejuaraan Piala Piston besar di California untuk bersaing dengan dua pemain pro berpengalaman, McQueen mengenal karakter offbeat kota.",
         "director" => "Unknown Director",
         "release_year" => 2006,
         "duration" => 150,
@@ -899,8 +849,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Toy Story 3",
         "slug" => "toy-story-3",
-        "synopsis" =>
-          "Woody, Buzz, dan mainan Andy lainnya lama tidak dimainkan. Dengan Andy pergi ke kampus, mereka menemukan bahwa mereka tidak sengaja tertinggal di penitipan anak yang kejam. Para mainan harus bersatu untuk melarikan diri dan kembali ke Andy.",
+        "synopsis" => "Woody, Buzz, dan mainan Andy lainnya lama tidak dimainkan. Dengan Andy pergi ke kampus, mereka menemukan bahwa mereka tidak sengaja tertinggal di penitipan anak yang kejam. Para mainan harus bersatu untuk melarikan diri dan kembali ke Andy.",
         "director" => "Unknown Director",
         "release_year" => 2010,
         "duration" => 116,
@@ -915,8 +864,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Turning Red",
         "slug" => "turning-red",
-        "synopsis" =>
-          "Turning Red bercerita tentang kisah Mei Lee, anak remaja perempuan 13 tahun keturunan Tiongkok-Kanada yang tinggal di Toronto. Ia seorang anak gadis yang penurut terhadap segala peraturan kaku yang dan serba menuntut dari keluarganya.",
+        "synopsis" => "Turning Red bercerita tentang kisah Mei Lee, anak remaja perempuan 13 tahun keturunan Tiongkok-Kanada yang tinggal di Toronto. Ia seorang anak gadis yang penurut terhadap segala peraturan kaku yang dan serba menuntut dari keluarganya.",
         "director" => "Unknown Director",
         "release_year" => 2022,
         "duration" => 130,
@@ -931,8 +879,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Puss in Boots: The Last Wish",
         "slug" => "puss-in-boots-the-last-wish",
-        "synopsis" =>
-          "Puss in Boots menemukan fakta bahwa kecintaannya pada petualangan telah merenggut nyawanya: dia telah menghabiskan delapan dari sembilan nyawanya. Puss kini memulai petualangan epik untuk menemukan harapan terakhir untuk memulihkan sembilan nyawanya.",
+        "synopsis" => "Puss in Boots menemukan fakta bahwa kecintaannya pada petualangan telah merenggut nyawanya: dia telah menghabiskan delapan dari sembilan nyawanya. Puss kini memulai petualangan epik untuk menemukan harapan terakhir untuk memulihkan sembilan nyawanya.",
         "director" => "Unknown Director",
         "release_year" => 2022,
         "duration" => 134,
@@ -947,8 +894,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Ice Age",
         "slug" => "ice-age",
-        "synopsis" =>
-          "Dengan datangnya zaman es, tiga makhluk prasejarah yang tidak serasi - Manny si mamut berbulu, Diego si harimau bertaring tajam, dan Sid si kungkang raksasa - menemukan bayi yatim piatu dan memutuskan untuk mengembalikannya kepada orang tua manusianya. Sepanjang perjalanan, sekutu yang tidak diduga itu menjadi teman, tetapi, ketika musuh menyerang, pencarian mereka menjadi jauh lebih mulia.",
+        "synopsis" => "Dengan datangnya zaman es, tiga makhluk prasejarah yang tidak serasi - Manny si mamut berbulu, Diego si harimau bertaring tajam, dan Sid si kungkang raksasa - menemukan bayi yatim piatu dan memutuskan untuk mengembalikannya kepada orang tua manusianya. Sepanjang perjalanan, sekutu yang tidak diduga itu menjadi teman, tetapi, ketika musuh menyerang, pencarian mereka menjadi jauh lebih mulia.",
         "director" => "Unknown Director",
         "release_year" => 2002,
         "duration" => 149,
@@ -963,8 +909,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Cars 2",
         "slug" => "cars-2",
-        "synopsis" =>
-          "Mobil balap terkenal Lightning McQueen dan kawannya Mater pergi untuk bertanding pada balapan World Grand Prix. Tetapi jalan menuju kemenangan menjadi sulit saat Mater terjebak dalam petualangannya: spionase internasional.",
+        "synopsis" => "Mobil balap terkenal Lightning McQueen dan kawannya Mater pergi untuk bertanding pada balapan World Grand Prix. Tetapi jalan menuju kemenangan menjadi sulit saat Mater terjebak dalam petualangannya: spionase internasional.",
         "director" => "Unknown Director",
         "release_year" => 2011,
         "duration" => 108,
@@ -994,8 +939,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Toy Story 2",
         "slug" => "toy-story-2",
-        "synopsis" =>
-          'Andy berangkat ke Cowboy Camp, meninggalkan mainannya sendiri. Keadaan menjadi semakin rumit ketika seorang kolektor mainan yang obsesif bernama Al McWhiggen, pemilik Al"s Toy Barn menculik Woody. Mainan-mainan Andy melakukan misi penyelamatan yang berani, Buzz Lightyear bertemu dengan lawannya dan Woody harus memutuskan di mana ia dan hatinya benar-benar berada.',
+        "synopsis" => 'Andy berangkat ke Cowboy Camp, meninggalkan mainannya sendiri. Keadaan menjadi semakin rumit ketika seorang kolektor mainan yang obsesif bernama Al McWhiggen, pemilik Al"s Toy Barn menculik Woody. Mainan-mainan Andy melakukan misi penyelamatan yang berani, Buzz Lightyear bertemu dengan lawannya dan Woody harus memutuskan di mana ia dan hatinya benar-benar berada.',
         "director" => "Unknown Director",
         "release_year" => 1999,
         "duration" => 94,
@@ -1025,8 +969,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Selena Gomez: My Mind & Me",
         "slug" => "selena-gomez-my-mind-me",
-        "synopsis" =>
-          "Setelah bertahun-tahun menjadi pusat perhatian, Selena Gomez mencapai karier bintang pop yang luar biasa. Namun, setelah dia mencapai puncak baru, situasi tak terduga menariknya dalam kegelapan. Dokumenter jujur dan intim secara unik ini meliput enam tahun perjalanannya memasuki cahaya baru.",
+        "synopsis" => "Setelah bertahun-tahun menjadi pusat perhatian, Selena Gomez mencapai karier bintang pop yang luar biasa. Namun, setelah dia mencapai puncak baru, situasi tak terduga menariknya dalam kegelapan. Dokumenter jujur dan intim secara unik ini meliput enam tahun perjalanannya memasuki cahaya baru.",
         "director" => "Unknown Director",
         "release_year" => 2022,
         "duration" => 175,
@@ -1087,8 +1030,7 @@ class MovieSeeder extends Seeder
       [
         "title" => 'Billie Eilish: The World"s a Little Blurry',
         "slug" => "billie-eilish-the-world-s-a-little-blurry",
-        "synopsis" =>
-          "Film dokumenter ini menawarkan perspektif nan personal tentang Billie Eilish. Pembuat film berprestasi R.J. Cutler mengikuti perjalanannya di jalan, di panggung, dan di rumah bersama keluarganya saat album debutnya mengubah hidup sang bintang.",
+        "synopsis" => "Film dokumenter ini menawarkan perspektif nan personal tentang Billie Eilish. Pembuat film berprestasi R.J. Cutler mengikuti perjalanannya di jalan, di panggung, dan di rumah bersama keluarganya saat album debutnya mengubah hidup sang bintang.",
         "director" => "Unknown Director",
         "release_year" => 2021,
         "duration" => 179,
@@ -1103,8 +1045,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "STILL: A Michael J. Fox Movie",
         "slug" => "still-a-michael-j-fox-movie",
-        "synopsis" =>
-          "Seorang anak pendek dari pangkalan tentara Kanada berhasil menjadi bintang kesayangan budaya pop internasional di tahun 1980-an... hanya untuk menemukan fakta bahwa jalan hidupnya diubah oleh diagnosis yang mengejutkan. Apa yang terjadi ketika seseorang yang amat optimis menghadapi penyakit yang tak bisa disembuhkan?",
+        "synopsis" => "Seorang anak pendek dari pangkalan tentara Kanada berhasil menjadi bintang kesayangan budaya pop internasional di tahun 1980-an... hanya untuk menemukan fakta bahwa jalan hidupnya diubah oleh diagnosis yang mengejutkan. Apa yang terjadi ketika seseorang yang amat optimis menghadapi penyakit yang tak bisa disembuhkan?",
         "director" => "Unknown Director",
         "release_year" => 2023,
         "duration" => 146,
@@ -1119,8 +1060,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "John Candy I Like Me",
         "slug" => "john-candy-i-like-me",
-        "synopsis" =>
-          "Dari sutradara Colin Hanks dan produser Ryan Reynolds, hadir John Candy I Like Me. Orang-orang yang paling mengenal John menceritakan kisahnya dengan kata-kata mereka sendiri, melalui arsip rekaman, foto, dan wawancara yang belum pernah dipublikasikan sebelumnya. Dokumenter ini mengisahkan perjalanan hidup, karier, dan hilangnya salah satu aktor paling dicintai sepanjang masa.",
+        "synopsis" => "Dari sutradara Colin Hanks dan produser Ryan Reynolds, hadir John Candy I Like Me. Orang-orang yang paling mengenal John menceritakan kisahnya dengan kata-kata mereka sendiri, melalui arsip rekaman, foto, dan wawancara yang belum pernah dipublikasikan sebelumnya. Dokumenter ini mengisahkan perjalanan hidup, karier, dan hilangnya salah satu aktor paling dicintai sepanjang masa.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 157,
@@ -1135,8 +1075,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Elephant Queen",
         "slug" => "the-elephant-queen",
-        "synopsis" =>
-          "Ikuti perjalanan epik tentang keluarga, keberanian, dan kepulangan dalam film dokumenter berdurasi panjang ini. Bergabunglah dengan Athena, sang induk gajah yang agung, saat ia memimpin kawanan gajahnya melintasi lanskap Afrika penuh dengan satwa liar yang semarak.",
+        "synopsis" => "Ikuti perjalanan epik tentang keluarga, keberanian, dan kepulangan dalam film dokumenter berdurasi panjang ini. Bergabunglah dengan Athena, sang induk gajah yang agung, saat ia memimpin kawanan gajahnya melintasi lanskap Afrika penuh dengan satwa liar yang semarak.",
         "director" => "Unknown Director",
         "release_year" => 2019,
         "duration" => 161,
@@ -1181,8 +1120,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Housemaid",
         "slug" => "the-housemaid",
-        "synopsis" =>
-          "Berusaha melarikan diri dari masa lalunya, Millie Calloway menerima pekerjaan sebagai pembantu rumah tangga yang tinggal bersama pasangan kaya Nina dan Andrew Winchester. Namun, apa yang awalnya merupakan pekerjaan impian dengan cepat berubah menjadi sesuatu yang jauh lebih berbahaya—permainan rahasia, skandal, dan kekuasaan yang seksi dan menggoda.",
+        "synopsis" => "Berusaha melarikan diri dari masa lalunya, Millie Calloway menerima pekerjaan sebagai pembantu rumah tangga yang tinggal bersama pasangan kaya Nina dan Andrew Winchester. Namun, apa yang awalnya merupakan pekerjaan impian dengan cepat berubah menjadi sesuatu yang jauh lebih berbahaya—permainan rahasia, skandal, dan kekuasaan yang seksi dan menggoda.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 166,
@@ -1197,8 +1135,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter dan Batu Bertuah",
         "slug" => "harry-potter-dan-batu-bertuah",
-        "synopsis" =>
-          "Harry Potter telah tinggal di bawah tangga di rumah bibinya dan rumah pamannya sepanjang hidupnya. Tetapi pada ulang tahunnya yang ke-11, ia mengetahui bahwa ia adalah penyihir yang kuat - dengan tempat yang menunggunya di Sekolah Sihir dan Penyihir Hogwarts. Ketika dia belajar untuk memanfaatkan kekuatan yang baru ditemukannya dengan bantuan kepala sekolah yang ramah, Harry mengungkap kebenaran tentang kematian orangtuanya - dan tentang penjahat yang harus disalahkan.",
+        "synopsis" => "Harry Potter telah tinggal di bawah tangga di rumah bibinya dan rumah pamannya sepanjang hidupnya. Tetapi pada ulang tahunnya yang ke-11, ia mengetahui bahwa ia adalah penyihir yang kuat - dengan tempat yang menunggunya di Sekolah Sihir dan Penyihir Hogwarts. Ketika dia belajar untuk memanfaatkan kekuatan yang baru ditemukannya dengan bantuan kepala sekolah yang ramah, Harry mengungkap kebenaran tentang kematian orangtuanya - dan tentang penjahat yang harus disalahkan.",
         "director" => "Unknown Director",
         "release_year" => 2001,
         "duration" => 162,
@@ -1229,8 +1166,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Mission: Impossible - The Final Reckoning",
         "slug" => "mission-impossible-the-final-reckoning",
-        "synopsis" =>
-          "Ethan Hunt dan tim melanjutkan pencarian mereka terhadap AI mengerikan yang dikenal sebagai Entity — yang telah menyusup ke jaringan intelijen di seluruh dunia — dengan pemerintah dunia dan hantu misterius dari masa lalu Hunt yang mengikuti jejak mereka. Bergabung dengan sekutu baru dan dipersenjatai dengan kemampuan untuk melumpuhkan Entity selamanya, Hunt berpacu dengan waktu untuk mencegah dunia yang kita kenal berubah selamanya.",
+        "synopsis" => "Ethan Hunt dan tim melanjutkan pencarian mereka terhadap AI mengerikan yang dikenal sebagai Entity — yang telah menyusup ke jaringan intelijen di seluruh dunia — dengan pemerintah dunia dan hantu misterius dari masa lalu Hunt yang mengikuti jejak mereka. Bergabung dengan sekutu baru dan dipersenjatai dengan kemampuan untuk melumpuhkan Entity selamanya, Hunt berpacu dengan waktu untuk mencegah dunia yang kita kenal berubah selamanya.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 147,
@@ -1245,8 +1181,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Iron Man 2",
         "slug" => "iron-man-2",
-        "synopsis" =>
-          'Dengan dunia sekarang sadar bahwa dia adalah Iron Man, penemu miliarder, Tony Stark, menghadapi tekanan dari semua sisi untuk berbagi teknologinya dengan militer. Dia enggan membocorkan rahasia baju lapis bajanya, takut informasi itu akan jatuh ke tangan yang salah. Dengan Pepper Potts dan "Rhodey" Rhodes di sisinya, Tony harus membentuk aliansi baru dan menghadapi musuh baru yang kuat.',
+        "synopsis" => 'Dengan dunia sekarang sadar bahwa dia adalah Iron Man, penemu miliarder, Tony Stark, menghadapi tekanan dari semua sisi untuk berbagi teknologinya dengan militer. Dia enggan membocorkan rahasia baju lapis bajanya, takut informasi itu akan jatuh ke tangan yang salah. Dengan Pepper Potts dan "Rhodey" Rhodes di sisinya, Tony harus membentuk aliansi baru dan menghadapi musuh baru yang kuat.',
         "director" => "Unknown Director",
         "release_year" => 2010,
         "duration" => 173,
@@ -1261,8 +1196,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter and the Chamber of Secrets",
         "slug" => "harry-potter-and-the-chamber-of-secrets",
-        "synopsis" =>
-          "Mobil terbang, pepohonan melawan, dan peri rumah misterius datang untuk memperingatkan Harry Potter di awal tahun keduanya di Hogwarts. Petualangan dan bahaya menanti ketika tulisan berdarah di dinding mengumumkan: Kamar Rahasia Telah Dibuka. Untuk menyelamatkan Hogwarts akan membutuhkan semua kemampuan magis dan keberanian Harry, Ron dan Hermione.",
+        "synopsis" => "Mobil terbang, pepohonan melawan, dan peri rumah misterius datang untuk memperingatkan Harry Potter di awal tahun keduanya di Hogwarts. Petualangan dan bahaya menanti ketika tulisan berdarah di dinding mengumumkan: Kamar Rahasia Telah Dibuka. Untuk menyelamatkan Hogwarts akan membutuhkan semua kemampuan magis dan keberanian Harry, Ron dan Hermione.",
         "director" => "Unknown Director",
         "release_year" => 2002,
         "duration" => 92,
@@ -1277,8 +1211,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "A Working Man",
         "slug" => "a-working-man",
-        "synopsis" =>
-          "Levon Cade meninggalkan karier militernya yang gemilang yang berfokus pada operasi rahasia untuk menjalani kehidupan sederhana sebagai pekerja konstruksi. Namun, ketika putri atasannya yang sudah seperti keluarganya sendiri diculik para pedagang manusia, Levon mendapati upayanya dalam menyelamatkan gadis itu telah mengungkap dunia korupsi yang jauh lebih besar dari yang dia pernah bayangkan.",
+        "synopsis" => "Levon Cade meninggalkan karier militernya yang gemilang yang berfokus pada operasi rahasia untuk menjalani kehidupan sederhana sebagai pekerja konstruksi. Namun, ketika putri atasannya yang sudah seperti keluarganya sendiri diculik para pedagang manusia, Levon mendapati upayanya dalam menyelamatkan gadis itu telah mengungkap dunia korupsi yang jauh lebih besar dari yang dia pernah bayangkan.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 106,
@@ -1308,8 +1241,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Spider-Man: Brand New Day",
         "slug" => "spider-man-brand-new-day",
-        "synopsis" =>
-          "Empat tahun setelah peristiwa Spider-Man: No Way Home, Peter Parker sudah tidak ada lagi dan Spider-Man kini berada di puncak kemampuannya dalam menjaga Kota New York tetap aman. Semuanya berjalan dengan baik hingga serangkaian kejahatan yang tidak biasa menyeret Spider-Man ke dalam jaring misteri yang lebih besar dari apa pun yang pernah ia hadapi sebelumnya. Untuk menghadapi apa yang akan datang, Spider-Man tidak hanya harus berada dalam kondisi fisik dan mental terbaiknya, tetapi juga harus siap menghadapi konsekuensi dari masa lalunya!",
+        "synopsis" => "Empat tahun setelah peristiwa Spider-Man: No Way Home, Peter Parker sudah tidak ada lagi dan Spider-Man kini berada di puncak kemampuannya dalam menjaga Kota New York tetap aman. Semuanya berjalan dengan baik hingga serangkaian kejahatan yang tidak biasa menyeret Spider-Man ke dalam jaring misteri yang lebih besar dari apa pun yang pernah ia hadapi sebelumnya. Untuk menghadapi apa yang akan datang, Spider-Man tidak hanya harus berada dalam kondisi fisik dan mental terbaiknya, tetapi juga harus siap menghadapi konsekuensi dari masa lalunya!",
         "director" => "Unknown Director",
         "release_year" => 2026,
         "duration" => 165,
@@ -1324,8 +1256,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "John Wick: Chapter 4",
         "slug" => "john-wick-chapter-4",
-        "synopsis" =>
-          "John Wick mengungkap jalan untuk mengalahkan The High Table. Tapi sebelum dia bisa mendapatkan kebebasannya, Wick harus berhadapan dengan musuh baru dengan aliansi kuat di seluruh dunia dan kekuatan yang mengubah teman lama menjadi musuh.",
+        "synopsis" => "John Wick mengungkap jalan untuk mengalahkan The High Table. Tapi sebelum dia bisa mendapatkan kebebasannya, Wick harus berhadapan dengan musuh baru dengan aliansi kuat di seluruh dunia dan kekuatan yang mengubah teman lama menjadi musuh.",
         "director" => "Unknown Director",
         "release_year" => 2023,
         "duration" => 159,
@@ -1340,8 +1271,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Spider-Man: Far From Home",
         "slug" => "spider-man-far-from-home",
-        "synopsis" =>
-          "Peter Parker dan teman-temannya melakukan perjalanan musim panas ke Eropa. Namun, mereka hampir tidak dapat beristirahat - Peter harus setuju untuk membantu Nick Fury mengungkap misteri makhluk yang menyebabkan bencana alam dan kehancuran di seluruh benua.",
+        "synopsis" => "Peter Parker dan teman-temannya melakukan perjalanan musim panas ke Eropa. Namun, mereka hampir tidak dapat beristirahat - Peter harus setuju untuk membantu Nick Fury mengungkap misteri makhluk yang menyebabkan bencana alam dan kehancuran di seluruh benua.",
         "director" => "Unknown Director",
         "release_year" => 2019,
         "duration" => 109,
@@ -1356,8 +1286,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Iron Man",
         "slug" => "iron-man",
-        "synopsis" =>
-          "Menceritakan kisah Tony Stark, seorang industrialis miliarder dan penemu jenius yang diculik dan dipaksa untuk membuat senjata yang mematikan. Namun, dengan menggunakan kecerdasan dan kepintarannya, Tony membangun baju zirah berteknologi tinggi dan melarikan diri dari penawanan. Ketika ia mengungkap sebuah rencana jahat dengan implikasi global, ia mengenakan baju zirah ampuhnya dan bersumpah untuk melindungi dunia sebagai Iron Man.",
+        "synopsis" => "Menceritakan kisah Tony Stark, seorang industrialis miliarder dan penemu jenius yang diculik dan dipaksa untuk membuat senjata yang mematikan. Namun, dengan menggunakan kecerdasan dan kepintarannya, Tony membangun baju zirah berteknologi tinggi dan melarikan diri dari penawanan. Ketika ia mengungkap sebuah rencana jahat dengan implikasi global, ia mengenakan baju zirah ampuhnya dan bersumpah untuk melindungi dunia sebagai Iron Man.",
         "director" => "Unknown Director",
         "release_year" => 2008,
         "duration" => 101,
@@ -1372,8 +1301,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter and the Prisoner of Azkaban",
         "slug" => "harry-potter-and-the-prisoner-of-azkaban",
-        "synopsis" =>
-          "Tahun ketiga di Hogwarts berarti kesenangan dan tantangan baru ketika Harry mempelajari seni halus dalam mendekati Hippogriff, mengubah Boggart yang bisa berubah bentuk menjadi kegembiraan dan bahkan memutar balik waktu. Namun istilah ini juga membawa bahaya: Dementor penghisap jiwa melayang di atas sekolah, sekutu Dia-Yang-Tidak Dapat Disebut-Namanya yang terkutuk bersembunyi di dalam tembok kastil, dan penyihir menakutkan Sirius Black melarikan diri dari Azkaban. Dan Harry akan menghadapi mereka semua.",
+        "synopsis" => "Tahun ketiga di Hogwarts berarti kesenangan dan tantangan baru ketika Harry mempelajari seni halus dalam mendekati Hippogriff, mengubah Boggart yang bisa berubah bentuk menjadi kegembiraan dan bahkan memutar balik waktu. Namun istilah ini juga membawa bahaya: Dementor penghisap jiwa melayang di atas sekolah, sekutu Dia-Yang-Tidak Dapat Disebut-Namanya yang terkutuk bersembunyi di dalam tembok kastil, dan penyihir menakutkan Sirius Black melarikan diri dari Azkaban. Dan Harry akan menghadapi mereka semua.",
         "director" => "Unknown Director",
         "release_year" => 2004,
         "duration" => 102,
@@ -1388,8 +1316,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Lord of the Rings: The Two Towers",
         "slug" => "the-lord-of-the-rings-the-two-towers",
-        "synopsis" =>
-          "Frodo dan Sam sedang berjalan ke Mordor untuk menghancurkan Satu Cincin Kekuasaan sementara Gimli, Legolas dan Aragorn mencari Merry dan Pippin yang ditangkap Orc. Selama ini, penyihir jahat Saruman menunggu anggota Fellowship di Menara Orthanc di Isengard.",
+        "synopsis" => "Frodo dan Sam sedang berjalan ke Mordor untuk menghancurkan Satu Cincin Kekuasaan sementara Gimli, Legolas dan Aragorn mencari Merry dan Pippin yang ditangkap Orc. Selama ini, penyihir jahat Saruman menunggu anggota Fellowship di Menara Orthanc di Isengard.",
         "director" => "Unknown Director",
         "release_year" => 2002,
         "duration" => 177,
@@ -1404,8 +1331,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Blade Runner 2049",
         "slug" => "blade-runner-2049",
-        "synopsis" =>
-          "Tiga puluh tahun setelah peristiwa pada film sebelumnya, blade runner yang baru, petugas LAPD bernama K, membongkar rahasia yang telah tersimpan lama yang dapat membuat kekacauan di masyarakat. Penemuan tsb membuat K terdorong untuk mencari Rick Deckard, mantan polisi yang telah hilang selama 30 tahun.",
+        "synopsis" => "Tiga puluh tahun setelah peristiwa pada film sebelumnya, blade runner yang baru, petugas LAPD bernama K, membongkar rahasia yang telah tersimpan lama yang dapat membuat kekacauan di masyarakat. Penemuan tsb membuat K terdorong untuk mencari Rick Deckard, mantan polisi yang telah hilang selama 30 tahun.",
         "director" => "Unknown Director",
         "release_year" => 2017,
         "duration" => 130,
@@ -1420,8 +1346,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter and the Goblet of Fire",
         "slug" => "harry-potter-and-the-goblet-of-fire",
-        "synopsis" =>
-          "Ketika nama Harry Potter muncul dari Piala Api, dia menjadi pesaing dalam pertarungan sengit demi meraih kejayaan di antara tiga sekolah sihir—Turnamen Triwizard. Tapi karena Harry tidak pernah mengirimkan namanya untuk Turnamen, siapa yang melakukannya? Kini Harry harus menghadapi naga yang mematikan, setan air yang ganas, dan labirin ajaib hanya untuk mendapati dirinya berada dalam genggaman kejam Dia yang Tidak Boleh Disebutkan Namanya.",
+        "synopsis" => "Ketika nama Harry Potter muncul dari Piala Api, dia menjadi pesaing dalam pertarungan sengit demi meraih kejayaan di antara tiga sekolah sihir—Turnamen Triwizard. Tapi karena Harry tidak pernah mengirimkan namanya untuk Turnamen, siapa yang melakukannya? Kini Harry harus menghadapi naga yang mematikan, setan air yang ganas, dan labirin ajaib hanya untuk mendapati dirinya berada dalam genggaman kejam Dia yang Tidak Boleh Disebutkan Namanya.",
         "director" => "Unknown Director",
         "release_year" => 2005,
         "duration" => 146,
@@ -1436,8 +1361,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Gone Girl",
         "slug" => "gone-girl",
-        "synopsis" =>
-          "Gone Girl adalah sebuah film thriller psikologis Amerika Serikat yang rilis pada tahun 2014. Film ini disutradarai oleh David Fincher. Skenario film ini ditulis oleh Gillian Flynn, berdasarkan pada novel karangannya yang memiliki judul yang sama. Film ini dibintangi Ben Affleck dan Rosamund Pike",
+        "synopsis" => "Gone Girl adalah sebuah film thriller psikologis Amerika Serikat yang rilis pada tahun 2014. Film ini disutradarai oleh David Fincher. Skenario film ini ditulis oleh Gillian Flynn, berdasarkan pada novel karangannya yang memiliki judul yang sama. Film ini dibintangi Ben Affleck dan Rosamund Pike",
         "director" => "Unknown Director",
         "release_year" => 2014,
         "duration" => 174,
@@ -1452,8 +1376,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Avatar: The Way of Water",
         "slug" => "avatar-the-way-of-water",
-        "synopsis" =>
-          "Jake Sully (Sam Worthington), manusia yang menjadi mutant melalui Program Avatar, tinggal bersama pasangannya Neytiri (Zoe Saldana), dan anak-anak mereka. Mereka yang biasa hidup di darat, berjanji akan melakukan segala hal untuk tetap bersama. Namun, mereka harus menjelajahi wilayah hutan Pandora dan menghadapi datangnya pelbagai ancaman, serta bekerjasama dengan klan Metkayina yang hidup di bawah air.",
+        "synopsis" => "Jake Sully (Sam Worthington), manusia yang menjadi mutant melalui Program Avatar, tinggal bersama pasangannya Neytiri (Zoe Saldana), dan anak-anak mereka. Mereka yang biasa hidup di darat, berjanji akan melakukan segala hal untuk tetap bersama. Namun, mereka harus menjelajahi wilayah hutan Pandora dan menghadapi datangnya pelbagai ancaman, serta bekerjasama dengan klan Metkayina yang hidup di bawah air.",
         "director" => "Unknown Director",
         "release_year" => 2022,
         "duration" => 126,
@@ -1484,8 +1407,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Mummy: Tomb of the Dragon Emperor",
         "slug" => "the-mummy-tomb-of-the-dragon-emperor",
-        "synopsis" =>
-          'Arkeolog Rick O"Connell melakukan perjalanan ke Tiongkok, mengadu dia dengan seorang kaisar dari dinasti Han berusia 2.000 tahun yang kembali dari kematian untuk mengejar upaya menguasai dunia. Kali ini, O"Connell meminta bantuan istri dan putranya untuk menghentikan apa yang disebut "Kaisar Naga" dan penyalahgunaan kekuatan supernatural.',
+        "synopsis" => 'Arkeolog Rick O"Connell melakukan perjalanan ke Tiongkok, mengadu dia dengan seorang kaisar dari dinasti Han berusia 2.000 tahun yang kembali dari kematian untuk mengejar upaya menguasai dunia. Kali ini, O"Connell meminta bantuan istri dan putranya untuk menghentikan apa yang disebut "Kaisar Naga" dan penyalahgunaan kekuatan supernatural.',
         "director" => "Unknown Director",
         "release_year" => 2008,
         "duration" => 168,
@@ -1500,8 +1422,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Spider-Man 3",
         "slug" => "spider-man-3",
-        "synopsis" =>
-          "Spider-Man yang tampaknya tak terkalahkan menghadapi sekelompok penjahat baru—termasuk Sandman yang bisa berubah bentuk. Sementara kekuatan super Spider-Man diubah oleh organisme asing, alter egonya, Peter Parker, berhadapan dengan musuh bebuyutannya Eddie Brock dan juga terjebak dalam cinta segitiga.",
+        "synopsis" => "Spider-Man yang tampaknya tak terkalahkan menghadapi sekelompok penjahat baru—termasuk Sandman yang bisa berubah bentuk. Sementara kekuatan super Spider-Man diubah oleh organisme asing, alter egonya, Peter Parker, berhadapan dengan musuh bebuyutannya Eddie Brock dan juga terjebak dalam cinta segitiga.",
         "director" => "Unknown Director",
         "release_year" => 2007,
         "duration" => 143,
@@ -1516,8 +1437,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "One Battle After Another",
         "slug" => "one-battle-after-another",
-        "synopsis" =>
-          "Bob revolusioner yang tercuci hidup dalam keadaan paranoia yang dirajam, bertahan hidup di luar jaringan dengan putrinya yang bersemangat dan mandiri, Willa. Ketika musuh bebuyutannya muncul kembali setelah 16 tahun dan dia hilang, mantan radikal berebut untuk menemukannya, ayah dan anak perempuan keduanya berjuang melawan konsekuensi dari masa lalunya.",
+        "synopsis" => "Bob revolusioner yang tercuci hidup dalam keadaan paranoia yang dirajam, bertahan hidup di luar jaringan dengan putrinya yang bersemangat dan mandiri, Willa. Ketika musuh bebuyutannya muncul kembali setelah 16 tahun dan dia hilang, mantan radikal berebut untuk menemukannya, ayah dan anak perempuan keduanya berjuang melawan konsekuensi dari masa lalunya.",
         "director" => "Unknown Director",
         "release_year" => 2025,
         "duration" => 93,
@@ -1532,8 +1452,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter dan Relikui Kematian: Bagian 2",
         "slug" => "harry-potter-dan-relikui-kematian-bagian-2",
-        "synopsis" =>
-          "Harry, Ron dan Hermione melanjutkan upaya mereka untuk mengalahkan kejahatan Voldemort untuk selamanya. Saat keadaan mulai terlihat tidak ada harapan bagi para penyihir muda, Harry menemukan trio benda ajaib yang memberinya kekuatan untuk menyaingi keterampilan hebat Voldemort.",
+        "synopsis" => "Harry, Ron dan Hermione melanjutkan upaya mereka untuk mengalahkan kejahatan Voldemort untuk selamanya. Saat keadaan mulai terlihat tidak ada harapan bagi para penyihir muda, Harry menemukan trio benda ajaib yang memberinya kekuatan untuk menyaingi keterampilan hebat Voldemort.",
         "director" => "Unknown Director",
         "release_year" => 2011,
         "duration" => 91,
@@ -1548,8 +1467,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter dan Relikui Kematian: Bagian 1",
         "slug" => "harry-potter-dan-relikui-kematian-bagian-1",
-        "synopsis" =>
-          "Harry, Ron dan Hermione meninggalkan tahun terakhir mereka di Hogwarts untuk menemukan dan menghancurkan Horcrux yang tersisa, mengakhiri upaya Voldemort untuk mendapatkan keabadian. Tapi dengan kematian Dumbledore yang dicintai Harry dan para Pelahap Maut Voldemort yang tidak bermoral berkeliaran, dunia menjadi lebih berbahaya dari sebelumnya.",
+        "synopsis" => "Harry, Ron dan Hermione meninggalkan tahun terakhir mereka di Hogwarts untuk menemukan dan menghancurkan Horcrux yang tersisa, mengakhiri upaya Voldemort untuk mendapatkan keabadian. Tapi dengan kematian Dumbledore yang dicintai Harry dan para Pelahap Maut Voldemort yang tidak bermoral berkeliaran, dunia menjadi lebih berbahaya dari sebelumnya.",
         "director" => "Unknown Director",
         "release_year" => 2010,
         "duration" => 169,
@@ -1564,8 +1482,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Family Plan",
         "slug" => "the-family-plan",
-        "synopsis" =>
-          "Dan Morgan memiliki banyak peran: suami yang berbakti, ayah yang penyayang, pramuniaga mobil yang berhasil. Dia juga mantan pembunuh. Dan saat masa lalunya mengejar masa kini, dia terpaksa mengajak keluarganya yang tidak curiga untuk melakukan perjalanan darat yang tak seperti biasanya.",
+        "synopsis" => "Dan Morgan memiliki banyak peran: suami yang berbakti, ayah yang penyayang, pramuniaga mobil yang berhasil. Dia juga mantan pembunuh. Dan saat masa lalunya mengejar masa kini, dia terpaksa mengajak keluarganya yang tidak curiga untuk melakukan perjalanan darat yang tak seperti biasanya.",
         "director" => "Unknown Director",
         "release_year" => 2023,
         "duration" => 102,
@@ -1596,8 +1513,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Hobbit: The Battle of the Five Armies",
         "slug" => "the-hobbit-the-battle-of-the-five-armies",
-        "synopsis" =>
-          "Segera setelah peristiwa The Desolation of Smaug, Bilbo dan para kurcaci mencoba mempertahankan gunung harta karun Erebor dari orang lain yang mengklaimnya: orang-orang dari Laketown yang hancur dan para elf dari Mirkwood. Sementara itu pasukan Orc yang dipimpin oleh Azog the Defiler bergerak menuju Erebor, didorong oleh kebangkitan penguasa kegelapan Sauron. Kurcaci, elf, dan manusia harus bersatu, dan harapan akan Dunia Tengah jatuh ke tangan Bilbo.",
+        "synopsis" => "Segera setelah peristiwa The Desolation of Smaug, Bilbo dan para kurcaci mencoba mempertahankan gunung harta karun Erebor dari orang lain yang mengklaimnya: orang-orang dari Laketown yang hancur dan para elf dari Mirkwood. Sementara itu pasukan Orc yang dipimpin oleh Azog the Defiler bergerak menuju Erebor, didorong oleh kebangkitan penguasa kegelapan Sauron. Kurcaci, elf, dan manusia harus bersatu, dan harapan akan Dunia Tengah jatuh ke tangan Bilbo.",
         "director" => "Unknown Director",
         "release_year" => 2014,
         "duration" => 93,
@@ -1612,8 +1528,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Fall",
         "slug" => "fall",
-        "synopsis" =>
-          "Untuk sahabat Becky dan Hunter, hidup adalah tentang menaklukkan ketakutan dan mendorong batas. Tetapi setelah mereka mendaki 2.000 kaki ke puncak menara radio terpencil yang ditinggalkan, mereka menemukan diri mereka terdampar tanpa jalan turun. Sekarang keterampilan panjat ahli Becky dan Hunter akan diuji saat mereka mati-matian berjuang untuk bertahan hidup dari unsur-unsur, kurangnya persediaan, dan ketinggian yang menyebabkan vertigo.",
+        "synopsis" => "Untuk sahabat Becky dan Hunter, hidup adalah tentang menaklukkan ketakutan dan mendorong batas. Tetapi setelah mereka mendaki 2.000 kaki ke puncak menara radio terpencil yang ditinggalkan, mereka menemukan diri mereka terdampar tanpa jalan turun. Sekarang keterampilan panjat ahli Becky dan Hunter akan diuji saat mereka mati-matian berjuang untuk bertahan hidup dari unsur-unsur, kurangnya persediaan, dan ketinggian yang menyebabkan vertigo.",
         "director" => "Unknown Director",
         "release_year" => 2022,
         "duration" => 115,
@@ -1628,8 +1543,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Harry Potter and the Order of the Phoenix",
         "slug" => "harry-potter-and-the-order-of-the-phoenix",
-        "synopsis" =>
-          "Sekembalinya untuk tahun kelima studinya di Hogwarts, Harry terkejut saat mengetahui bahwa peringatannya tentang kembalinya Lord Voldemort telah diabaikan. Karena tidak punya pilihan, Harry mengambil tindakan sendiri, melatih sekelompok kecil siswa untuk mempertahankan diri melawan ilmu hitam.",
+        "synopsis" => "Sekembalinya untuk tahun kelima studinya di Hogwarts, Harry terkejut saat mengetahui bahwa peringatannya tentang kembalinya Lord Voldemort telah diabaikan. Karena tidak punya pilihan, Harry mengambil tindakan sendiri, melatih sekelompok kecil siswa untuk mempertahankan diri melawan ilmu hitam.",
         "director" => "Unknown Director",
         "release_year" => 2007,
         "duration" => 168,
@@ -1708,8 +1622,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Fury",
         "slug" => "fury",
-        "synopsis" =>
-          'Dalam bulan-bulan terakhir Perang Dunia II, ketika Sekutu melakukan dorongan terakhir mereka di teater Eropa, seorang sersan Angkatan Darat AS bernama "Wardaddy" memimpin tank Sherman yang disebut "Fury" dan lima orang awaknya dalam misi mematikan dibelakang garis musuh. Kalah jumlah dan kalah senjata, Wardaddy dan anak buahnya menghadapi peluang besar dalam upaya heroik mereka untuk menyerang jantung Nazi Jerman.',
+        "synopsis" => 'Dalam bulan-bulan terakhir Perang Dunia II, ketika Sekutu melakukan dorongan terakhir mereka di teater Eropa, seorang sersan Angkatan Darat AS bernama "Wardaddy" memimpin tank Sherman yang disebut "Fury" dan lima orang awaknya dalam misi mematikan dibelakang garis musuh. Kalah jumlah dan kalah senjata, Wardaddy dan anak buahnya menghadapi peluang besar dalam upaya heroik mereka untuk menyerang jantung Nazi Jerman.',
         "director" => "Unknown Director",
         "release_year" => 2014,
         "duration" => 154,
@@ -1724,8 +1637,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "Hope Sowon Wish",
         "slug" => "hope-sowon-wish",
-        "synopsis" =>
-          "So Won adalah anak tunggal dan tinggal bersama ayah ibunya dengan bahagia. Ayahnya bernama Im Dong Hoon (Sol Kyung-gu) seorang pegawai pabrik, sedangkan ibunya bernama Kim Mi Hee (Uhm Ji Won) membuka toko kecil di depan rumahnya. Tetapi, sebuah tragedi terjadi ketika So Won berangkat ke sekolah. Ia diperkosa secara sadis oleh seorang pria di sebuah toilet umum.",
+        "synopsis" => "So Won adalah anak tunggal dan tinggal bersama ayah ibunya dengan bahagia. Ayahnya bernama Im Dong Hoon (Sol Kyung-gu) seorang pegawai pabrik, sedangkan ibunya bernama Kim Mi Hee (Uhm Ji Won) membuka toko kecil di depan rumahnya. Tetapi, sebuah tragedi terjadi ketika So Won berangkat ke sekolah. Ia diperkosa secara sadis oleh seorang pria di sebuah toilet umum.",
         "director" => "Unknown Director",
         "release_year" => 2013,
         "duration" => 155,
@@ -1740,8 +1652,7 @@ class MovieSeeder extends Seeder
       [
         "title" => 'Pirates of the Caribbean: At World"s End',
         "slug" => "pirates-of-the-caribbean-at-world-s-end",
-        "synopsis" =>
-          "Kapten Barbossa, yang telah lama diyakini sudah mati, telah hidup kembali dan menuju ke tepi Bumi bersama Will Turner dan Elizabeth Swann. Tapi tidak ada yang seperti yang terlihat.",
+        "synopsis" => "Kapten Barbossa, yang telah lama diyakini sudah mati, telah hidup kembali dan menuju ke tepi Bumi bersama Will Turner dan Elizabeth Swann. Tapi tidak ada yang seperti yang terlihat.",
         "director" => "Unknown Director",
         "release_year" => 2007,
         "duration" => 132,
@@ -1756,8 +1667,7 @@ class MovieSeeder extends Seeder
       [
         "title" => "The Amazing Spider-Man 2",
         "slug" => "the-amazing-spider-man-2",
-        "synopsis" =>
-          "Bagi Peter Parker, hidup itu sibuk. Di antara mengalahkan orang-orang jahat sebagai Spider-Man dan menghabiskan waktu dengan orang yang dicintainya, Gwen Stacy, kelulusan SMA tidak akan pernah cukup cepat. Peter tidak melupakan janji yang dibuatnya kepada ayah Gwen untuk melindunginya dengan menjauh, tetapi itu adalah janji yang tidak dapat ditepatinya. Keadaan akan berubah bagi Peter ketika penjahat baru, Electro, muncul, teman lamanya, Harry Osborn, kembali, dan Peter menemukan petunjuk baru tentang masa lalunya.",
+        "synopsis" => "Bagi Peter Parker, hidup itu sibuk. Di antara mengalahkan orang-orang jahat sebagai Spider-Man dan menghabiskan waktu dengan orang yang dicintainya, Gwen Stacy, kelulusan SMA tidak akan pernah cukup cepat. Peter tidak melupakan janji yang dibuatnya kepada ayah Gwen untuk melindunginya dengan menjauh, tetapi itu adalah janji yang tidak dapat ditepatinya. Keadaan akan berubah bagi Peter ketika penjahat baru, Electro, muncul, teman lamanya, Harry Osborn, kembali, dan Peter menemukan petunjuk baru tentang masa lalunya.",
         "director" => "Unknown Director",
         "release_year" => 2014,
         "duration" => 99,

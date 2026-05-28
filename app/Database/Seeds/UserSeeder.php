@@ -14,23 +14,7 @@ class UserSeeder extends Seeder
     $users = [];
 
     // Normal Users
-    $names = [
-      "Budi Santoso",
-      "Siti Aminah",
-      "Joko Widodo",
-      "Ayu Lestari",
-      "Rizky Pratama",
-      "Dewi Sartika",
-      "Andi Wijaya",
-      "Rina Nose",
-      "Fajar Hidayat",
-      "Maya Septiani",
-      "Dedi Corbuzier",
-      "Raffi Ahmad",
-      "Agnes Monica",
-      "Iwan Fals",
-      "Ariel Noah",
-    ];
+    $names = ["Budi Santoso", "Siti Aminah", "Joko Widodo", "Ayu Lestari", "Rizky Pratama", "Dewi Sartika", "Andi Wijaya", "Rina Nose", "Fajar Hidayat", "Maya Septiani", "Dedi Corbuzier", "Raffi Ahmad", "Agnes Monica", "Iwan Fals", "Ariel Noah"];
 
     foreach ($names as $i => $name) {
       $email = strtolower(str_replace(" ", ".", $name)) . "@movprima.com";

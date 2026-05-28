@@ -39,10 +39,10 @@ class ReviewModel extends Model
    */
   public function getByMovie(int $movieId, ?int $userId = null, int $perPage = 5): array
   {
-    $builder = $this->select("reviews.*, users.name as user_name")->join("users", "users.id = reviews.user_id")->where("movie_id", $movieId)->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC");
+    $builder = $this->select("reviews.*, users.name as user_name")->join("users", "users.id = reviews.user_id")->where("reviews.movie_id", $movieId)->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC");
 
     if ($userId) {
-      $builder->select("(SELECT COUNT(*) FROM review_likes WHERE review_likes.review_id = reviews.id AND review_likes.user_id = " . $userId . ") as is_liked");
+      $builder->select("IF(review_likes.user_id IS NOT NULL, 1, 0) as is_liked")->join("review_likes", "review_likes.review_id = reviews.id AND review_likes.user_id = " . $userId, "left");
     } else {
       $builder->select("0 as is_liked");
     }
@@ -73,7 +73,7 @@ class ReviewModel extends Model
    */
   public function getLatest(int $limit = 5): array
   {
-    return $this->select("reviews.*, users.name as user_name, users.avatar as user_avatar, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id")->join("movies", "movies.id = reviews.movie_id")->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC")->limit($limit)->find();
+    return $this->select("reviews.*, users.name as user_name, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id")->join("movies", "movies.id = reviews.movie_id")->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC")->limit($limit)->find();
   }
 
   /**
@@ -162,5 +162,16 @@ class ReviewModel extends Model
   public function deleteReview(int $id): bool
   {
     return $this->delete($id);
+  }
+
+  /**
+   * Fetch all reviews with related user and movie data for admin panel.
+   * Returns merged complete array matrix.
+   *
+   * @return array
+   */
+  public function getAllAdmin(): array
+  {
+    return $this->select("reviews.*, users.name as user_name, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id", "left")->join("movies", "movies.id = reviews.movie_id", "left")->orderBy("reviews.created_at", "DESC")->findAll();
   }
 }

@@ -264,4 +264,39 @@ class MovieModel extends Model
       $builder->insertBatch($insertData);
     }
   }
+
+  /**
+   * Fetch all movies with combined genre string for admin table.
+   * Returns complete array data of movies.
+   *
+   * @return array
+   */
+  public function getAllAdmin(): array
+  {
+    $movies = $this->orderBy("movies.id", "DESC")->findAll();
+    if (empty($movies)) {
+      return [];
+    }
+
+    $movieIds = array_column($movies, "id");
+
+    $db = Database::connect();
+    $builder = $db->table("movie_genres");
+    $builder->select("movie_genres.movie_id, genres.name");
+    $builder->join("genres", "genres.id = movie_genres.genre_id");
+    $builder->whereIn("movie_genres.movie_id", $movieIds);
+
+    $genreResults = $builder->get()->getResultArray();
+
+    $genreMap = [];
+    foreach ($genreResults as $row) {
+      $genreMap[$row["movie_id"]][] = $row["name"];
+    }
+
+    foreach ($movies as &$movie) {
+      $movie["genres"] = isset($genreMap[$movie["id"]]) ? implode(", ", $genreMap[$movie["id"]]) : "";
+    }
+
+    return $movies;
+  }
 }
