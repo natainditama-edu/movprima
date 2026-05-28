@@ -16,14 +16,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" />
 
     <!-- Font Awesome -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
     <!-- Tailwind CSS (utilities only) -->
+    <link rel="preload" href="/assets/css/app.css" as="style" />
     <link rel="stylesheet" href="/assets/css/app.css" />
 
     <!-- UTS CSS -->
     <link rel="stylesheet" href="/assets/css/libs/owl.carousel-2.3.4.min.css" />
     <link rel="stylesheet" href="/assets/css/libs/lenis-1.3.23.min.css" />
+    <link rel="preload" href="/assets/css/style.css" as="style" />
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/custom.css" />
 
@@ -134,8 +137,8 @@
     <?php if (session()->getFlashdata("success") || session()->getFlashdata("error")): ?>
     <div id="flash-message-container" class="fixed top-20 left-1/2 -translate-x-1/2 z-100 w-[90%] max-w-xl transition-opacity duration-300">
         <?php if (session()->getFlashdata("success")): ?>
-        <div class="p-4 mb-4 rounded bg-green-900/90 border border-green-500 text-green-100 flex items-start justify-between gap-3 shadow-lg backdrop-blur-sm">
-            <div class="flex gap-3">
+        <div class="p-4 mb-4 rounded bg-green-900/90 border border-green-500 text-green-100 flex items-center justify-between gap-3 shadow-lg backdrop-blur-sm">
+            <div class="flex gap-3 items-center">
                 <i data-lucide="check-circle" class="mt-0.5 shrink-0"></i>
                 <span><?= esc((string) session()->getFlashdata("success")) ?></span>
             </div>
@@ -145,8 +148,8 @@
         </div>
         <?php endif; ?>
         <?php if (session()->getFlashdata("error")): ?>
-        <div class="p-4 mb-4 rounded bg-red-900/90 border border-red-500 text-red-100 flex items-start justify-between gap-3 shadow-lg backdrop-blur-sm">
-            <div class="flex gap-3">
+        <div class="p-4 mb-4 rounded bg-red-900/90 border border-red-500 text-red-100 flex items-center justify-between gap-3 shadow-lg backdrop-blur-sm">
+            <div class="flex gap-3 items-center">
                 <i data-lucide="alert-circle" class="mt-0.5 shrink-0"></i>
                 <span><?= esc((string) session()->getFlashdata("error")) ?></span>
             </div>
