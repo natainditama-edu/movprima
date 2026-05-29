@@ -16,16 +16,33 @@ use App\Models\UserModel;
  */
 class Dashboard extends BaseController
 {
-    /**
-     * GET /admin
-     *
-     * Queries COUNT(*) for movies, reviews, and users; fetches the latest
-     * 5 reviews; and renders the admin dashboard view.
-     *
-     * @return string
-     */
-    public function index(): string
-    {
-        return view('admin/dashboard');
-    }
+  /**
+   * GET /admin
+   *
+   * Queries COUNT(*) for movies, reviews, and users; fetches the latest
+   * 5 reviews; and renders the admin dashboard view.
+   *
+   * @return string
+   */
+  public function index(): string
+  {
+    $movieModel = new MovieModel();
+    $reviewModel = new ReviewModel();
+    $userModel = new UserModel();
+    $genreModel = new \App\Models\GenreModel();
+
+    $cache = \Config\Services::cache();
+
+    $stats = $cache->remember("admin_dashboard_stats", 60, function () use ($movieModel, $reviewModel, $userModel, $genreModel) {
+      return [
+        "movieCount" => $movieModel->countAllResults(),
+        "reviewCount" => $reviewModel->countAllResults(),
+        "userCount" => $userModel->countAllResults(),
+        "genreCount" => $genreModel->countAllResults(),
+        "latestReviews" => $reviewModel->getLatest(5),
+      ];
+    });
+
+    return view("admin/dashboard/index", $stats);
+  }
 }
