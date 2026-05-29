@@ -14,31 +14,43 @@ use App\Models\ReviewModel;
  */
 class Review extends BaseController
 {
-    /**
-     * GET /admin/reviews
-     *
-     * Lists all reviews joined with user name and movie title;
-     * filterable by status query param; paginated at 20 per page.
-     *
-     * @return string
-     */
-    public function index(): string
-    {
-        return view('admin/reviews/index');
+  /**
+   * GET /admin/reviews
+   *
+   * Lists all reviews joined with user name and movie title;
+   * filterable by status query param; paginated at 20 per page.
+   *
+   * @return string
+   */
+  public function index(): string
+  {
+    $reviewModel = new ReviewModel();
+    return view("admin/reviews/index", [
+      "reviews" => $reviewModel->getAllAdmin(),
+    ]);
+  }
+
+  /**
+   * POST /admin/reviews/{id}/delete
+   *
+   * Deletes the review then calls ReviewModel::updateMovieRating()
+   * to keep avg_rating and review_count consistent; redirects to /admin/reviews.
+   *
+   * @param int $id Review primary key
+   *
+   * @return \CodeIgniter\HTTP\RedirectResponse
+   */
+  public function destroy(int $id): \CodeIgniter\HTTP\RedirectResponse
+  {
+    $reviewModel = new ReviewModel();
+    $review = $reviewModel->getReviewById($id);
+
+    if ($review) {
+      $movieId = $review["movie_id"];
+      $reviewModel->deleteReview($id);
+      $reviewModel->updateMovieRating($movieId);
     }
 
-    /**
-     * POST /admin/reviews/{id}/delete
-     *
-     * Deletes the review then calls ReviewModel::updateMovieRating()
-     * to keep avg_rating and review_count consistent; redirects to /admin/reviews.
-     *
-     * @param int $id Review primary key
-     *
-     * @return \CodeIgniter\HTTP\RedirectResponse
-     */
-    public function destroy(int $id): \CodeIgniter\HTTP\RedirectResponse
-    {
-        return redirect()->to('/admin/reviews');
-    }
+    return redirect()->to("/admin/reviews")->with("success", "Ulasan pengguna berhasil dihapus dari sistem secara permanen.");
+  }
 }
