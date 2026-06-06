@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\MovieModel;
-use App\Models\ReviewModel;
 
 /**
  * Home Controller
@@ -14,27 +13,46 @@ use App\Models\ReviewModel;
  */
 class Home extends BaseController
 {
-    /**
-     * GET /
-     *
-     * Loads featured movies, top-rated grid, and latest reviews strip
-     * then renders the landing page.
-     *
-     * @return string
-     */
-    public function index(): string
-    {
-        return view('home/index');
-    }
+  /**
+   * GET /
+   *
+   * Loads featured movies, top-rated grid, and latest reviews strip
+   * then renders the landing page.
+   *
+   * @return string
+   */
+  public function index(): string
+  {
+    $movieModel = new MovieModel();
 
-    /**
-     * Fallback for unmatched routes registered via $routes->set404Override().
-     * Renders the custom 404 error page with a 404 HTTP status code.
-     *
-     * @return string
-     */
-    public function error404(): string
-    {
-        return view('errors/custom_404');
-    }
+    $cache = \Config\Services::cache();
+
+    $featured = $cache->remember("home_featured", 300, function () use ($movieModel) {
+      return $movieModel->getMoviesWithTopGenre("release_year", "DESC", 4);
+    });
+
+    $latest = $cache->remember("home_latest", 300, function () use ($movieModel) {
+      return $movieModel->getMoviesWithTopGenre("release_year", "DESC", 12);
+    });
+
+    $topRated = $cache->remember("home_topRated", 300, function () use ($movieModel) {
+      return $movieModel->getMoviesWithTopGenre("avg_rating", "DESC", 12);
+    });
+
+    $recommended = $cache->remember("home_recommended", 300, function () use ($movieModel) {
+      return $movieModel->getMoviesWithTopGenre("id", "RANDOM", 12);
+    });
+
+    $classic = $cache->remember("home_classic", 300, function () use ($movieModel) {
+      return $movieModel->getMoviesWithTopGenre("release_year", "ASC", 12);
+    });
+
+    return view("home/index", [
+      "featured" => $featured,
+      "latest" => $latest,
+      "topRated" => $topRated,
+      "recommended" => $recommended,
+      "classic" => $classic,
+    ]);
+  }
 }
