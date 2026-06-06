@@ -1,24 +1,42 @@
 {
-  "name": " ",
-  "version": "0.0.1",
-  "description": "",
-  "private": true,
-  "keywords": [
-    ""
-  ],
-  "license": "",
+  "name": "movprima",
+  "version": "1.0.0",
+  "description": "CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure. More information can be found at the [official site](https://codeigniter.com).",
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git@github-edu.com:natainditama-edu/movprima.git"
+  },
+  "license": "ISC",
   "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --open --config webpack.config.dev.js",
-    "build": "webpack --config webpack.config.prod.js"
+    "build": "tailwindcss -i ./resources/css/app.css -o ./public/assets/css/app.css --minify",
+    "dev": "tailwindcss -i ./resources/css/app.css -o ./public/assets/css/app.css --watch --minify"
+  },
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-sort-json",
+      "prettier-plugin-packagejson",
+      "prettier-plugin-tailwindcss",
+      "@prettier/plugin-php"
+    ],
+    "printWidth": 600,
+    "tailwindStylesheet": "./resources/css/app.css"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^11.0.0",
-    "html-webpack-plugin": "^5.6.0",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
-    "webpack-merge": "^5.10.0"
+    "@prettier/plugin-php": "^0.25.0",
+    "prettier": "^3.8.3",
+    "prettier-plugin-packagejson": "^3.0.2",
+    "prettier-plugin-sort-json": "^4.2.0",
+    "prettier-plugin-tailwindcss": "^0.8.0"
   }
 }
