@@ -1,9 +1,9 @@
 # 🎬 MovPrima — Movie Review & Recommendation Website
 
-### UAS Pemrograman Web · STMIK Primakara · IF/Malam 2026
+### UAS Pemrograman Web · STMIK Primakara · SI/Malam 2026
 
 > **Dosen:** I Putu Satwika, S.Kom., M.Kom
-> **Framework:** CodeIgniter 4 · Tailwind CSS v4 · DaisyUI v5 · MySQL
+> **Framework:** CodeIgniter 4 · Tailwind CSS v4 · MySQL
 
 ---
 
@@ -27,26 +27,25 @@
 
 ## 1. Team & Division of Work
 
-| #   | Name      | Role                              | Scope                                                                                                                                                   |
-| --- | --------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | **Nata**  | Database Architect + Frontend Dev | Database design, all 7 migrations, seeds, all View files (Tailwind CSS v4 + DaisyUI v5), CSS animations, JS interactions                                |
-| 2   | **Shyfa** | Backend — Movie, Review & Genre   | MovieController, ReviewController, GenreController, MovieModel, ReviewModel, GenreModel, WatchlistModel, AJAX endpoints, image upload, avg_rating logic |
-| 3   | **Riski** | Backend — Authentication          | Auth.php controller (login, register, logout), AuthFilter, AdminFilter, session management, CSRF handling                                               |
-| 4   | **Gita**  | Backend — User & Admin Panel      | User.php controller (profile, edit), UserModel, Admin.php controller (dashboard, user list), avatar upload                                              |
+| #   | Name      | Role                              | Scope                                                                                                                                     |
+| --- | --------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **Nata**  | Database Architect + Frontend Dev | Database design, all 7 migrations, seeds, all View files (Tailwind CSS v4), CSS animations, JS interactions                               |
+| 2   | **Shyfa** | Backend — Movie, Review & Genre   | MovieController, ReviewController, GenreController, MovieModel, ReviewModel, GenreModel, WatchlistModel, AJAX endpoints, avg_rating logic |
+| 3   | **Riski** | Backend — Authentication          | Auth.php controller (login, register, logout), AuthFilter, AdminFilter, session management, CSRF handling                                 |
+| 4   | **Gita**  | Backend — User & Admin Panel      | User.php controller (profile, edit), UserModel, Admin.php controller (dashboard, user list)                                               |
 
 ---
 
 ## 2. Tech Stack
 
-| Layer         | Technology    | Version | Purpose                                                        |
-| ------------- | ------------- | ------- | -------------------------------------------------------------- |
-| Backend       | CodeIgniter 4 | ^4.x    | MVC framework, routing, ORM                                    |
-| Frontend CSS  | Tailwind CSS  | v4.3    | Utility-first styling                                          |
-| Component Lib | DaisyUI       | v5.5    | Pre-built UI components (cards, modals, navbar)                |
-| Bundler       | Tailwind CLI  | v4.3    | Compiles `resources/css/app.css` → `public/assets/css/app.css` |
-| Database      | MySQL 8       | 8.x     | Relational data storage                                        |
-| Runtime       | PHP           | ≥8.1    | Server-side execution                                          |
-| Package Mgr   | Bun           | latest  | Fast JS/CSS dependency management                              |
+| Layer        | Technology    | Version | Purpose                                                        |
+| ------------ | ------------- | ------- | -------------------------------------------------------------- |
+| Backend      | CodeIgniter 4 | ^4.x    | MVC framework, routing, ORM                                    |
+| Frontend CSS | Tailwind CSS  | v4.3    | Utility-first styling                                          |
+| Bundler      | Tailwind CLI  | v4.3    | Compiles `resources/css/app.css` → `public/assets/css/app.css` |
+| Database     | MySQL 8       | 8.x     | Relational data storage                                        |
+| Runtime      | PHP           | ≥8.1    | Server-side execution                                          |
+| Package Mgr  | Bun           | latest  | Fast JS/CSS dependency management                              |
 
 ---
 
@@ -60,15 +59,18 @@
   ├─→ Landing Page (/)             → Browse featured movies
   ├─→ Movie List (/movies)         → Search, filter by genre/year/rating
   ├─→ Movie Detail (/movies/{slug}) → Read synopsis, cast, reviews
+  ├─→ Genre List (/genres)         → Browse all genres
+  ├─→ Genre Detail (/genres/{slug}) → Movies by specific genre
   ├─→ Login (/auth/login)          → Authenticate
   └─→ Register (/auth/register)    → Create account
          │
          ▼
 [Logged-in User]
-  ├─→ Write Review (/reviews/create?movie={id})
-  ├─→ Edit/Delete own review
-  ├─→ Add to Watchlist
-  ├─→ Like a review
+  ├─→ Movie Detail (/movies/{slug})
+  │     ├─→ Write Review (Modal)
+  │     ├─→ Edit/Delete own review
+  │     ├─→ Add to Watchlist
+  │     └─→ Like a review
   └─→ Profile (/profile)           → My reviews, my watchlist
 
          │
@@ -132,7 +134,6 @@ CREATE TABLE users (
     email       VARCHAR(150)  NOT NULL UNIQUE,
     password    VARCHAR(255)  NOT NULL,             -- bcrypt hash
     role        ENUM('user','admin') NOT NULL DEFAULT 'user',
-    avatar      VARCHAR(255)  NULL,                 -- path to uploaded image
     bio         TEXT          NULL,
     email_verified_at TIMESTAMP NULL,
     created_at  DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -370,41 +371,53 @@ movprima/
 │   │   │   ├── 2026-05-01-000006_CreateReviewLikesTable.php
 │   │   │   └── 2026-05-01-000007_CreateWatchlistTable.php
 │   │   └── Seeds/
-│   │       ├── GenreSeeder.php
 │   │       ├── AdminUserSeeder.php
-│   │       └── MovieSeeder.php
+│   │       ├── DatabaseSeeder.php
+│   │       ├── GenreSeeder.php
+│   │       ├── MovieSeeder.php
+│   │       ├── ReviewSeeder.php
+│   │       └── UserSeeder.php
 │   │
 │   └── Views/
-│       ├── layouts/
-│       │   ├── main.php        ← Public layout (navbar + footer)
-│       │   └── admin.php       ← Admin sidebar layout
-│       ├── home/
-│       │   └── index.php
-│       ├── movies/
-│       │   ├── index.php
-│       │   └── detail.php
-│       ├── genres/
-│       │   └── show.php
+│       ├── admin/
+│       │   ├── dashboard/
+│       │   │   └── index.php
+│       │   ├── genres/
+│       │   │   └── index.php
+│       │   ├── movies/
+│       │   │   ├── form.php
+│       │   │   └── index.php
+│       │   ├── reviews/
+│       │   │   └── index.php
+│       │   └── users/
+│       │       └── index.php
 │       ├── auth/
 │       │   ├── login.php
 │       │   └── register.php
+│       ├── errors/
+│       │   ├── cli/
+│       │   └── html/
+│       ├── genres/
+│       │   ├── index.php
+│       │   └── show.php
+│       ├── home/
+│       │   └── index.php
+│       ├── layouts/
+│       │   ├── admin.php
+│       │   └── main.php
+│       ├── movies/
+│       │   ├── detail.php
+│       │   └── index.php
+│       ├── pagers/
+│       │   └── custom_tailwind.php
+│       ├── partials/
+│       │   └── movie_item.php
 │       ├── reviews/
 │       │   ├── create.php
 │       │   └── edit.php
-│       ├── user/
-│       │   ├── profile.php
-│       │   └── edit.php
-│       └── admin/
-│           ├── dashboard.php
-│           ├── movies/
-│           │   ├── index.php
-│           │   └── form.php
-│           ├── genres/
-│           │   └── index.php
-│           ├── reviews/
-│           │   └── index.php
-│           └── users/
-│               └── index.php
+│       └── user/
+│           ├── edit.php
+│           └── profile.php
 │
 ├── resources/
 │   └── css/
@@ -418,13 +431,14 @@ movprima/
 
 ### 6.2 Model Responsibilities
 
-| Model            | Key Methods                                                                                   | Notes                                      |
-| ---------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| `UserModel`      | `findByEmail()`, `createUser()`, `updateProfile()`                                            | Password hashing via `password_hash()`     |
-| `MovieModel`     | `getWithGenres()`, `findBySlug()`, `search()`, `paginate()`, `getTopRated()`, `getFeatured()` | Uses JOIN with `movie_genres` and `genres` |
-| `GenreModel`     | `getAllWithCount()`, `findBySlug()`                                                           | `COUNT` join for movie count per genre     |
-| `ReviewModel`    | `getByMovie()`, `getByUser()`, `getLatest()`, `updateMovieRating()`                           | Calls `movies.avg_rating` update after CUD |
-| `WatchlistModel` | `toggle()`, `getUserList()`, `getByStatus()`                                                  | Upsert pattern                             |
+| Model             | Key Methods                                                                                   | Notes                                      |
+| ----------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| `GenreModel`      | `getAllWithCount()`, `findBySlug()`                                                           | `COUNT` join for movie count per genre     |
+| `MovieModel`      | `getWithGenres()`, `findBySlug()`, `search()`, `paginate()`, `getTopRated()`, `getFeatured()` | Uses JOIN with `movie_genres` and `genres` |
+| `ReviewLikeModel` | `toggle()`, `hasLiked()`, `syncCounter()`                                                     | Likes system functionality                 |
+| `ReviewModel`     | `getByMovie()`, `getByUser()`, `getLatest()`, `updateMovieRating()`                           | Calls `movies.avg_rating` update after CUD |
+| `UserModel`       | `findByEmail()`, `createUser()`, `updateProfile()`                                            | Password hashing via `password_hash()`     |
+| `WatchlistModel`  | `toggle()`, `getUserList()`, `getByStatus()`                                                  | Upsert pattern                             |
 
 ### 6.3 Complex Query Examples (for "CRUD + query complex" criteria)
 
@@ -468,26 +482,24 @@ public function updateMovieRating(int $movieId): void
 
 ### ✅ Tampilan (UI/UX) — Target: Sangat Baik (4)
 
-- [ ] DaisyUI `dim` dark theme applied globally
-- [ ] Hero section with backdrop gradient + animated text
-- [ ] Movie cards with poster, rating badge, genre chips
-- [ ] Hover scale animation on cards (`transition-transform`)
-- [ ] Star rating component (interactive, CSS only)
-- [ ] Skeleton loading state for movie grid
-- [ ] Responsive navbar with hamburger menu on mobile
-- [ ] Toast notifications for success/error feedback
-- [ ] Smooth page transitions using CSS
-- [ ] Google Fonts — `Inter` for body, `Bebas Neue` for headings
+- [x] Hero section with backdrop gradient + animated text
+- [x] Movie cards with poster, rating badge, genre chips
+- [x] Hover scale animation on cards (`transition-transform`)
+- [x] Star rating component (interactive, CSS only)
+- [x] Skeleton loading state for movie grid
+- [x] Responsive navbar with hamburger menu on mobile
+- [x] Toast notifications for success/error feedback
+- [x] Smooth page transitions using CSS
 
 ### ✅ Error Handling — Target: Sangat Baik (4)
 
-- [ ] CI4 validation rules on all forms (required, min_length, valid_email, etc.)
-- [ ] 404 custom view for missing movies/pages
-- [ ] CSRF token on all POST forms (`csrf_field()`)
-- [ ] SQL errors caught with try/catch in controllers
-- [ ] Auth filter returns 401/redirect (not PHP fatal error)
-- [ ] Zero browser console errors or warnings
-- [ ] Zero PHP warnings/notices in terminal
+- [x] CI4 validation rules on all forms (required, min_length, valid_email, etc.)
+- [x] 404 custom view for missing movies/pages
+- [x] CSRF token on all POST forms (`csrf_field()`)
+- [x] SQL errors caught with try/catch in controllers
+- [x] Auth filter returns 401/redirect (not PHP fatal error)
+- [x] Zero browser console errors or warnings
+- [x] Zero PHP warnings/notices in terminal
 
 ### ✅ CRUD — Target: Sangat Baik (4)
 
@@ -501,23 +513,22 @@ public function updateMovieRating(int $movieId): void
 
 ### ✅ Kreatifitas — Target: Sangat Baik (4)
 
-- [ ] DaisyUI v5 component library (creative use of `card`, `badge`, `modal`, `tabs`)
-- [ ] Star-rating UI with half-star display (1–10 scale → 5 stars)
-- [ ] Watchlist with 3 statuses (Want to Watch / Watching / Watched)
-- [ ] Spoiler toggle on review body
-- [ ] Review like system (heart icon, AJAX)
-- [ ] Genre filter chips on movie list (no page reload)
-- [ ] Admin dashboard with stat cards (total movies, reviews, users)
+- [x] Star-rating UI with half-star display (1–10 scale → 5 stars)
+- [x] Watchlist with 3 statuses (Want to Watch / Watching / Watched)
+- [x] Spoiler toggle on review body
+- [x] Review like system (heart icon, AJAX)
+- [x] Genre filter chips on movie list (no page reload)
+- [x] Admin dashboard with stat cards (total movies, reviews, users)
 
 ### ✅ Struktur Kode — Target: Sangat Baik (4)
 
-- [ ] Strict MVC — no DB queries in views
-- [ ] Base layout template with `renderSection()` / `extend()`
-- [ ] Filters for auth (`AuthFilter`, `AdminFilter`)
-- [ ] Named routes in `Routes.php` for easy URL generation
-- [ ] Models use CI4 `Model` class (validation rules, return types defined)
-- [ ] `resources/css/app.css` compiled → `public/assets/css/app.css` (never edit public directly)
-- [ ] `.editorconfig` enforced (already present in repo)
+- [x] Strict MVC — no DB queries in views
+- [x] Base layout template with `renderSection()` / `extend()`
+- [x] Filters for auth (`AuthFilter`, `AdminFilter`)
+- [x] Named routes in `Routes.php` for easy URL generation
+- [x] Models use CI4 `Model` class (validation rules, return types defined)
+- [x] `resources/css/app.css` compiled → `public/assets/css/app.css` (never edit public directly)
+- [x] `.editorconfig` enforced (already present in repo)
 
 ---
 
@@ -542,9 +553,7 @@ cp env .env
 
 # 5. Run migrations + seeds
 php spark migrate
-php spark db:seed GenreSeeder
-php spark db:seed AdminUserSeeder
-php spark db:seed MovieSeeder
+php spark db:seed DatabaseSeeder
 
 # 6. Start servers (two terminals)
 php spark serve          # → http://localhost:8080
@@ -559,7 +568,7 @@ CI_ENVIRONMENT = development
 app.baseURL = 'http://localhost:8080/'
 app.forceGlobalSecureRequests = false
 
-database.default.hostname = localhost
+database.default.hostname = 127.0.0.1
 database.default.database  = movprima_db
 database.default.username  = root
 database.default.password  =
@@ -572,7 +581,7 @@ database.default.port      = 3306
 
 ```
 main          ← stable, demo-ready
-  └── dev     ← integration branch
+  └── develop     ← integration branch
         ├── feat/database-migrations   ← Nata
         ├── feat/frontend-views        ← Nata
         ├── feat/movies-reviews-genre  ← Shyfa
@@ -580,7 +589,7 @@ main          ← stable, demo-ready
         └── feat/user-admin            ← Gita
 ```
 
-> **Rule:** Never push directly to `main`. Always PR into `dev`, then merge `dev` → `main` before demo.
+> **Rule:** Never push directly to `main`. Always PR into `develop`, then merge `develop` → `main` before demo.
 
 ---
 
@@ -613,36 +622,34 @@ main          ← stable, demo-ready
 
 #### Phase 3 — Layout & Design System
 
-- [ ] `resources/css/app.css` — Tailwind v4 `@import`, custom CSS variables (colors, fonts)
-- [ ] `views/layouts/main.php` — navbar (logo, links, login/logout toggle), footer, `renderSection('content')`
-- [ ] `views/layouts/admin.php` — sidebar (Dashboard, Movies, Genres, Reviews, Users links), top bar, `renderSection('content')`
-- [ ] Google Fonts import — `Inter` (body), `Bebas Neue` (headings)
-- [ ] DaisyUI `dim` dark theme set as default (`data-theme="dim"`)
+- [x] `resources/css/app.css` — Tailwind v4 `@import`, custom CSS variables (colors, fonts)
+- [x] `views/layouts/main.php` — navbar (logo, links, login/logout toggle), footer, `renderSection('content')`, Lucide icons, GSAP, and Lenis scroll
+- [x] `views/layouts/admin.php` — sidebar (Dashboard, Movies, Genres, Reviews, Users links), top bar, `renderSection('content')`, and DataTables Tailwind integration
 
 #### Phase 4 — Public Views
 
-- [ ] `views/home/index.php` — hero banner, featured movies row, top-rated grid, latest reviews strip
-- [ ] `views/movies/index.php` — search bar, genre filter chips, sort dropdown, movie card grid, DaisyUI pagination
-- [ ] `views/movies/detail.php` — backdrop hero, movie metadata, genre badges, trailer embed, reviews list, watchlist button, write-review CTA
-- [ ] `views/genres/show.php` — genre hero, filtered movie grid
-- [ ] `views/auth/login.php` — centered DaisyUI card, email + password fields, flash error display
-- [ ] `views/auth/register.php` — name, email, password, confirm password fields
+- [x] `views/home/index.php` — hero banner, "FILM TERBARU", "TERPOPULER", "REKOMENDASI", and "FILM KLASIK" rows
+- [x] `views/movies/index.php` — search bar, sort dropdown, movie card grid, custom Tailwind pagination
+- [x] `views/movies/detail.php` — backdrop hero, movie metadata, genre badges, INFO & ULASAN tabs, review list, watchlist button, inline `<dialog>` for writing and editing reviews
+- [x] `views/genres/show.php` — genre hero, filtered movie grid, custom search bar and sort dropdown
+- [x] `views/auth/login.php` — custom login page class, email + password fields, flash error display
+- [x] `views/auth/register.php` — name, email, password, confirm password fields, terms & conditions checkbox
 
 #### Phase 5 — User & Review Views
 
-- [ ] `views/user/profile.php` — avatar, bio, DaisyUI tabs: My Reviews | Watchlist
-- [ ] `views/user/edit.php` — edit name/bio form, avatar file input with live preview
-- [ ] `views/reviews/create.php` — movie title header, star-rating picker (1–10), title, body textarea, spoiler checkbox
-- [ ] `views/reviews/edit.php` — same form pre-filled with existing data
+- [x] `views/user/profile.php` — avatar, stacked sections for Watchlist (grid) and My Reviews (list), inline edit review modal
+- [x] `views/user/edit.php` — edit name, email, and password form
+- [x] `views/reviews/create.php` — standalone form with rating number input (1-10), title, body textarea, spoiler checkbox
+- [x] `views/reviews/edit.php` — same standalone form pre-filled with existing data
 
 #### Phase 6 — Admin Views
 
-- [ ] `views/admin/dashboard.php` — stat cards: Total Movies, Total Reviews, Total Users, Latest Reviews table
-- [ ] `views/admin/movies/index.php` — searchable data table, poster thumbnail, Edit/Delete action buttons
-- [ ] `views/admin/movies/form.php` — shared create/edit: title, synopsis, genre checkboxes, year, duration, poster upload, backdrop upload, trailer URL, status toggle
-- [ ] `views/admin/genres/index.php` — inline add form + table with Edit (modal) / Delete
-- [ ] `views/admin/reviews/index.php` — table with movie, reviewer, rating, status, Delete button
-- [ ] `views/admin/users/index.php` — table with name, email, role badge, Delete button
+- [x] `views/admin/dashboard/index.php` — stat cards: Total Film, Ulasan, Pengguna, Genre, Latest Reviews table
+- [x] `views/admin/movies/index.php` — DataTables searchable table (Title, Year, Rating, Reviews, Genre, Action), Edit/Delete action buttons
+- [x] `views/admin/movies/form.php` — shared create/edit: title, synopsis, release year, duration, genre checkboxes, poster URL, backdrop URL
+- [x] `views/admin/genres/index.php` — inline add form + DataTables table with Edit (modal) / Delete
+- [x] `views/admin/reviews/index.php` — DataTables table with User, Movie, Rating, Quote, Spoiler badge, Date, Delete button
+- [x] `views/admin/users/index.php` — DataTables table with name, email, role badge, review count, join date, Delete button
 
 ---
 
@@ -654,74 +661,76 @@ main          ← stable, demo-ready
 
 **`app/Models/MovieModel.php`**
 
-- [ ] Set `$table = 'movies'`, `$primaryKey = 'id'`, define `$allowedFields`
-- [ ] `getWithGenres(int $id): array` — JOIN movies + movie_genres + genres, returns single movie with genres string
-- [ ] `findBySlug(string $slug): ?array` — WHERE slug = ?, return null if not found
-- [ ] `search(string $q, ?string $genreSlug, ?int $year, ?string $sort): array` — multi-condition query with optional filters
-- [ ] `getTopRated(int $limit = 10, ?string $genreSlug = null): array` — GROUP_CONCAT genres, ORDER BY avg_rating DESC
-- [ ] `getFeatured(int $limit = 6): array` — published movies, ORDER BY RAND()
-- [ ] `syncGenres(int $movieId, array $genreIds): void` — delete old pivot rows, re-insert new ones
+- [x] Set `$table = 'movies'`, `$primaryKey = 'id'`, define `$allowedFields`
+- [x] `getWithGenres(int $id): ?array` — returns a movie with genres string
+- [x] `findBySlug(string $slug): ?array` — WHERE slug = ?, return null if not found
+- [x] `search(string $q = ""): self` — filter by query; along with chainable `byGenre(int $genreId): self` and `sortBy(string $sort = "newest"): self`
+- [x] `getTopRated(int $limit = 10, ?string $genreSlug = null): array` — uses `withTopGenre()`, ORDER BY `avg_rating` DESC
+- [x] `getFeatured(int $limit = 6): array` — published movies with top genre, ORDER BY RAND()
+- [x] `syncGenres(int $movieId, array $genreIds): void` — delete old pivot rows, re-insert new ones
+- [x] Also includes helper methods: `getMoviesWithTopGenre()`, `getGenres()`, `getBySlug()`, `getIdsByGenres()`, `getRelatedMovies()`, `getAllAdmin()`
 
 **`app/Models/GenreModel.php`**
 
-- [ ] `getAllWithCount(): array` — LEFT JOIN movies COUNT(m.id) AS movie_count
-- [ ] `findBySlug(string $slug): ?array`
+- [x] `withMovieCount(): self` and `getAllSorted(): array` — splits query modification and fetching
+- [x] `getBySlug(string $slug): ?array`
 
 **`app/Models/ReviewModel.php`**
 
-- [ ] `getByMovie(int $movieId): array` — paginated (5/page), JOIN users (name, avatar)
-- [ ] `getByUser(int $userId): array` — JOIN movies (title, poster)
-- [ ] `getLatest(int $limit = 5): array` — JOIN movies + users, ORDER BY created_at DESC
-- [ ] `updateMovieRating(int $movieId): void` — single UPDATE query with subqueries for avg_rating + review_count
+- [x] `getByMovie(int $movieId, ?int $userId = null, int $perPage = 5): array` — paginated, JOIN users and `review_likes`
+- [x] `getByUser(int $userId): array` — JOIN movies (title, poster)
+- [x] `getLatest(int $limit = 5): array` — JOIN movies + users, ORDER BY created_at DESC
+- [x] `updateMovieRating(int $movieId): void` — single UPDATE query using `COALESCE(AVG(rating), 0)`
+- [x] Also includes helper methods: `hasUserReviewed()`, `getReviewById()`, `addReview()`, `updateReview()`, `deleteReview()`, `getAllAdmin()`
 
 **`app/Models/ReviewLikeModel.php`**
 
-- [ ] `toggle(int $userId, int $reviewId): bool` — insert if not exists, delete if exists; returns true = now liked
-- [ ] `hasLiked(int $userId, int $reviewId): bool`
-- [ ] `syncCounter(int $reviewId): void` — UPDATE reviews SET likes_count = COUNT(\*)
+- [x] `toggle(int $userId, int $reviewId): bool` — insert if not exists, delete if exists; returns true = now liked
+- [x] `hasLiked(int $userId, int $reviewId): bool`
+- [x] `syncCounter(int $reviewId): void` — UPDATE reviews SET likes_count = COUNT(\*)
 
 **`app/Models/WatchlistModel.php`**
 
-- [ ] `findByUserAndMovie(int $userId, int $movieId): ?array`
-- [ ] `toggle(int $userId, int $movieId): string` — add with status=want_to_watch if absent, return current status
-- [ ] `updateStatus(int $id, string $status): bool` — validate status is one of enum values
-- [ ] `getUserList(int $userId, ?string $status = null): array` — JOIN movies (poster, title, slug)
+- [x] `findByUserAndMovie(int $userId, int $movieId): ?array`
+- [x] `toggle(int $userId, int $movieId): string` — add with status=want_to_watch if absent, return current status
+- [x] `updateStatus(int $id, string $status): bool` — validate status is one of enum values
+- [x] `getUserList(int $userId, ?string $status = null): array` — JOIN movies (poster, title, slug)
+- [x] Also includes helper methods: `checkUserWatchlist()`, `getEntryById()`, `removeEntry()`
 
 #### Phase 2 — Public Controllers
 
 **`app/Controllers/Movie.php`**
 
-- [ ] `index()` — read `$_GET` (q, genre, year, sort), call `MovieModel::search()`, paginate 12/page, pass to view
-- [ ] `show(string $slug)` — call `findBySlug()`, 404 if null; load paginated reviews; check watchlist status for logged-in user
+- [x] `index()` — read `$_GET` (q, genre, year, sort), call `MovieModel::search()`, paginate 12/page, pass to view
+- [x] `show(string $slug)` — call `findBySlug()`, 404 if null; load paginated reviews; check watchlist status for logged-in user
 
 **`app/Controllers/Genre.php`**
 
-- [ ] `show(string $slug)` — call `GenreModel::findBySlug()`, 404 if null; load filtered+paginated movies
+- [x] `index()` — list all genres
+- [x] `show(string $slug)` — call `GenreModel::findBySlug()`, 404 if null; load filtered+paginated movies
 
 #### Phase 3 — Protected Controllers
 
 **`app/Controllers/Review.php`**
 
-- [ ] `createForm()` — read `?movie_id=` GET param, validate movie exists, pass to view
-- [ ] `store()` — validate (rating 1–10, title min 3, body min 10); check no duplicate (unique user+movie); insert; call `updateMovieRating()`; redirect to movie detail
-- [ ] `editForm(int $id)` — load review, assert `review.user_id === session user_id` (or admin), pass to view
-- [ ] `update(int $id)` — validate same rules; update; call `updateMovieRating()`; redirect
-- [ ] `destroy(int $id)` — assert ownership or admin role; delete; call `updateMovieRating()`; redirect
-- [ ] `like(int $id)` — AJAX only (check `$this->request->isAJAX()`); toggle like; sync counter; return `$this->response->setJSON(['liked' => bool, 'count' => int])`
+- [x] `store()` — validate (rating 1–10, title min 3, body min 10); check no duplicate (unique user+movie); insert; call `updateMovieRating()`; redirect to movie detail
+- [x] `update(int $id)` — validate same rules; update; call `updateMovieRating()`; redirect
+- [x] `destroy(int $id)` — assert ownership or admin role; delete; call `updateMovieRating()`; redirect
+- [x] `like(int $id)` — AJAX only (check `$this->request->isAJAX()`); toggle like; sync counter; return `$this->response->setJSON(['liked' => bool, 'count' => int])`
 
 **`app/Controllers/Watchlist.php`**
 
-- [ ] `store()` — AJAX; read JSON body `{movie_id}`; toggle; return JSON `{status, message}`
-- [ ] `update(int $id)` — assert ownership; update status; redirect back
-- [ ] `destroy(int $id)` — assert ownership; delete; redirect to profile
+- [x] `store()` — AJAX; read JSON body `{movie_id}`; toggle; return JSON `{status, message}`
+- [x] `update(int $id)` — assert ownership; update status; redirect back
+- [x] `destroy(int $id)` — assert ownership; delete; redirect to profile
 
 #### Phase 4 — Image Upload (in Admin\Movie — coordinate with Gita)
 
-- [ ] Validate file: max 2 MB, types: jpg/jpeg/png/webp
-- [ ] Generate unique filename: `uniqid() . '.' . $ext`
-- [ ] Store to: `public/uploads/movies/`
-- [ ] On update: delete old file if a new file is provided
-- [ ] Return validation error message if file fails
+- [x] Image upload skipped; replaced with `permit_empty|valid_url` validation for poster and backdrop
+- [x] Accept direct image URL strings from the form
+- [x] Store URL strings directly into the database
+- [x] On update: replace old URL string with new URL string
+- [x] Return validation error message if URL is not valid
 
 ---
 
@@ -733,59 +742,59 @@ main          ← stable, demo-ready
 
 **`loginForm()`**
 
-- [ ] GET — render `auth/login.php`
-- [ ] If `session('user_id')` already set, redirect to `/`
+- [x] GET — render `auth/login.php`
+- [x] If `session('user_id')` already set, redirect to `/`
 
 **`login()`**
 
-- [ ] POST — validate: `email` (required|valid_email), `password` (required|min_length[8])
-- [ ] Find user: `UserModel::findByEmail($email)`
-- [ ] Verify: `password_verify($password, $user['password'])`
-- [ ] On success: set session data (`user_id`, `user_name`, `user_email`, `user_role`)
-- [ ] Redirect: role=admin → `/admin`, else → `/`
-- [ ] On fail: `session()->setFlashdata('error', 'Incorrect email or password')` → redirect back
+- [x] POST — validate: `email` (required|valid_email), `password` (required|min_length[8])
+- [x] Find user: `UserModel::findByEmail($email)`
+- [x] Verify: `password_verify($password, $user['password'])`
+- [x] On success: set session data (`user_id`, `user_name`, `user_email`, `user_role`)
+- [x] Redirect: role=admin → `/admin`, else → `/`
+- [x] On fail: `session()->setFlashdata('error', 'Incorrect email or password')` → redirect back
 
 **`registerForm()`**
 
-- [ ] GET — render `auth/register.php`
-- [ ] If already logged in, redirect to `/`
+- [x] GET — render `auth/register.php`
+- [x] If already logged in, redirect to `/`
 
 **`register()`**
 
-- [ ] POST — validate: name (required|min_length[2]), email (required|valid_email|is_unique[users.email]), password (required|min_length[8]), password_confirm (required|matches[password])
-- [ ] Hash: `password_hash($password, PASSWORD_BCRYPT)`
-- [ ] Insert via `UserModel` with role=user
-- [ ] Set session (same fields as login)
-- [ ] Redirect to `/`
+- [x] POST — validate: name (required|min_length[2]), email (required|valid_email|is_unique[users.email]), password (required|min_length[8]), password_confirm (required|matches[password])
+- [x] Hash: `password_hash($password, PASSWORD_BCRYPT)`
+- [x] Insert via `UserModel` with role=user
+- [x] Set session (same fields as login)
+- [x] Redirect to `/`
 
 **`logout()`**
 
-- [ ] GET — `session()->destroy()`
-- [ ] Redirect to `/auth/login`
+- [x] GET — `session()->destroy()`
+- [x] Redirect to `/auth/login`
 
 #### Phase 2 — Filters
 
 **`app/Filters/AuthFilter.php`**
 
-- [ ] Implement `CodeIgniter\Filters\FilterInterface`
-- [ ] `before()`: if `!session('user_id')` → return `redirect()->to('/auth/login')`
-- [ ] `after()`: return null (no-op)
+- [x] Implement `CodeIgniter\Filters\FilterInterface`
+- [x] `before()`: if `!session('user_id')` → return `redirect()->to('/auth/login')`
+- [x] `after()`: return null (no-op)
 
 **`app/Filters/AdminFilter.php`**
 
-- [ ] `before()`: if `!session('user_id')` OR `session('user_role') !== 'admin'` → return `redirect()->to('/')->with('error', 'Access denied')`
+- [x] `before()`: if `!session('user_id')` OR `session('user_role') !== 'admin'` → return `redirect()->to('/')->with('error', 'Access denied')`
 
 #### Phase 3 — Register Filters (`app/Config/Filters.php`)
 
-- [ ] Add to `$aliases`: `'auth' => AuthFilter::class`, `'admin' => AdminFilter::class`
+- [x] Add to `$aliases`: `'auth' => AuthFilter::class`, `'admin' => AdminFilter::class`
 
 #### Phase 4 — Define All Routes (`app/Config/Routes.php`)
 
-- [ ] Public routes: `/`, `/movies`, `/movies/(:segment)`, `/genres/(:segment)`
-- [ ] Auth group (`/auth`): login GET+POST, register GET+POST, logout GET
-- [ ] Protected group (filter: auth): `/profile`, `/profile/edit`, `/reviews/*`, `/watchlist/*`
-- [ ] Admin group (filter: admin): all `/admin/*` routes pointing to `Admin\*` controllers
-- [ ] Add 404 override: `$routes->set404Override('App\Controllers\Home::error404')`
+- [x] Public routes: `/`, `/movies`, `/movies/(:segment)`, `/genres/(:segment)`
+- [x] Auth group (`/auth`): login GET+POST, register GET+POST, logout GET
+- [x] Protected group (filter: auth): `/profile`, `/profile/edit`, `/reviews/*`, `/watchlist/*`
+- [x] Admin group (filter: admin): all `/admin/*` routes pointing to `Admin\*` controllers
+- [x] Add 404 override: `$routes->set404Override('App\Controllers\Home::error404')`
 
 > **Tip:** Use `$routes->group()` to apply filters at group level — do not repeat filter on every individual route.
 
@@ -797,54 +806,53 @@ main          ← stable, demo-ready
 
 #### Phase 1 — UserModel (`app/Models/UserModel.php`)
 
-- [ ] `$table = 'users'`, `$allowedFields = ['name', 'email', 'password', 'role', 'avatar', 'bio']`
-- [ ] `$beforeInsert = ['hashPasswordCallback']` — auto-hash password on insert
-- [ ] `findByEmail(string $email): ?array`
-- [ ] `updateProfile(int $id, array $data): bool` — only update allowed fields
-- [ ] `updateAvatar(int $id, string $avatarPath): bool`
+- [x] `$table = 'users'`, `$allowedFields = ['name', 'email', 'password', 'role', 'bio', 'email_verified_at']` (Avatar omitted)
+- [x] `$beforeInsert = ['hashPassword']` and `$beforeUpdate = ['hashPassword']` — auto-hash password
+- [x] `findByEmail(string $email): ?array`
+- [x] `updateProfile(int $id, array $data): bool` — updates profile info including password if provided
+- [ ] ~`updateAvatar(int $id, string $avatarPath): bool`~ (Omitted from final implementation)
 
 #### Phase 2 — Home Controller (`app/Controllers/Home.php`)
 
-- [ ] `index()` — load `MovieModel::getFeatured()`, `MovieModel::getTopRated()`, `ReviewModel::getLatest()`; pass all to `views/home/index.php`
-- [ ] `error404()` — render custom 404 view
+- [x] `index()` — load `MovieModel::getMoviesWithTopGenre` for featured, latest, topRated, recommended, and classic lists
 
 #### Phase 3 — User Controller (`app/Controllers/User.php`)
 
-- [ ] `profile()` — load user from session ID, load `ReviewModel::getByUser()`, load `WatchlistModel::getUserList()`; pass to view
-- [ ] `editForm()` — load current user data, pass to view
-- [ ] `update()` — validate: name (required|min_length[2]), bio (optional|max_length[500]); handle avatar upload (max 1 MB, jpg/png/webp); store to `public/uploads/avatars/`; call `UserModel::updateProfile()`; redirect to `/profile`
+- [x] `profile()` — load user from session ID, load `ReviewModel::getByUser()`, load `WatchlistModel::getUserList()`; pass to view
+- [x] `editForm()` — load current user data, pass to view
+- [x] `update()` — validate name, email, password; omits avatar upload logic; calls `UserModel::updateProfile()`; updates session; redirect to `/profile`
 
 #### Phase 4 — Admin Sub-controllers
 
 **`app/Controllers/Admin/Dashboard.php`**
 
-- [ ] `index()` — query: `COUNT(*)` from users, movies, reviews; `ReviewModel::getLatest(5)`; pass stats to view
+- [x] `index()` — query: `COUNT(*)` from users, movies, reviews; `ReviewModel::getLatest(5)`; pass stats to view
 
 **`app/Controllers/Admin/Movie.php`**
 
-- [ ] `index()` — list all movies (with genre string), searchable, paginate 15/page
-- [ ] `create()` — render `admin/movies/form.php` (empty form)
-- [ ] `store()` — validate all fields (title required, release_year required|integer, status required); handle poster + backdrop upload (coordinate with Shyfa's upload logic); call `MovieModel::syncGenres()`; redirect to `/admin/movies`
-- [ ] `edit(int $id)` — load movie + current genres, render form pre-filled
-- [ ] `update(int $id)` — same validation as store; update record; re-sync genres; handle new image if uploaded
-- [ ] `destroy(int $id)` — delete movie (cascade deletes reviews, watchlist, genres via FK); delete image files; redirect
+- [x] `index()` — list all movies (with genre string), searchable, paginate 15/page
+- [x] `create()` — render `admin/movies/form.php` (empty form)
+- [x] `store()` — validate fields; uses direct URL strings for poster and backdrop instead of file uploads; calls `MovieModel::syncGenres()`; clears cache; redirect to `/admin/movies`
+- [x] `edit(int $id)` — load movie + current genres, render form pre-filled
+- [x] `update(int $id)` — validate fields; update record with image URLs; re-sync genres; clears cache
+- [x] `destroy(int $id)` — delete movie (cascade deletes relations via FK); clears cache; redirect
 
 **`app/Controllers/Admin/Genre.php`**
 
-- [ ] `index()` — list all genres with movie count
-- [ ] `store()` — validate: name (required|min_length[2]|is_unique[genres.name]); auto-generate slug from name; insert
-- [ ] `update(int $id)` — validate same; update name + slug
-- [ ] `destroy(int $id)` — delete genre (pivot rows cascade automatically)
+- [x] `index()` — list all genres with movie count
+- [x] `store()` — validate: name (required|min_length[2]|is_unique[genres.name]); auto-generate slug from name; insert
+- [x] `update(int $id)` — validate same; update name + slug
+- [x] `destroy(int $id)` — delete genre (pivot rows cascade automatically)
 
 **`app/Controllers/Admin/Review.php`**
 
-- [ ] `index()` — list all reviews JOIN users + movies; filterable by status; paginate 20/page
-- [ ] `destroy(int $id)` — delete review; call `ReviewModel::updateMovieRating()`; redirect
+- [x] `index()` — list all reviews JOIN users + movies; filterable by status; paginate 20/page
+- [x] `destroy(int $id)` — delete review; call `ReviewModel::updateMovieRating()`; redirect
 
 **`app/Controllers/Admin/User.php`**
 
-- [ ] `index()` — list all users with review count; searchable by name/email; paginate 20/page
-- [ ] `destroy(int $id)` — prevent self-delete (check `$id !== session('user_id')`); delete user; redirect
+- [x] `index()` — list all users with review count; searchable by name/email; paginate 20/page
+- [x] `destroy(int $id)` — prevent self-delete (check `$id !== session('user_id')`); delete user; redirect
 
 ---
 
