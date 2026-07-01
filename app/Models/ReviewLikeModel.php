@@ -33,11 +33,23 @@ class ReviewLikeModel extends Model
   {
     $existing = $this->where("user_id", $userId)->where("review_id", $reviewId)->first();
 
+    $reviewModel = new ReviewModel();
+    $review = $reviewModel->find($reviewId);
+    $authorId = $review ? $review["user_id"] : null;
+
     if ($existing) {
       $this->delete($existing["id"]);
+      if ($authorId) {
+        $userModel = new UserModel();
+        $userModel->addPoints($authorId, -5);
+      }
       return false;
     } else {
       $this->insert(["user_id" => $userId, "review_id" => $reviewId]);
+      if ($authorId) {
+        $userModel = new UserModel();
+        $userModel->addPoints($authorId, 5);
+      }
       return true;
     }
   }

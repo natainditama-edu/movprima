@@ -39,7 +39,7 @@ class ReviewModel extends Model
    */
   public function getByMovie(int $movieId, ?int $userId = null, int $perPage = 5): array
   {
-    $builder = $this->select("reviews.*, users.name as user_name")->join("users", "users.id = reviews.user_id")->where("reviews.movie_id", $movieId)->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC");
+    $builder = $this->select("reviews.*, users.name as user_name, users.points as user_points")->join("users", "users.id = reviews.user_id")->where("reviews.movie_id", $movieId)->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC");
 
     if ($userId) {
       $builder->select("IF(review_likes.user_id IS NOT NULL, 1, 0) as is_liked")->join("review_likes", "review_likes.review_id = reviews.id AND review_likes.user_id = " . $userId, "left");
@@ -73,7 +73,7 @@ class ReviewModel extends Model
    */
   public function getLatest(int $limit = 5): array
   {
-    return $this->select("reviews.*, users.name as user_name, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id")->join("movies", "movies.id = reviews.movie_id")->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC")->limit($limit)->find();
+    return $this->select("reviews.*, users.name as user_name, users.points as user_points, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id")->join("movies", "movies.id = reviews.movie_id")->where("reviews.status", "published")->orderBy("reviews.created_at", "DESC")->limit($limit)->find();
   }
 
   /**
@@ -134,7 +134,12 @@ class ReviewModel extends Model
    */
   public function addReview(array $data): bool
   {
-    return (bool) $this->insert($data);
+    $success = (bool) $this->insert($data);
+    if ($success && isset($data["user_id"])) {
+      $userModel = new UserModel();
+      $userModel->addPoints($data["user_id"], 10);
+    }
+    return $success;
   }
 
   /**
@@ -161,7 +166,16 @@ class ReviewModel extends Model
    */
   public function deleteReview(int $id): bool
   {
-    return $this->delete($id);
+    $review = $this->find($id);
+    if ($review) {
+      $success = $this->delete($id);
+      if ($success && isset($review["user_id"])) {
+        $userModel = new UserModel();
+        $userModel->addPoints($review["user_id"], -10);
+      }
+      return $success;
+    }
+    return false;
   }
 
   /**
@@ -172,6 +186,6 @@ class ReviewModel extends Model
    */
   public function getAllAdmin(): array
   {
-    return $this->select("reviews.*, users.name as user_name, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id", "left")->join("movies", "movies.id = reviews.movie_id", "left")->orderBy("reviews.created_at", "DESC")->findAll();
+    return $this->select("reviews.*, users.name as user_name, users.points as user_points, movies.title as movie_title, movies.slug as movie_slug")->join("users", "users.id = reviews.user_id", "left")->join("movies", "movies.id = reviews.movie_id", "left")->orderBy("reviews.created_at", "DESC")->findAll();
   }
 }

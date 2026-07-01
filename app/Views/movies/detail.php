@@ -145,7 +145,12 @@
                             <div class="flex items-center gap-3 mb-3">
                                 <img src="<?= "https://i.pravatar.cc/150?u=" . ($rev["user_id"] ?? 0) ?>" class="w-10 h-10 rounded-full object-cover" alt="<?= esc($rev["user_name"] ?? "Pengguna Anonim") ?>">
                                 <div>
-                                    <p class="text-white font-semibold text-sm"><?= esc($rev["user_name"] ?? "Pengguna Anonim") ?></p>
+                                    <p class="text-white font-semibold text-sm flex items-center gap-2">
+                                        <?= esc($rev["user_name"] ?? "Pengguna Anonim") ?>
+                                        <span class="text-[10px] px-1.5 py-0.5 rounded bg-(--primary)/20 text-(--primary) border border-(--primary)/30">
+                                            <?= esc(model("UserModel")->getUserRank($rev["user_points"] ?? 0)) ?>
+                                        </span>
+                                    </p>
                                     <p class="text-xs text-(--text-muted)"><?= date("d M Y", strtotime($rev["created_at"] ?? date("Y-m-d H:i:s"))) ?></p>
                                 </div>
                                 <div class="ml-auto rating-badge bg-yellow-500 text-black px-2 py-0.5 rounded text-sm font-bold">★ <?= esc($rev["rating"] ?? 0) ?>/10</div>

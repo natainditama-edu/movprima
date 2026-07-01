@@ -39,9 +39,23 @@ class Home extends BaseController
       return $movieModel->getMoviesWithTopGenre("avg_rating", "DESC", 12);
     });
 
-    $recommended = $cache->remember("home_recommended", 300, function () use ($movieModel) {
-      return $movieModel->getMoviesWithTopGenre("id", "RANDOM", 12);
+    $trending = $cache->remember("home_trending", 300, function () use ($movieModel) {
+      return $movieModel->getTrendingThisWeek(12);
     });
+
+    $userId = session()->get("user_id");
+    if ($userId) {
+      $recommended = $movieModel->getCollaborativeRecommendations($userId, 12);
+      if (empty($recommended)) {
+        $recommended = $cache->remember("home_recommended", 300, function () use ($movieModel) {
+          return $movieModel->getMoviesWithTopGenre("id", "RANDOM", 12);
+        });
+      }
+    } else {
+      $recommended = $cache->remember("home_recommended", 300, function () use ($movieModel) {
+        return $movieModel->getMoviesWithTopGenre("id", "RANDOM", 12);
+      });
+    }
 
     $classic = $cache->remember("home_classic", 300, function () use ($movieModel) {
       return $movieModel->getMoviesWithTopGenre("release_year", "ASC", 12);
@@ -51,6 +65,7 @@ class Home extends BaseController
       "featured" => $featured,
       "latest" => $latest,
       "topRated" => $topRated,
+      "trending" => $trending,
       "recommended" => $recommended,
       "classic" => $classic,
     ]);

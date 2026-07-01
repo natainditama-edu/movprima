@@ -299,4 +299,100 @@ class MovieModel extends Model
 
     return $movies;
   }
+
+  /**
+   * Get Collaborative Filtering Recommendations for a user.
+   * Utilizes rating history to suggest unseen relevant movies.
+   *
+   * @param int $userId
+   * @param int $limit
+   * @return array
+   */
+  public function getCollaborativeRecommendations(int $userId, int $limit = 6): array
+  {
+    $db = Database::connect();
+
+    $sql = "
+        SELECT m.*, COUNT(r2.user_id) as sim_score
+        FROM reviews r1
+        JOIN reviews r2 ON r1.movie_id = r2.movie_id AND r2.user_id != r1.user_id AND r2.rating >= 7
+        JOIN reviews r3 ON r3.user_id = r2.user_id AND r3.rating >= 7
+        JOIN movies m ON m.id = r3.movie_id
+        LEFT JOIN reviews r4 ON r4.movie_id = m.id AND r4.user_id = r1.user_id
+        WHERE r1.user_id = ?
+          AND r1.rating >= 7
+          AND r4.id IS NULL
+          AND m.status = 'published'
+        GROUP BY m.id
+        ORDER BY sim_score DESC, m.avg_rating DESC
+        LIMIT ?
+    ";
+
+    $query = $db->query($sql, [$userId, $limit]);
+    $results = $query->getResultArray();
+
+    if (empty($results)) {
+      return [];
+    }
+
+    $movieIds = array_column($results, "id");
+    $genreQuery = $db->table("movie_genres")->select("movie_genres.movie_id, genres.name")->join("genres", "genres.id = movie_genres.genre_id")->whereIn("movie_genres.movie_id", $movieIds)->groupBy("movie_genres.movie_id")->get()->getResultArray();
+
+    $genreMap = [];
+    foreach ($genreQuery as $row) {
+      $genreMap[$row["movie_id"]] = $row["name"];
+    }
+
+    foreach ($results as &$movie) {
+      $movie["top_genre"] = $genreMap[$movie["id"]] ?? null;
+    }
+
+    return $results;
+  }
+
+  /**
+   * Get Trending Movies This Week based on recent activity.
+   * Factors in review volume, average rating, and watchlist count.
+   *
+   * @param int $limit
+   * @return array
+   */
+  public function getTrendingThisWeek(int $limit = 6): array
+  {
+    $db = Database::connect();
+    // Formula: (Reviews in last 7 days * avg_rating) + (Watchlist in last 7 days)
+    $sql = "
+        SELECT m.*,
+            (
+                COALESCE((SELECT COUNT(*) FROM reviews r WHERE r.movie_id = m.id AND r.created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)), 0) * m.avg_rating
+                +
+                COALESCE((SELECT COUNT(*) FROM watchlist w WHERE w.movie_id = m.id AND w.created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)), 0)
+            ) as trending_score
+        FROM movies m
+        WHERE m.status = 'published'
+        ORDER BY trending_score DESC, m.avg_rating DESC
+        LIMIT ?
+    ";
+
+    $query = $db->query($sql, [$limit]);
+    $results = $query->getResultArray();
+
+    if (empty($results)) {
+      return [];
+    }
+
+    $movieIds = array_column($results, "id");
+    $genreQuery = $db->table("movie_genres")->select("movie_genres.movie_id, genres.name")->join("genres", "genres.id = movie_genres.genre_id")->whereIn("movie_genres.movie_id", $movieIds)->groupBy("movie_genres.movie_id")->get()->getResultArray();
+
+    $genreMap = [];
+    foreach ($genreQuery as $row) {
+      $genreMap[$row["movie_id"]] = $row["name"];
+    }
+
+    foreach ($results as &$movie) {
+      $movie["top_genre"] = $genreMap[$movie["id"]] ?? null;
+    }
+
+    return $results;
+  }
 }
