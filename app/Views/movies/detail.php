@@ -146,7 +146,7 @@
                                 <img src="<?= "https://i.pravatar.cc/150?u=" . ($rev["user_id"] ?? 0) ?>" class="w-10 h-10 rounded-full object-cover" alt="<?= esc($rev["user_name"] ?? "Pengguna Anonim") ?>">
                                 <div>
                                     <p class="text-white font-semibold text-sm flex items-center gap-2">
-                                        <?= esc($rev["user_name"] ?? "Pengguna Anonim") ?>
+                                        <a href="/user/<?= $rev["user_id"] ?? "#" ?>" class="hover:text-(--primary) transition-colors after:hidden!"><?= esc($rev["user_name"] ?? "Pengguna Anonim") ?></a>
                                         <span class="text-[10px] px-1.5 py-0.5 rounded bg-(--primary)/20 text-(--primary) border border-(--primary)/30">
                                             <?= esc(model("UserModel")->getUserRank($rev["user_points"] ?? 0)) ?>
                                         </span>

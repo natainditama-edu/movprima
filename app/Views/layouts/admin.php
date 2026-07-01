@@ -298,10 +298,9 @@
     <!-- Sidebar user footer -->
     <div class="p-4 border-t border-white/10 mt-auto">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shrink-0 shadow-lg">
-          <span class="text-sm font-bold font-display">
-            <?= strtoupper(substr(session()->get("user_name") ?? "A", 0, 1)) ?>
-          </span>
+        <div class="w-8 h-8 rounded-full overflow-hidden shadow-[0_0_20px_var(--primary-glow)]">
+          <?php $src = "https://i.pravatar.cc/150?u=" . (session()->get("user_id") ?? ""); ?>
+          <img src="<?= $src ?>" alt="<?= esc(session()->get("user_name") ?? "Pengguna") ?>" class="w-full h-full object-cover">
         </div>
         <div class="flex-1 min-w-0">
           <p class="text-sm font-bold text-white truncate m-0 font-display tracking-wide"><?= esc((string) (session()->get("user_name") ?? "Admin")) ?></p>

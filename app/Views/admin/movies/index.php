@@ -38,7 +38,7 @@
                   <?php foreach ($movies as $m): ?>
                     <tr class="hover:bg-white/5 transition-colors group border-b border-white/5 last:border-b-0 last:mb-2">
                         <td class="px-4 py-3 text-white font-medium text-xs! whitespace-nowrap">
-                          <a href="/movies/<?= esc($r["movie_slug"] ?? "#") ?>" target="_blank" class="text-(--primary) hover:text-white transition-colors flex items-center gap-1">
+                          <a href="/movies/<?= esc($m["slug"] ?? "#") ?>" target="_blank" class="text-(--primary) hover:text-white transition-colors flex items-center gap-1">
                             <?= esc($m["title"]) ?>
                             <i data-lucide="external-link" class="w-3 h-3"></i>
                           </a>

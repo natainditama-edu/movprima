@@ -1,7 +1,7 @@
 <?= $this->extend("layouts/main") ?>
 
 <?= $this->section("title") ?>
-Profil Saya
+<?= isset($isOwner) && $isOwner ? "Profil Saya" : esc(($user["name"] ?? "Pengguna") . " — Profil") ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>
@@ -28,10 +28,25 @@ Profil Saya
 
         <!-- Info -->
         <div class="flex-1 text-center md:text-left">
-            <h1 class="h1 uppercase text-white mb-1"><?= esc($user["name"] ?? "Pengguna") ?></h1>
-            <p class="text-(--text-secondary) mb-4"><?= esc($user["email"] ?? "email@example.com") ?></p>
+          <div class="flex justify-center md:justify-start items-center gap-2 mb-1">
+            <h1 class="h1 uppercase text-white"><?= esc($user["name"] ?? "Pengguna") ?></h1>
+            <?php if ($isOwner ?? true): ?>
+              <span class="text-xs px-2.5 py-1 rounded-full bg-(--primary)/20 text-(--primary) border border-(--primary)/30 font-semibold tracking-wide">
+                <?= esc(model("UserModel")->getUserRank($user["points"] ?? 0)) ?>
+              </span>
+            <?php endif; ?>
+          </div>
+            <div class="flex justify-center md:justify-start align-middle items-center gap-2 mb-3">
+                <?php if ($isOwner ?? true): ?>
+                  <p class="text-(--text-secondary)"><?= esc($user["email"] ?? "email@example.com") ?></p>
+                <?php else: ?>
+                  <span class="text-xs px-2.5 py-1 rounded-full bg-(--primary)/20 text-(--primary) border border-(--primary)/30 font-semibold tracking-wide">
+                    <?= esc(model("UserModel")->getUserRank($user["points"] ?? 0)) ?>
+                  </span>
+                <?php endif; ?>
+            </div>
 
-            <div class="flex flex-wrap justify-center md:justify-start gap-3 mb-6">
+            <div class="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
                 <span class="px-3 py-1 bg-(--bg-card) border border-(--border) rounded text-sm text-(--text-primary) font-semibold">
                     <?= $reviewCount ?? 0 ?> Ulasan
                 </span>
@@ -40,13 +55,16 @@ Profil Saya
                 </span>
             </div>
 
+            <?php if ($isOwner ?? true): ?>
             <a href="/profile/edit" class="bttn secondary inline-flex">
                 <i data-lucide="edit" class="w-4 h-4 mr-2"></i> UBAH PROFIL
             </a>
+            <?php endif; ?>
         </div>
       </div>
 
-      <!-- Watchlist -->
+      <!-- Watchlist: only visible to the profile owner -->
+      <?php if ($isOwner ?? true): ?>
       <div class="mb-12">
           <div class="flex items-center justify-between mb-6 border-b border-(--border) pb-2">
               <h2 class="h2 text-white">DAFTAR SAYA (WATCHLIST)</h2>
@@ -91,11 +109,12 @@ Profil Saya
           </div>
           <?php endif; ?>
       </div>
+      <?php endif; ?>
 
-      <!-- Ulasan Saya -->
+      <!-- Ulasan -->
       <div>
         <div class="flex items-center justify-between mb-6 border-b border-(--border) pb-2">
-            <h2 class="h2 text-white">ULASAN SAYA</h2>
+            <h2 class="h2 text-white"><?= $isOwner ?? true ? "ULASAN SAYA" : "ULASAN " . strtoupper(esc($user["name"] ?? "PENGGUNA")) ?></h2>
         </div>
 
         <?php if (empty($reviews)): ?>
@@ -122,6 +141,7 @@ Profil Saya
                         <p class="text-sm text-(--text-secondary) line-clamp-3"><?= esc($review["body"] ?? "") ?></p>
                         <?php endif; ?>
                     </div>
+                    <?php if ($isOwner ?? true): ?>
                     <div class="flex gap-2 shrink-0">
                         <button
                             type="button"
@@ -137,9 +157,11 @@ Profil Saya
                             <button type="submit" class="bttn icon border-red-500/30 text-red-500 hover:bg-red-500 hover:text-white scale-[0.8]" title="Hapus"><i data-lucide="trash-2" class="w-4 h-4 m-0"></i></button>
                         </form>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
 
+            <?php if ($isOwner ?? true): ?>
             <!-- Modal Edit Ulasan -->
             <dialog id="edit-review-modal-<?= $review["id"] ?? "" ?>" class="bg-(--bg-card) text-white p-6 rounded-xl border border-(--border) shadow-2xl backdrop:bg-black/80 backdrop:backdrop-blur-sm w-[90%] max-w-lg m-auto">
                 <div class="flex justify-between items-center mb-4 border-b border-(--border) pb-3">
@@ -182,6 +204,7 @@ Profil Saya
                     </div>
                 </form>
             </dialog>
+            <?php endif; ?>
             <?php endforeach; ?>
         </div>
         <?php endif; ?>

@@ -22,6 +22,44 @@ class MovieModel extends Model
   protected $allowedFields = ["title", "slug", "synopsis", "director", "release_year", "duration", "poster", "backdrop", "trailer_url", "language", "country", "status", "avg_rating", "review_count"];
 
   /**
+   * Generate a unique slug for a movie title.
+   * Appends an incremental number if the base slug already exists.
+   *
+   * @param string $title
+   * @return string
+   */
+  public function generateUniqueSlug(string $title): string
+  {
+    $slug = \App\Models\GenreModel::makeSlug($title);
+    $originalSlug = $slug;
+    $counter = 1;
+
+    while ($this->where("slug", $slug)->first()) {
+      $slug = $originalSlug . "-" . $counter;
+      $counter++;
+    }
+
+    return $slug;
+  }
+
+  /**
+   * Check if a movie already exists by title and release year.
+   * Used to prevent duplicates during creation or TMDB imports.
+   *
+   * @param string $title
+   * @param int|string|null $releaseYear
+   * @return bool
+   */
+  public function movieExists(string $title, $releaseYear = null): bool
+  {
+    $builder = $this->where("title", $title);
+    if (!empty($releaseYear)) {
+      $builder->where("release_year", $releaseYear);
+    }
+    return $builder->first() !== null;
+  }
+
+  /**
    * Fetch movie queue along with top genre label.
    * Returns array with left join for genreless movies.
    *

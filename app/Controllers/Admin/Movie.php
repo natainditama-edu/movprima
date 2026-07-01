@@ -69,12 +69,17 @@ class Movie extends BaseController
 
     $movieModel = new MovieModel();
     $title = $this->request->getPost("title");
+    $releaseYear = $this->request->getPost("release_year");
+
+    if ($movieModel->movieExists($title, $releaseYear)) {
+      return redirect()->back()->withInput()->with("error", "Data film dengan judul dan tahun rilis yang sama sudah ada di sistem.");
+    }
 
     $data = [
       "title" => $title,
-      "slug" => \App\Models\GenreModel::makeSlug($title) . "-" . time(),
+      "slug" => $movieModel->generateUniqueSlug($title),
       "synopsis" => $this->request->getPost("synopsis"),
-      "release_year" => $this->request->getPost("release_year"),
+      "release_year" => $releaseYear,
       "duration" => $this->request->getPost("duration"),
       "poster" => $this->request->getPost("poster"),
       "backdrop" => $this->request->getPost("backdrop"),
@@ -226,7 +231,7 @@ class Movie extends BaseController
    */
   public function tmdbSearch(): string
   {
-    $query = (string)$this->request->getGet("q");
+    $query = (string) $this->request->getGet("q");
     $results = null;
 
     if (!empty($query)) {
@@ -303,8 +308,14 @@ class Movie extends BaseController
 
     $movieModel = new MovieModel();
 
-    // Check if already imported
-    $slug = \App\Models\GenreModel::makeSlug($tmdbData["title"]) . "-" . time();
+    $title = $tmdbData["title"];
+    $releaseYear = !empty($tmdbData["release_date"]) ? substr($tmdbData["release_date"], 0, 4) : null;
+
+    if ($movieModel->movieExists($title, $releaseYear)) {
+      return redirect()->back()->with("error", "Film '{$title}' sudah ada di database.");
+    }
+
+    $slug = $movieModel->generateUniqueSlug($title);
 
     // Extract Director
     $director = null;
@@ -376,7 +387,6 @@ class Movie extends BaseController
 
     $posterUrl = !empty($tmdbData["poster_path"]) ? "https://image.tmdb.org/t/p/w500" . $tmdbData["poster_path"] : null;
     $backdropUrl = !empty($tmdbData["backdrop_path"]) ? "https://image.tmdb.org/t/p/w1280" . $tmdbData["backdrop_path"] : null;
-    $releaseYear = !empty($tmdbData["release_date"]) ? substr($tmdbData["release_date"], 0, 4) : null;
 
     $data = [
       "title" => $tmdbData["title"],

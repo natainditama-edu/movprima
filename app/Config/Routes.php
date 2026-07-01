@@ -27,6 +27,7 @@ $routes->get("movies", [Movie::class, "index"]);
 $routes->get("movies/(:segment)", [Movie::class, "show"]);
 $routes->get("genres", [Genre::class, "index"]);
 $routes->get("genres/(:segment)", [Genre::class, "show"]);
+$routes->get("user/(:num)", [User::class, "viewProfile"]);
 
 /**
  * Auth routes
