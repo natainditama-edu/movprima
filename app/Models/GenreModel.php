@@ -62,7 +62,7 @@ class GenreModel extends Model
 
   /**
    * Convert standard string into a safe URL slug.
-   * Returns a lowercased and hyphenated string.
+   * Transliterates non-Latin characters and strips invalid ones.
    *
    * @param string $name
    *
@@ -70,7 +70,23 @@ class GenreModel extends Model
    */
   public static function makeSlug(string $name): string
   {
-    return strtolower(url_title($name, "-", true));
+    if (function_exists("transliterator_transliterate")) {
+      $transliterated = transliterator_transliterate("Any-Latin; Latin-ASCII; Lower()", $name);
+      if ($transliterated !== false) {
+        $name = $transliterated;
+      }
+    }
+
+    $slug = strtolower(url_title($name, "-", true));
+    $slug = preg_replace("/[^a-z0-9\-]/", "", $slug);
+    $slug = preg_replace("/-+/", "-", $slug);
+    $slug = trim($slug, "-");
+
+    if (empty($slug)) {
+      $slug = "item-" . substr(md5($name . time()), 0, 8);
+    }
+
+    return $slug;
   }
 
   /**
