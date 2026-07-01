@@ -14,7 +14,11 @@
 <?= $this->extend("layouts/main") ?>
 
 <?= $this->section("title") ?>
-Daftar Film
+<?= esc($title ?? "Daftar Film") ?>
+<?= $this->endSection() ?>
+
+<?= $this->section("meta_description") ?>
+<?= esc($metaDescription ?? "Jelajahi koleksi film terbaik kami") ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>

@@ -55,7 +55,41 @@ class Movie extends BaseController
       return $genreModel->getAllSorted();
     });
 
+    // Generate dynamic SEO title & H1
+    $pageTitle = "Daftar Film";
+    $subtitle = "Jelajahi koleksi film terbaik kami";
+    
+    if (!empty($searchQuery)) {
+      $pageTitle = "Pencarian: " . esc($searchQuery);
+      $subtitle = "Hasil pencarian film untuk '" . esc($searchQuery) . "'";
+    } elseif (!empty($selectedGenre)) {
+      $genreName = "Kategori";
+      foreach ($genres as $g) {
+        if ($g["slug"] === $selectedGenre) {
+          $genreName = $g["name"];
+          break;
+        }
+      }
+      $pageTitle = "Film " . $genreName;
+      $subtitle = "Jelajahi koleksi film " . $genreName . " terbaik";
+    }
+
+    if ($selectedSort === "rating") {
+      $pageTitle .= " Terpopuler";
+    } elseif ($selectedSort === "oldest") {
+      $pageTitle .= " Klasik";
+    } elseif ($selectedSort === "newest" && empty($searchQuery) && empty($selectedGenre)) {
+      $pageTitle .= " Terbaru";
+    }
+
+    if ($currentPage > 1) {
+      $pageTitle .= " - Halaman " . $currentPage;
+    }
+
     return view("movies/index", [
+      "title" => $pageTitle,
+      "subtitle" => $subtitle,
+      "metaDescription" => $subtitle . " di MovPrima. Temukan ulasan, rating, dan rekomendasi film dari komunitas pecinta film Indonesia.",
       "movies" => $movies,
       "genres" => $genres,
       "searchQuery" => $searchQuery,
@@ -125,6 +159,8 @@ class Movie extends BaseController
     log_message("info", "Completed YouTube reviews fetch for movie: " . $movie["title"]);
 
     return view("movies/detail", [
+      "title" => $movie["title"] . ($movie["release_year"] ? " (" . $movie["release_year"] . ")" : ""),
+      "metaDescription" => word_limiter(strip_tags($movie["synopsis"] ?? ""), 20) . " Tonton trailer, baca ulasan, dan temukan info lengkap tentang " . $movie["title"] . " di MovPrima.",
       "movie" => $movie,
       "movieGenres" => $genres,
       "movieReviews" => $reviews,

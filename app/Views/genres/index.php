@@ -1,7 +1,11 @@
 <?= $this->extend("layouts/main") ?>
 
 <?= $this->section("title") ?>
-Semua Genre
+<?= esc($title ?? "Semua Genre") ?>
+<?= $this->endSection() ?>
+
+<?= $this->section("meta_description") ?>
+<?= esc($metaDescription ?? "Jelajahi semua genre film di MovPrima.") ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>

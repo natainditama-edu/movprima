@@ -4,7 +4,13 @@
 Daftar
 <?= $this->endSection() ?>
 
+<?= $this->section("meta_description") ?>
+Daftar dan buat akun MovPrima sekarang. Bergabunglah dengan komunitas pecinta film untuk memberikan rating, menulis ulasan, dan menemukan film terbaik.
+<?= $this->endSection() ?>
+
 <?= $this->section("content") ?>
+<h1 style="position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">Daftar Akun MovPrima</h1>
+
 <div class="flex-container">
     <div class="page">
         <div class="pageLoginSignin">

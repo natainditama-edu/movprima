@@ -4,7 +4,13 @@
 Masuk
 <?= $this->endSection() ?>
 
+<?= $this->section("meta_description") ?>
+Masuk ke akun MovPrima Anda untuk memberikan rating, menulis ulasan, dan mengelola daftar tontonan film Anda.
+<?= $this->endSection() ?>
+
 <?= $this->section("content") ?>
+<h1 style="position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">Masuk ke Akun MovPrima</h1>
+
 <div class="flex-container">
     <div class="page">
         <div class="pageLoginSignin">

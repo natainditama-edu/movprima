@@ -9,6 +9,7 @@
     <meta name="description" content="<?= $this->renderSection("meta_description", "Temukan ulasan dan rekomendasi film terbaik di MovPrima. Bagikan pendapatmu dan jadilah bagian dari komunitas pecinta film.") ?>" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <meta name="theme-color" content="#0a0a0f" />
+    <link rel="canonical" href="<?= $this->renderSection("canonical", current_url()) ?>" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

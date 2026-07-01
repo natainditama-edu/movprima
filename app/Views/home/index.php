@@ -4,7 +4,12 @@
 Beranda
 <?= $this->endSection() ?>
 
+<?= $this->section("meta_description") ?>
+Temukan ulasan, rating, dan rekomendasi film terbaik dari komunitas MovPrima. Tonton trailer dan bagikan daftar tontonanmu.
+<?= $this->endSection() ?>
+
 <?= $this->section("content") ?>
+<h1 style="position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;">MovPrima - Komunitas Ulasan dan Rekomendasi Film Terbaik</h1>
 
 <section class="indexHero">
     <div class="owl-carousel owlHero">

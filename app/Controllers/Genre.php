@@ -31,6 +31,8 @@ class Genre extends BaseController
     });
 
     return view("genres/index", [
+      "title" => "Semua Kategori Genre",
+      "metaDescription" => "Jelajahi puluhan kategori genre film terbaik di MovPrima. Temukan film aksi, drama, komedi, horor, dan genre favorit Anda lainnya.",
       "genres" => $genres,
     ]);
   }
@@ -64,7 +66,21 @@ class Genre extends BaseController
     $total = $movieModel->pager->getTotal("default");
     $totalPages = $movieModel->pager->getPageCount("default");
 
+    $pageTitle = "Film Genre " . esc($genre["name"]);
+    if ($sort === "rating") {
+      $pageTitle .= " Terbaik";
+    } elseif ($sort === "oldest") {
+      $pageTitle .= " Klasik";
+    } else {
+      $pageTitle .= " Terbaru";
+    }
+    if ($currentPage > 1) {
+      $pageTitle .= " - Halaman " . $currentPage;
+    }
+
     return view("genres/show", [
+      "title" => $pageTitle,
+      "metaDescription" => "Koleksi lengkap film bergenre " . esc($genre["name"]) . " di MovPrima. Jelajahi film " . esc($genre["name"]) . " dengan rating tertinggi, ulasan terbaik, dan rilis terbaru.",
       "genre" => $genre,
       "movies" => $movies,
       "sort" => $sort,

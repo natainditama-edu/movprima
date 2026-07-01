@@ -1,7 +1,11 @@
 <?= $this->extend("layouts/main") ?>
 
 <?= $this->section("title") ?>
-<?= esc($genre["name"] ?? "Kategori") ?>
+<?= esc($title ?? $genre["name"]) ?>
+<?= $this->endSection() ?>
+
+<?= $this->section("meta_description") ?>
+<?= esc($metaDescription ?? "Koleksi film " . $genre["name"] . " terbaik di MovPrima.") ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>

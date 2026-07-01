@@ -12,11 +12,11 @@
 <?= $this->extend("layouts/main") ?>
 
 <?= $this->section("title") ?>
-<?= esc($movie["title"] ?? "Judul Tidak Diketahui") ?>
+<?= esc($title ?? $movie["title"]) ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("meta_description") ?>
-<?= esc(word_limiter($movie["synopsis"] ?? "", 20)) ?>
+<?= esc($metaDescription ?? word_limiter($movie["synopsis"] ?? "", 20)) ?>
 <?= $this->endSection() ?>
 
 <?= $this->section("content") ?>

@@ -4,7 +4,12 @@
 <?= isset($isOwner) && $isOwner ? "Profil Saya" : esc(($user["name"] ?? "Pengguna") . " — Profil") ?>
 <?= $this->endSection() ?>
 
+<?= $this->section("meta_description") ?>
+<?= esc("Lihat profil, daftar tontonan, dan ulasan film dari " . ($user["name"] ?? "Pengguna") . " di MovPrima.") ?>
+<?= $this->endSection() ?>
+
 <?= $this->section("content") ?>
+<h1 style="position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;"><?= esc("Profil " . ($user["name"] ?? "Pengguna")) ?></h1>
 
 <div class="py-4"></div>
 
