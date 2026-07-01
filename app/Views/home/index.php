@@ -76,6 +76,23 @@ Beranda
 </section>
 <?php endif; ?>
 
+<!-- TRENDING MINGGU INI -->
+<?php if (!empty($trending)): ?>
+<section class="movies my-12">
+    <div class="flex-container">
+        <div class="containerLink flex items-center justify-between">
+            <h3 class="text-2xl">TRENDING MINGGU INI</h3>
+            <a class="h5 exploreall light" href="/movies">LIHAT SEMUA</a>
+        </div>
+        <div class="owl-carousel owlPopular owlfix">
+            <?php foreach ($trending as $movie): ?>
+                <?= view("partials/movie_item", ["movie" => $movie]) ?>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <!-- TERPOPULER DI MovPrima -->
 <?php if (!empty($topRated)): ?>
 <section class="movies my-12">
@@ -98,7 +115,7 @@ Beranda
 <section class="movies my-12">
     <div class="flex-container">
         <div class="containerLink flex items-center justify-between">
-            <h3 class="text-2xl">REKOMENDASI PILIHAN</h3>
+            <h3 class="text-2xl"><?= session()->get("user_id") ? "REKOMENDASI UNTUKMU" : "REKOMENDASI PILIHAN" ?></h3>
             <a class="h5 exploreall light" href="/movies?sort=rating">LIHAT SEMUA</a>
         </div>
         <div class="owl-carousel owlPopular owlfix">

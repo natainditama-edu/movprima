@@ -27,6 +27,7 @@ $routes->get("movies", [Movie::class, "index"]);
 $routes->get("movies/(:segment)", [Movie::class, "show"]);
 $routes->get("genres", [Genre::class, "index"]);
 $routes->get("genres/(:segment)", [Genre::class, "show"]);
+$routes->get("user/(:num)", [User::class, "viewProfile"]);
 
 /**
  * Auth routes
@@ -83,6 +84,8 @@ $routes->group("admin", ["filter" => "admin"], static function (RouteCollection 
   $routes->get("movies", [AdminMovie::class, "index"]);
   $routes->get("movies/create", [AdminMovie::class, "create"]);
   $routes->post("movies", [AdminMovie::class, "store"]);
+  $routes->get("movies/tmdb", [AdminMovie::class, "tmdbSearch"]);
+  $routes->post("movies/tmdb/import", [AdminMovie::class, "tmdbImport"]);
   $routes->get("movies/(:num)/edit", [AdminMovie::class, "edit"]);
   $routes->post("movies/(:num)", [AdminMovie::class, "update"]);
   $routes->post("movies/(:num)/delete", [AdminMovie::class, "destroy"]);

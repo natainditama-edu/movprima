@@ -8,10 +8,16 @@
 
 <div class="flex items-center justify-between mb-4 sm:mb-8 pb-2 sm:pb-4 border-b border-white/10">
   <h1 class="text-xl font-display tracking-widest text-white m-0 uppercase font-semibold">Kelola Film</h1>
-  <a href="/admin/movies/create" class="bttn colorbttn px-4! py-2! text-xs! hover:bg-transparent! flex items-center gap-1" >
-    <span>Tambah Film</span>
-    <i data-lucide="plus" class="w-4 h-4"></i>
-  </a>
+  <div class="flex items-center gap-2">
+    <a href="/admin/movies/tmdb" class="bttn colorbttn px-4! py-2! text-xs! hover:bg-transparent! flex items-center gap-1 text-white">
+      <span>Cari di TMDB</span>
+      <i data-lucide="search" class="w-4 h-4 text-white"></i>
+    </a>
+    <a href="/admin/movies/create" class="bttn colorbttn px-4! py-2! text-xs! hover:bg-transparent! flex items-center gap-1" >
+      <span>Tambah Film</span>
+      <i data-lucide="plus" class="w-4 h-4"></i>
+    </a>
+  </div>
 </div>
 
 <div class="bg-white/5 border border-white/10 rounded-lg overflow-hidden shadow-2xl">
@@ -32,7 +38,7 @@
                   <?php foreach ($movies as $m): ?>
                     <tr class="hover:bg-white/5 transition-colors group border-b border-white/5 last:border-b-0 last:mb-2">
                         <td class="px-4 py-3 text-white font-medium text-xs! whitespace-nowrap">
-                          <a href="/movies/<?= esc($r["movie_slug"] ?? "#") ?>" target="_blank" class="text-(--primary) hover:text-white transition-colors flex items-center gap-1">
+                          <a href="/movies/<?= esc($m["slug"] ?? "#") ?>" target="_blank" class="text-(--primary) hover:text-white transition-colors flex items-center gap-1">
                             <?= esc($m["title"]) ?>
                             <i data-lucide="external-link" class="w-3 h-3"></i>
                           </a>

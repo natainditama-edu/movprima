@@ -20,7 +20,7 @@ class UserModel extends Model
   protected $createdField = "created_at";
   protected $updatedField = "updated_at";
 
-  protected $allowedFields = ["name", "email", "password", "role", "bio", "email_verified_at"];
+  protected $allowedFields = ["name", "email", "password", "role", "bio", "points", "email_verified_at"];
 
   protected $beforeInsert = ["hashPassword"];
   protected $beforeUpdate = ["hashPassword"];
@@ -109,5 +109,49 @@ class UserModel extends Model
   public function getWithReviewCount(): array
   {
     return $this->select("users.*, (SELECT COUNT(*) FROM reviews WHERE reviews.user_id = users.id AND reviews.status = 'published') as review_count")->orderBy("users.id", "DESC")->findAll();
+  }
+
+  /**
+   * Determine the user's gamification rank based on their points.
+   * Returns a dynamic rank title used for frontend display.
+   *
+   * @param int $points
+   *
+   * @return string
+   */
+  public function getUserRank(int $points): string
+  {
+    if ($points >= 100) {
+      return "Kritikus Film";
+    } elseif ($points >= 50) {
+      return "Pengamat Film";
+    }
+    return "Penonton Amatir";
+  }
+
+  /**
+   * Add or subtract points from a user's account safely.
+   * Ensures the points value never drops below zero.
+   *
+   * @param int $userId
+   * @param int $points Amount to add (can be negative)
+   *
+   * @return bool
+   */
+  public function addPoints(int $userId, int $points): bool
+  {
+    if ($points === 0) {
+      return true;
+    }
+
+    $user = $this->find($userId);
+    if (!$user) {
+      return false;
+    }
+
+    // Ensure points don't go below 0
+    $newPoints = max(0, (int) ($user["points"] ?? 0) + $points);
+
+    return $this->update($userId, ["points" => $newPoints]);
   }
 }

@@ -62,7 +62,7 @@ class GenreModel extends Model
 
   /**
    * Convert standard string into a safe URL slug.
-   * Returns a lowercased and hyphenated string.
+   * Transliterates non-Latin characters and strips invalid ones.
    *
    * @param string $name
    *
@@ -70,6 +70,59 @@ class GenreModel extends Model
    */
   public static function makeSlug(string $name): string
   {
-    return strtolower(url_title($name, "-", true));
+    if (function_exists("transliterator_transliterate")) {
+      $transliterated = transliterator_transliterate("Any-Latin; Latin-ASCII; Lower()", $name);
+      if ($transliterated !== false) {
+        $name = $transliterated;
+      }
+    }
+
+    $slug = strtolower(url_title($name, "-", true));
+    $slug = preg_replace("/[^a-z0-9\-]/", "", $slug);
+    $slug = preg_replace("/-+/", "-", $slug);
+    $slug = trim($slug, "-");
+
+    if (empty($slug)) {
+      $slug = "item-" . substr(md5($name . time()), 0, 8);
+    }
+
+    return $slug;
+  }
+
+  /**
+   * Syncs TMDB genres to the local database.
+   * Returns an array of local genre IDs.
+   *
+   * @param array $tmdbGenres Array of genres from TMDB API
+   * @return array Array of local genre IDs
+   */
+  public function syncTmdbGenres(array $tmdbGenres): array
+  {
+    $genreIds = [];
+    foreach ($tmdbGenres as $g) {
+      $name = $g["name"] ?? "";
+      if (empty($name)) {
+        continue;
+      }
+
+      $slug = self::makeSlug($name);
+
+      // Check if genre exists
+      $existing = $this->where("slug", $slug)->orWhere("name", $name)->first();
+
+      if ($existing) {
+        $genreIds[] = $existing["id"];
+      } else {
+        // Create new genre
+        $newId = $this->insert([
+          "name" => $name,
+          "slug" => $slug,
+        ]);
+        if ($newId) {
+          $genreIds[] = $newId;
+        }
+      }
+    }
+    return $genreIds;
   }
 }

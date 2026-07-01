@@ -7,6 +7,8 @@ use App\Models\GenreModel;
 use App\Models\MovieModel;
 use App\Models\WatchlistModel;
 use App\Models\ReviewModel;
+use App\Libraries\OmdbLibrary;
+use App\Libraries\YoutubeLibrary;
 use CodeIgniter\Exceptions\PageNotFoundException;
 
 /**
@@ -111,6 +113,17 @@ class Movie extends BaseController
       });
     }
 
+    // Fetch external API data: critic scores and video reviews
+    log_message("info", "Starting OMDb ratings fetch for movie: " . $movie["title"]);
+    $omdbLib = new OmdbLibrary();
+    $omdbRatings = $omdbLib->getRatings($movie["title"], $movie["release_year"] ? (int) $movie["release_year"] : null);
+    log_message("info", "Completed OMDb ratings fetch for movie: " . $movie["title"]);
+
+    log_message("info", "Starting YouTube reviews fetch for movie: " . $movie["title"]);
+    $youtubeLib = new YoutubeLibrary();
+    $youtubeReviews = $youtubeLib->getVideoReviews($movie["title"]);
+    log_message("info", "Completed YouTube reviews fetch for movie: " . $movie["title"]);
+
     return view("movies/detail", [
       "movie" => $movie,
       "movieGenres" => $genres,
@@ -119,6 +132,8 @@ class Movie extends BaseController
       "isMovieInWatchlist" => $inWatchlist,
       "avgRating" => $movie["avg_rating"] ?? null,
       "userReview" => $userReview,
+      "omdbRatings" => $omdbRatings,
+      "youtubeReviews" => $youtubeReviews,
     ]);
   }
 }

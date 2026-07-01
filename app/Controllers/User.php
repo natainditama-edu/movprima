@@ -50,6 +50,37 @@ class User extends BaseController
       "reviews" => $reviews,
       "watchlist" => $watchlist,
       "reviewCount" => count($reviews),
+      "isOwner" => true,
+    ]);
+  }
+
+  /**
+   * GET /user/{id}
+   *
+   * Displays a read-only public profile page for any registered user.
+   * Email and action buttons (edit / watchlist management) are hidden.
+   *
+   * @param int $id Target user's primary key.
+   * @return string|RedirectResponse
+   */
+  public function viewProfile(int $id): string|RedirectResponse
+  {
+    $userModel = new UserModel();
+    $user = $userModel->findById($id);
+
+    if (!$user) {
+      return redirect()->to("/")->with("error", "Pengguna tidak ditemukan.");
+    }
+
+    $reviewModel = new ReviewModel();
+    $reviews = $reviewModel->getByUser($id);
+
+    return view("user/profile", [
+      "user" => $user,
+      "reviews" => $reviews,
+      "watchlist" => [],
+      "reviewCount" => count($reviews),
+      "isOwner" => false,
     ]);
   }
 
