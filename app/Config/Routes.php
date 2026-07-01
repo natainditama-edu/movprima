@@ -83,6 +83,8 @@ $routes->group("admin", ["filter" => "admin"], static function (RouteCollection 
   $routes->get("movies", [AdminMovie::class, "index"]);
   $routes->get("movies/create", [AdminMovie::class, "create"]);
   $routes->post("movies", [AdminMovie::class, "store"]);
+  $routes->get("movies/tmdb", [AdminMovie::class, "tmdbSearch"]);
+  $routes->post("movies/tmdb/import", [AdminMovie::class, "tmdbImport"]);
   $routes->get("movies/(:num)/edit", [AdminMovie::class, "edit"]);
   $routes->post("movies/(:num)", [AdminMovie::class, "update"]);
   $routes->post("movies/(:num)/delete", [AdminMovie::class, "destroy"]);

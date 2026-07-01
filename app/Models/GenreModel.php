@@ -72,4 +72,41 @@ class GenreModel extends Model
   {
     return strtolower(url_title($name, "-", true));
   }
+
+  /**
+   * Syncs TMDB genres to the local database.
+   * Returns an array of local genre IDs.
+   *
+   * @param array $tmdbGenres Array of genres from TMDB API
+   * @return array Array of local genre IDs
+   */
+  public function syncTmdbGenres(array $tmdbGenres): array
+  {
+    $genreIds = [];
+    foreach ($tmdbGenres as $g) {
+      $name = $g["name"] ?? "";
+      if (empty($name)) {
+        continue;
+      }
+
+      $slug = self::makeSlug($name);
+
+      // Check if genre exists
+      $existing = $this->where("slug", $slug)->orWhere("name", $name)->first();
+
+      if ($existing) {
+        $genreIds[] = $existing["id"];
+      } else {
+        // Create new genre
+        $newId = $this->insert([
+          "name" => $name,
+          "slug" => $slug,
+        ]);
+        if ($newId) {
+          $genreIds[] = $newId;
+        }
+      }
+    }
+    return $genreIds;
+  }
 }
