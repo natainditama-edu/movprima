@@ -45,26 +45,58 @@
                 <?php endif; ?>
             </div>
 
-            <div class="buttons mt-4 flex items-end gap-2">
-                <?php if (session()->get("user_id")): ?>
-                    <form action="/watchlist" method="POST" id="watchlist-form">
-                        <?= csrf_field() ?>
-                        <input type="hidden" name="movie_id" value="<?= $movie["id"] ?? "" ?>">
-                        <button type="submit" class="bttn icon max-h-10" data-title="<?= $isMovieInWatchlist ? "Hapus dari Daftar" : "Tambah ke Daftar" ?>" id="watchlist-btn">
-                            <i class="fa-solid <?= $isMovieInWatchlist ? "fa-check text-green-500" : "fa-plus" ?>"></i>
-                        </button>
-                    </form>
-                <?php else: ?>
-                    <a href="/auth/login" class="bttn icon max-h-10" data-title="Masuk untuk tambah">
-                        <i class="fa-solid fa-plus"></i>
+            <div class="flex flex-col gap-3 self-end">
+                <!-- Rating Scores Row -->
+                <?php if (!empty($omdbRatings["imdb"]) || !empty($omdbRatings["rotten_tomatoes"]) || !empty($omdbRatings["metacritic"])): ?>
+                <div class="flex flex-col gap-2 items-end justify-end">
+                    <?php if (!empty($omdbRatings["imdb"])): ?>
+                    <a href="https://www.imdb.com/find/?q=<?= urlencode($movie["title"]) ?>" target="_blank" class="flex items-center gap-2 bg-black/40 border border-white/10 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-black/60 transition-colors">
+                        <span class="text-base text-yellow-400"><i class="fa-brands fa-imdb"></i></span>
+                        <span class="text-xs font-semibold text-[--text-secondary] uppercase tracking-wide">IMDb</span>
+                        <span class="text-sm font-bold text-yellow-400"><?= esc($omdbRatings["imdb"]) ?></span>
                     </a>
+                    <?php endif; ?>
+
+                    <?php if (!empty($omdbRatings["metacritic"])): ?>
+                    <a href="https://www.metacritic.com/search/<?= urlencode($movie["title"]) ?>/" target="_blank" class="flex items-center gap-2 bg-black/40 border border-yellow-500/30 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-black/60 transition-colors">
+                        <span class="text-base">🎬</span>
+                        <span class="text-xs font-semibold text-[--text-secondary] uppercase tracking-wide">Metacritic</span>
+                        <span class="text-sm font-bold text-yellow-300"><?= esc($omdbRatings["metacritic"]) ?></span>
+                    </a>
+                    <?php endif; ?>
+
+                    <?php if (!empty($omdbRatings["rotten_tomatoes"])): ?>
+                    <a href="https://www.rottentomatoes.com/search?search=<?= urlencode($movie["title"]) ?>" target="_blank" class="flex items-center gap-2 bg-black/40 border border-red-500/30 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-black/60 transition-colors">
+                        <span class="text-base">🍅</span>
+                        <span class="text-xs font-semibold text-[--text-secondary] uppercase tracking-wide">Rotten Tomatoes</span>
+                        <span class="text-sm font-bold text-red-400"><?= esc($omdbRatings["rotten_tomatoes"]) ?></span>
+                    </a>
+                    <?php endif; ?>
+                </div>
                 <?php endif; ?>
 
-                <?php if ($movie["trailer_url"] ?? null): ?>
-                <a href="<?= esc($movie["trailer_url"] ?? null) ?>" target="_blank" class="bttn watchnow big">
-                    <i class="fa-solid fa-play"></i> LIHAT TRAILER
-                </a>
-                <?php endif; ?>
+                <!-- Action Buttons Row -->
+                <div class="buttons flex items-center gap-2">
+                    <?php if (session()->get("user_id")): ?>
+                        <form action="/watchlist" method="POST" id="watchlist-form">
+                            <?= csrf_field() ?>
+                            <input type="hidden" name="movie_id" value="<?= $movie["id"] ?? "" ?>">
+                            <button type="submit" class="bttn icon max-h-10" data-title="<?= $isMovieInWatchlist ? "Hapus dari Daftar" : "Tambah ke Daftar" ?>" id="watchlist-btn">
+                                <i class="fa-solid <?= $isMovieInWatchlist ? "fa-check text-green-500" : "fa-plus" ?>"></i>
+                            </button>
+                        </form>
+                    <?php else: ?>
+                        <a href="/auth/login" class="bttn icon max-h-10" data-title="Masuk untuk tambah">
+                            <i class="fa-solid fa-plus"></i>
+                        </a>
+                    <?php endif; ?>
+
+                    <?php if ($movie["trailer_url"] ?? null): ?>
+                    <a href="<?= esc($movie["trailer_url"] ?? null) ?>" target="_blank" class="bttn watchnow big">
+                        <i class="fa-solid fa-play"></i> LIHAT TRAILER
+                    </a>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
     </div>
@@ -78,6 +110,7 @@
         <div class="movieDetailTabCon">
             <a href="#information" class="movieDetailTab active">INFO</a>
             <a href="#reviews" class="movieDetailTab">ULASAN (<?= count($movieReviews) ?>)</a>
+            <a href="#video-reviews" class="movieDetailTab flex items-center gap-2">VIDEO</a>
         </div>
 
         <div id="information" class="revealTabContent tabContent active">
@@ -182,6 +215,56 @@
                         <?php
                         endforeach; ?>
                     </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+        <div id="video-reviews" class="revealTabContent tabContent">
+            <div class="tabContentFrame information">
+                <div class="flex items-center gap-2 border-b border-(--border) pb-2 mb-4">
+                    <i class="fa-brands fa-youtube text-2xl text-red-500"></i>
+                    <p class="title m-0 border-0 pb-0">VIDEO REVIEWS TERATAS</p>
+                </div>
+
+                <?php if (empty($youtubeReviews)): ?>
+                <div class="text-center py-8">
+                    <i data-lucide="video-off" class="w-12 h-12 mx-auto mb-3 text-(--text-muted)"></i>
+                    <p class="text-(--text-secondary)">Belum ada video review dari YouTube untuk film ini.</p>
+                </div>
+                <?php else: ?>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <?php foreach ($youtubeReviews as $video): ?>
+                    <div class="bg-(--bg-elevated) rounded-xl overflow-hidden border border-(--border) hover:border-(--primary) transition-colors flex flex-col group">
+                        <a href="https://www.youtube.com/watch?v=<?= esc($video["video_id"]) ?>" target="_blank" class="relative block aspect-video overflow-hidden bg-black group-hover:opacity-90 transition-opacity">
+                            <img src="https://i.ytimg.com/vi/<?= esc($video['video_id']) ?>/maxresdefault.jpg" onerror="this.onerror=null;this.src='<?= esc($video['thumbnail']) ?>';" alt="<?= esc($video["title"]) ?>" class="w-full h-full object-cover">
+                            <!-- Overlay Play Button -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <div class="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(220,38,38,0.5)] group-hover:scale-110 transition-transform">
+                                    <i class="fa-solid fa-play text-white ml-1 text-lg"></i>
+                                </div>
+                            </div>
+                        </a>
+                        <div class="p-4 flex-1 flex flex-col">
+                            <h4 class="font-bold text-white text-sm line-clamp-2 mb-3 flex-1" title="<?= esc($video["title"]) ?>"><?= esc($video["title"]) ?></h4>
+                            <div class="flex items-center justify-between mt-auto">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-6 h-6 rounded-full bg-(--bg-card) overflow-hidden flex items-center justify-center shrink-0 border border-(--border)">
+                                        <?php if (!empty($video['channel_avatar'])): ?>
+                                        <img src="<?= esc($video['channel_avatar']) ?>" alt="<?= esc($video['channel_title']) ?>" class="w-full h-full object-cover">
+                                        <?php else: ?>
+                                        <i data-lucide="user" class="w-3 h-3 text-(--text-secondary)"></i>
+                                        <?php endif; ?>
+                                    </div>
+                                    <p class="text-xs text-(--text-secondary) line-clamp-1 font-medium"><?= esc($video['channel_title']) ?></p>
+                                </div>
+                                <a href="https://www.youtube.com/watch?v=<?= esc($video["video_id"]) ?>" target="_blank" class="text-xs bg-red-600/10 text-red-500 hover:bg-red-600 hover:text-white border border-red-500/20 px-2 py-1 rounded transition-colors flex items-center gap-1">
+                                    <i data-lucide="external-link" class="w-3 h-3"></i> Buka
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
                 <?php endif; ?>
             </div>
         </div>
@@ -325,21 +408,54 @@ document.addEventListener('DOMContentLoaded', () => {
         return false;
     };
 
-    // Tab switching manual (kalau app.js asli bermasalah)
+    // Tab switching manual & URL Search Params persistence
     const tabs = document.querySelectorAll('.movieDetailTab');
     const contents = document.querySelectorAll('.revealTabContent');
+
+    // Cek search params saat pertama kali load
+    const urlParams = new URLSearchParams(window.location.search);
+    const activeTabId = urlParams.get('tab') || 'information'; 
+
+    function activateTab(targetId) {
+        tabs.forEach(t => {
+            if (t.getAttribute('href') === '#' + targetId) {
+                t.classList.add('active');
+            } else {
+                t.classList.remove('active');
+            }
+        });
+        
+        contents.forEach(c => {
+            if (c.id === targetId) {
+                c.classList.add('active');
+            } else {
+                c.classList.remove('active');
+            }
+        });
+    }
+    
+    // Set initial active tab
+    activateTab(activeTabId);
 
     tabs.forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = tab.getAttribute('href').substring(1);
+            
+            activateTab(targetId);
 
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            contents.forEach(c => c.classList.remove('active'));
-            document.getElementById(targetId).classList.add('active');
+            // Update URL search params tanpa reload halaman
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('tab', targetId);
+            window.history.pushState({ path: newUrl.href }, '', newUrl.href);
         });
+    });
+
+    // Tangani event back/forward browser
+    window.addEventListener('popstate', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const activeTabId = urlParams.get('tab') || 'information'; 
+        activateTab(activeTabId);
     });
 
     // Review Like AJAX
