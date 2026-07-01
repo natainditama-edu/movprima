@@ -19,13 +19,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
   <!-- Tailwind CSS (utilities only) via script as requested -->
-  <link rel="preload" href="/assets/css/app.css" as="style" />
-  <link rel="stylesheet" href="/assets/css/app.css" />
+  <link rel="preload" href="/assets/css/app.css?v=<?= @filemtime(FCPATH . 'assets/css/app.css') ?: '1.0' ?>" as="style" />
+  <link rel="stylesheet" href="/assets/css/app.css?v=<?= @filemtime(FCPATH . 'assets/css/app.css') ?: '1.0' ?>" />
 
   <!-- Custom Theme CSS -->
-  <link rel="preload" href="/assets/css/style.css" as="style" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <link rel="stylesheet" href="/assets/css/custom.css" />
+  <link rel="preload" href="/assets/css/style.css?v=<?= @filemtime(FCPATH . 'assets/css/style.css') ?: '1.0' ?>" as="style" />
+  <link rel="stylesheet" href="/assets/css/style.css?v=<?= @filemtime(FCPATH . 'assets/css/style.css') ?: '1.0' ?>" />
+  <link rel="stylesheet" href="/assets/css/custom.css?v=<?= @filemtime(FCPATH . 'assets/css/custom.css') ?: '1.0' ?>" />
 
   <!-- DataTables & jQuery -->
   <link rel="preconnect" href="https://code.jquery.com" crossorigin />

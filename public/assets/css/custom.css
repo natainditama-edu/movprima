@@ -775,3 +775,71 @@ footer {
 .page .pageLoginSignin {
   min-height: auto !important;
 }
+
+/* Movie Grid: fix wrapper so title below poster is NEVER clipped */
+/* Apply to ALL screen sizes — the aspect-ratio must live on the poster,
+   not on the wrapper that also contains the title text. */
+.movies.wraplist .wrapMovieList .wrapMovieItem {
+  aspect-ratio: unset !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.movies.wraplist .wrapMovieItem .item .movieItem {
+  width: 100% !important;
+  height: auto !important;
+  overflow: visible !important;
+}
+
+/* Poster itself keeps 2:3 independently */
+.movies.wraplist .wrapMovieItem .item .moviePoster {
+  aspect-ratio: 2/3 !important;
+  width: 100% !important;
+}
+
+/* Title below poster */
+.movies.wraplist .wrapMovieItem .item .movieTitle p {
+  line-height: 1.3 !important;
+  margin-top: 8px !important;
+  padding: 0 2px !important;
+}
+
+/* Slightly smaller on mobile */
+@media (max-width: 767px) {
+  .movies.wraplist .wrapMovieItem .item .movieTitle p {
+    font-size: 0.8rem !important;
+    margin-top: 5px !important;
+  }
+}
+
+/* Footer App Banner: stack vertically on mobile */
+@media (max-width: 767px) {
+  footer .footerContainer .footerContainerTitle .h1 {
+    font-size: 1.4rem !important;
+    line-height: 1.3 !important;
+  }
+
+  footer .footerContainer .boxes {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+  }
+
+  footer .footerContainer .boxes .boxesItem img {
+    max-width: 180px !important;
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  footer .footerContainer .ads {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 16px !important;
+  }
+
+  footer .footerContainer .ads img {
+    max-width: 180px !important;
+    margin: 0 auto !important;
+  }
+}
+

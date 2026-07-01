@@ -45,10 +45,10 @@
                 <?php endif; ?>
             </div>
 
-            <div class="flex flex-col gap-3 self-end">
+            <div class="flex flex-col gap-3 self-center md:self-end">
                 <!-- Rating Scores Row -->
                 <?php if (!empty($omdbRatings["imdb"]) || !empty($omdbRatings["rotten_tomatoes"]) || !empty($omdbRatings["metacritic"])): ?>
-                <div class="flex flex-col gap-2 items-end justify-end">
+                <div class="flex md:flex-col flex-wrap gap-2 items-end justify-center md:justify-end">
                     <?php if (!empty($omdbRatings["imdb"])): ?>
                     <a href="https://www.imdb.com/find/?q=<?= urlencode($movie["title"]) ?>" target="_blank" class="flex items-center gap-2 bg-black/40 border border-white/10 rounded-lg px-3 py-1.5 backdrop-blur-sm hover:bg-black/60 transition-colors">
                         <span class="text-base text-yellow-400"><i class="fa-brands fa-imdb"></i></span>
@@ -414,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cek search params saat pertama kali load
     const urlParams = new URLSearchParams(window.location.search);
-    const activeTabId = urlParams.get('tab') || 'information'; 
+    const activeTabId = urlParams.get('tab') || 'information';
 
     function activateTab(targetId) {
         tabs.forEach(t => {
@@ -424,7 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 t.classList.remove('active');
             }
         });
-        
+
         contents.forEach(c => {
             if (c.id === targetId) {
                 c.classList.add('active');
@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-    
+
     // Set initial active tab
     activateTab(activeTabId);
 
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = tab.getAttribute('href').substring(1);
-            
+
             activateTab(targetId);
 
             // Update URL search params tanpa reload halaman
@@ -454,7 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tangani event back/forward browser
     window.addEventListener('popstate', () => {
         const urlParams = new URLSearchParams(window.location.search);
-        const activeTabId = urlParams.get('tab') || 'information'; 
+        const activeTabId = urlParams.get('tab') || 'information';
         activateTab(activeTabId);
     });
 

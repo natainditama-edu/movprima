@@ -20,15 +20,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
     <!-- Tailwind CSS (utilities only) -->
-    <link rel="preload" href="/assets/css/app.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/app.css" />
+    <link rel="preload" href="/assets/css/app.css?v=<?= @filemtime(FCPATH . 'assets/css/app.css') ?: '1.0' ?>" as="style" />
+    <link rel="stylesheet" href="/assets/css/app.css?v=<?= @filemtime(FCPATH . 'assets/css/app.css') ?: '1.0' ?>" />
 
     <!-- UTS CSS -->
     <link rel="stylesheet" href="/assets/css/libs/owl.carousel-2.3.4.min.css" />
     <link rel="stylesheet" href="/assets/css/libs/lenis-1.3.23.min.css" />
-    <link rel="preload" href="/assets/css/style.css" as="style" />
-    <link rel="stylesheet" href="/assets/css/style.css" />
-    <link rel="stylesheet" href="/assets/css/custom.css" />
+    <link rel="preload" href="/assets/css/style.css?v=<?= @filemtime(FCPATH . 'assets/css/style.css') ?: '1.0' ?>" as="style" />
+    <link rel="stylesheet" href="/assets/css/style.css?v=<?= @filemtime(FCPATH . 'assets/css/style.css') ?: '1.0' ?>" />
+    <link rel="stylesheet" href="/assets/css/custom.css?v=<?= @filemtime(FCPATH . 'assets/css/custom.css') ?: '1.0' ?>" />
 
     <!-- UTS JS Vendors -->
     <script defer src="/assets/js/libs/jquery-3.7.1.min.js"></script>
@@ -39,9 +39,9 @@
     <script defer src="/assets/js/libs/lenis-1.3.23.min.js"></script>
 
     <!-- Site JS -->
-    <script defer src="/assets/js/app.js"></script>
-    <script defer src="/assets/js/assets.js"></script>
-    <script defer src="/assets/js/animations.js"></script>
+    <script defer src="/assets/js/app.js?v=<?= @filemtime(FCPATH . 'assets/js/app.js') ?: '1.0' ?>"></script>
+    <script defer src="/assets/js/assets.js?v=<?= @filemtime(FCPATH . 'assets/js/assets.js') ?: '1.0' ?>"></script>
+    <script defer src="/assets/js/animations.js?v=<?= @filemtime(FCPATH . 'assets/js/animations.js') ?: '1.0' ?>"></script>
 
     <?= $this->renderSection("styles") ?>
 </head>
